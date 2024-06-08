@@ -91,7 +91,8 @@ section {
 }
 
 .home-img img {
-   width: 35vw;
+   width: 30vw;
+   object-fit: cover;
    border-radius: 9999px;
 }
 
@@ -168,17 +169,20 @@ span {
 .btn:hover {
    box-shadow: none;
 }
-
+.about-section {
+  background: var(--second-bg-color);
+}
 .about {
    display: flex;
    justify-content: space-evenly;
    align-items: center;
    gap: 2rem;
-   background: var(--second-bg-color);
+   width: 100%;
 }
 
 .about-img img {
    width: 150rem;
+   height: auto;
 }
 
 .heading {
@@ -197,7 +201,6 @@ span {
 
 .about-content p {
    font-size: 1.6rem;
-   margin: 2rem 0 3rem;
 }
 
 .services h2 {
@@ -384,7 +387,6 @@ span {
    align-items: center;
    padding: .8rem;
    background: var(--main-color);
-   border-radius: .8rem;
    transition: .5s ease;
 }
 

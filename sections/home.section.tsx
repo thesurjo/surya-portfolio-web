@@ -14,7 +14,7 @@ export default function HomeSection() {
                 <div className="social-media">
                     {
                         socialMediaLinks.map((link, index) => (
-                            <a key={index} href={link.href} aria-label={link.name}>
+                            <a key={index} href={link.href} aria-label={link.name} target="_blank">
                                 <i className={link.iconClass}></i>
                             </a>
                         ))
