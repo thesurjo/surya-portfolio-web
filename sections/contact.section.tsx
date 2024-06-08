@@ -1,7 +1,7 @@
 export default function ContactSection() {
     return <>
         <section className="contact w-full" id="contact">
-            <h2 className="heading">Contact<span> Me!</span></h2>
+            <h2 className="heading font-bold">Contact<span> Me!</span></h2>
             <form action="#" name="submit-to-google-sheet">
                 <div className="input-box">
                     <input type="text" name="Name" placeholder="Full Name" />

@@ -1,3 +1,5 @@
+import { socialMediaLinks } from "@/data/social.data";
+
 export default function HomeSection() {
     return <>
         <section className="home w-full" id="home">
@@ -10,10 +12,13 @@ export default function HomeSection() {
                     </span>
                 </h3>
                 <div className="social-media">
-                    <a href="https://github.com/shreya6360/Responsive-personal_portfolio"><i className='bx bxl-github'></i></a>
-                    <a href="#"><i className='bx bxs-envelope'></i></a>
-                    <a href="#"><i className='bx bxl-instagram'></i></a>
-                    <a href="https://www.linkedin.com/in/shreya-shreya-421886227"><i className='bx bxl-linkedin-square'></i></a>
+                    {
+                        socialMediaLinks.map((link, index) => (
+                            <a key={index} href={link.href} aria-label={link.name}>
+                                <i className={link.iconClass}></i>
+                            </a>
+                        ))
+                    }
                 </div>
                 <a href="C:\Users\shrey\Downloads\B.-Software-Engineer.docx" className="btn">Download CV</a>
             </div>

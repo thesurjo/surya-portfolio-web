@@ -5,7 +5,7 @@ export default function AboutSection() {
                 <img src="https://wallpaperaccess.com/full/1385382.jpg" alt="" />
             </div>
             <div className="about-content md:ml-10">
-                <h2 className="heading">About<span> Me</span></h2>
+                <h2 className="heading font-bold">About<span> Me</span></h2>
                 <h3>Frontend Developer</h3>
                 <p>
                     Hello! I'm Surya, a software developer specializing in mobile and web development. With over four years
