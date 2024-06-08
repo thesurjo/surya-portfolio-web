@@ -8,8 +8,8 @@ export default function ServiceSection() {
                 {
                     servicesData.map((service, index) =>
                         <div key={index} className="services-box">
-                            <i className={service.iconClass}></i>
-                            <h3 className='font-bold'>{service.title}</h3>
+                            <i className={`${service.iconClass}`}></i>
+                            <h3 className='font-bold mt-6'>{service.title}</h3>
                             <p>{service.description}</p>
                         </div>
                     )
