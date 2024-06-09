@@ -5,10 +5,10 @@ export default function HomeSection() {
     return <>
         <section className="home w-full" id="home">
             <div className="home-content">
-                <h3>Hey there</h3>
-                <h1>I'm {firstName}</h1>
-                <h3>
-                    <span>
+                <h3 className="font-jetbrains">Hey there</h3>
+                <h1 className="font-jetbrains">I'm {firstName}</h1>
+                <h3 className="font-jetbrains">
+                    <span className="font-jetbrains">
                         {position}
                     </span>
                 </h3>
@@ -21,7 +21,7 @@ export default function HomeSection() {
                         ))
                     }
                 </div>
-                <a href={`${cvURL}`} className="btn" target="_blank">Download CV</a>
+                <a href={`${cvURL}`} className="btn font-jetbrains" target="_blank">Download CV</a>
             </div>
             <div className="home-img">
                 <img src="images/me.png" alt="" />

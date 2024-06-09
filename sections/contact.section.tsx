@@ -3,26 +3,26 @@ import { contactLinks } from "@/data/contact.data";
 export default function ContactSection() {
     return <>
         <section className="contact w-full" id="contact">
-            <h2 className="heading font-bold">Contact<span> Me!</span></h2>
+            <h2 className="heading font-bold font-jetbrains">Contact<span className="font-jetbrains"> Me!</span></h2>
             <div className="about">
                 <div className="about-img">
                     <img src="/images/contact.png" alt="" />
                 </div>
                 <div className="about-content md:ml-10">
-                    <h3 className="font-bold">Get in Touch</h3>
-                    <p>
+                    <h3 className="font-bold font-jetbrains">Get in Touch</h3>
+                    <p className="font-jetbrains">
                         Have a project in mind or need coding assistance?
                         I'm here to help! As a passionate programmer,
                         I'm excited to collaborate on innovative projects and provide solutions to your tech challenges.
                         Whether you have a specific question, need support, or want to discuss a potential collaboration,
                         feel free to reach out.
                     </p><br/>
-                    <p>
+                    <p className="font-jetbrains">
                         Use the contact details below to get in touch, and I'll respond as soon as possible.
                         Let's work together to bring your ideas to life and solve any programming problems you might have.
                         Looking forward to hearing from you!
                     </p>
-                    <h3 className="font-bold mt-6">Contact Details</h3>
+                    <h3 className="font-bold mt-6 font-jetbrains">Contact Details</h3>
                     <div className="social-media-contact">
                         {
                             contactLinks.map((link, index) => (
