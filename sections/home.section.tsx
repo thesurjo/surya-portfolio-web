@@ -1,3 +1,4 @@
+import { firstName, position } from "@/data/home.data";
 import { socialMediaLinks } from "@/data/social.data";
 
 export default function HomeSection() {
@@ -5,10 +6,10 @@ export default function HomeSection() {
         <section className="home w-full" id="home">
             <div className="home-content">
                 <h3>Hey there</h3>
-                <h1>I'm Surya</h1>
+                <h1>I'm {firstName}</h1>
                 <h3>
                     <span>
-                        Frontend Developer
+                        {position}
                     </span>
                 </h3>
                 <div className="social-media">

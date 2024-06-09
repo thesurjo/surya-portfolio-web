@@ -2,7 +2,7 @@ import { projects } from "@/data/project.data";
 
 export default function ProjectSection() {
     return <>
-        <section className="portfolio w-full" id="portfolio">
+        <section className="portfolio w-full" id="project">
             <h2 className="heading font-bold">My<span> Projects</span></h2>
             <div className="portfolio-container">
                 {

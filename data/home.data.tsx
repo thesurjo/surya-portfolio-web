@@ -1,0 +1,5 @@
+export const cvURL = ""
+export const firstName = "Surya"
+export const lastName = "Basak"
+export const position = "Frontend Developer"
+export const copyright = "Copyright © 2024 by Surya | All Rights Reserved."

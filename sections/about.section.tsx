@@ -1,3 +1,4 @@
+import { position } from "@/data/home.data";
 import { skillsData } from "@/data/skill.data";
 
 export default function AboutSection() {
@@ -9,14 +10,18 @@ export default function AboutSection() {
                     <img src="/images/skill.png" alt="" />
                 </div>
                 <div className="about-content md:ml-10">
-                    <h3 className="font-bold">Frontend Developer</h3>
+                    <h3 className="font-bold mb-3">{position}</h3>
                     <p>
                         Hello! I'm Surya, a software developer specializing in mobile and web development. With over four years
                         of experience in mobile app development using Flutter, I create intuitive and responsive UI/UX designs.
-                        <br />
+                    </p>
+                    <br />
+                    <p>
                         In web development, I use modern frameworks like ReactJS and NextJS to build high-performing web
                         applications. My strong foundation in HTML, CSS, and JavaScript ensures a seamless user experience.
-                        <br />
+                    </p>
+                    <br />
+                    <p>
                         On the backend, I work with Django and Chalice frameworks, along with Postgres databases, to design and
                         develop robust RESTful APIs. This expertise allows me to integrate seamlessly with the front end,
                         delivering optimal performance.
