@@ -1,4 +1,4 @@
-export const cvURL = ""
+export const cvURL = "https://drive.google.com/file/d/1LRAC06wP7uJls-oPJu6uarD0cLPKpdbs/view?usp=sharing"
 export const firstName = "Surya"
 export const lastName = "Basak"
 export const position = "Frontend Developer"

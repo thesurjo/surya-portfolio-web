@@ -1,4 +1,4 @@
-import { firstName, position } from "@/data/home.data";
+import { cvURL, firstName, position } from "@/data/home.data";
 import { socialMediaLinks } from "@/data/social.data";
 
 export default function HomeSection() {
@@ -21,7 +21,7 @@ export default function HomeSection() {
                         ))
                     }
                 </div>
-                <a href="C:\Users\shrey\Downloads\B.-Software-Engineer.docx" className="btn">Download CV</a>
+                <a href={`${cvURL}`} className="btn" target="_blank">Download CV</a>
             </div>
             <div className="home-img">
                 <img src="images/me.png" alt="" />
