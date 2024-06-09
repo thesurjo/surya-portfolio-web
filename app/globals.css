@@ -152,6 +152,31 @@ span {
    color: var(--second-bg-color);
    box-shadow: 0 0 1rem var(--main-color);
 }
+.social-media-contact {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.social-media-contact a {
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   width: 4rem;
+   height: 4rem;
+   background: transparent;
+   border: .2rem solid var(--main-color);
+   border-radius: 50%;
+   font-size: 2rem;
+   color: var(--main-color);
+   margin: 0rem 1.5rem 1.5rem 0;
+   transition: .5s ease;
+}
+
+.social-media-contact a:hover {
+   background: var(--main-color);
+   color: var(--second-bg-color);
+   box-shadow: 0 0 1rem var(--main-color);
+}
 
 .btn {
    display: inline-block;
@@ -263,16 +288,17 @@ span {
 .portfolio-container .portfolio-box {
    position: relative;
    border-radius: 2rem;
-   box-shadow: 0 0 1rem var(--bg-color);
+   /* box-shadow: 0 0 4rem var(--bg-color); */
    overflow: hidden;
    display: flex;
 }
 
 .portfolio-box img {
    width: 100%;
-   height: auto;
+   height: 45rem;
    transition: .5s ease;
-   filter: brightness(30%);
+   object-fit: cover;
+   filter: brightness(20%);
 }
 
 .portfolio-box:hover img {

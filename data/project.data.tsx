@@ -7,27 +7,57 @@ interface Project {
 
 export const projects: Project[] = [
     {
-        title: 'Personal Portfolio',
-        description: 'In this project I try making my own portfolio website for myself. Showcase my projects, my social media handles, my experience on the website.',
+        title: 'eCommerce and Social App',
+        description: 'Designed and implemented a comprehensive e-commerce platform with secure user sign-in, product management, and social sharing features.',
         imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
-        link: '#'
+        link: ''
     },
     {
-        title: 'Dynamics Website Deployment in AWS',
-        description: 'In this project I try deployed dynamics website in AWS so that we can add or delete the data by connecting to databases.',
+        title: 'Accounting App',
+        description: 'Developed an accounting app for managing financial transactions, with features like QR code product addition for convenience and accuracy.',
         imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
-        link: '#'
+        link: ''
     },
     {
-        title: 'Iris Flower Detection',
-        description: 'In this project I try to detect the iris flower type by using a machine learning prediction model. And deployed in Streamlit Python.',
+        title: 'NFT Marketplace App',
+        description: 'Created an NFT platform for connecting Cardano wallets, exploring NFTs, and securely buying and selling NFTs using blockchain technology.',
         imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
-        link: '#'
+        link: ''
     },
     {
-        title: 'Cab Booking',
-        description: 'In this project we can book a cab by using Java.',
+        title: 'Fitness Website',
+        description: 'Developed a fitness website with dynamic content management, event registration through EventBrite, and venue booking via PeerSpace.',
         imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
-        link: '#'
+        link: ''
+    },
+    {
+        title: 'Expense Manager App',
+        description: 'Created an app for tracking income and expenses, with features like an expense filter and interactive charts for visualizing financial data.',
+        imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
+        link: 'https://play.google.com/store/apps/details?id=com.finance.khorcha'
+    },
+    {
+        title: 'Expense Manager App (Landing Page)',
+        description: 'Developed a landing page showcasing features of the Expense Manager app, highlighting expense tracking, data visualization, and user convenience.',
+        imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
+        link: 'https://khorcha.in/'
+    },
+    {
+        title: 'TimeSheet Plugin',
+        description: 'Developed a WordPress plugin for managing employees, clients, and projects, with efficient time tracking and comprehensive, filterable reports.',
+        imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
+        link: ''
+    },
+    {
+        title: 'Seller Website',
+        description: 'Built a seller website with ReactJS, AWS Chalice, and PostgreSQL, allowing clients to manage product categories, vendors, and access permissions.',
+        imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
+        link: ''
+    },
+    {
+        title: 'Custom WordPress Page Design & Issue Fixing',
+        description: 'Enhanced WordPress websites by resolving plugin issues, configuring Advanced Custom Fields, and creating tailored plugins for specific needs.',
+        imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
+        link: ''
     }
 ];

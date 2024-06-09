@@ -3,7 +3,7 @@ import { projects } from "@/data/project.data";
 export default function ProjectSection() {
     return <>
         <section className="portfolio w-full" id="portfolio">
-            <h2 className="heading font-bold">Latest<span> Project</span></h2>
+            <h2 className="heading font-bold">My<span> Projects</span></h2>
             <div className="portfolio-container">
                 {
                     projects.map((project, index) => (

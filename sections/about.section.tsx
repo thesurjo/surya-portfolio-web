@@ -2,9 +2,9 @@ import { skillsData } from "@/data/skill.data";
 
 export default function AboutSection() {
     return <>
-        <section className="about-section w-full">
-        <h2 className="heading font-bold">About<span> Me</span></h2>
-            <div className="about" id="about">
+        <section className="about-section w-full" id="about">
+            <h2 className="heading font-bold">About<span> Me</span></h2>
+            <div className="about">
                 <div className="about-img">
                     <img src="/images/skill.png" alt="" />
                 </div>
