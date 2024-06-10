@@ -17,7 +17,7 @@ export default function Header() {
             <a href="/" className="logo font-jetbrains"><span className="font-jetbrains">&lt; </span>{firstName} {lastName}<span className="font-jetbrains"> /&gt;</span></a>
             <i className='bx bx-menu' id="menu-icon" onClick={toggleMenu}></i>
             <nav className={`navbar ${isMenuOpen ? "active" : ""}`}>
-                <a href="/" onClick={handleLinkClick} className="font-jetbrains">Home</a>
+                <a href="/" onClick={handleLinkClick} className="font-jetbrains">HOME</a>
                 <a href="#about" onClick={handleLinkClick} className="font-jetbrains">ABOUT</a>
                 <a href="#services" onClick={handleLinkClick} className="font-jetbrains">SERVICES</a>
                 <a href="#project" onClick={handleLinkClick} className="font-jetbrains">PROJECTS</a>
