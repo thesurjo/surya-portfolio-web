@@ -22,8 +22,7 @@ export default function ContactSection() {
                         Let's work together to bring your ideas to life and solve any programming problems you might have.
                         Looking forward to hearing from you!
                     </p>
-                    <h3 className="font-bold mt-6 font-jetbrains">Contact Details</h3>
-                    <div className="social-media-contact">
+                    <div className="social-media-contact mt-4">
                         {
                             contactLinks.map((link, index) => (
                                 <a key={index} href={link.href} aria-label={link.name} target="_blank">
@@ -32,6 +31,7 @@ export default function ContactSection() {
                             ))
                         }
                     </div>
+                    <a href={`/contact`} className="btn font-jetbrains mt-9">Contact Me!</a>
                 </div>
 
             </div>

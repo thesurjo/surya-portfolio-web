@@ -13,8 +13,8 @@ export default function HomeSection() {
                     </span>
                 </h3>
                 <p className="font-jetbrains">
-                    Transforming your vision into dynamic and efficient digital solutions. 
-                    I offer expertise in web and mobile app development using ReactJS, NextJS, and Flutter, 
+                    Transforming your vision into dynamic and efficient digital solutions.
+                    I offer expertise in web and mobile app development using ReactJS, NextJS, and Flutter,
                     alongside WordPress, SEO, and social media marketing to elevate your digital presence.
                 </p>
                 <div className="social-media">
@@ -26,7 +26,10 @@ export default function HomeSection() {
                         ))
                     }
                 </div>
-                <a href={`${cvURL}`} className="btn font-jetbrains" target="_blank">Download CV</a>
+                <div className="flex flex-wrap gap-5">
+                    <a href={`${cvURL}`} className="btn font-jetbrains" target="_blank">Resume</a>
+                    <a href={`/contact`} className="btn-outlined font-jetbrains">Contact Me!</a>
+                </div>
             </div>
             <div className="home-img">
                 <img src="images/me.jpg" alt="" />

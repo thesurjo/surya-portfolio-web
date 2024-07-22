@@ -21,7 +21,7 @@ export default function Header() {
                 <a href="/#about" onClick={handleLinkClick} className="font-jetbrains">ABOUT</a>
                 <a href="/services" onClick={handleLinkClick} className="font-jetbrains">SERVICES</a>
                 <a href="/projects" onClick={handleLinkClick} className="font-jetbrains">PROJECTS</a>
-                <a href="/#contact" onClick={handleLinkClick} className="font-jetbrains">CONTACT</a>
+                <a href="/contact" onClick={handleLinkClick} className="font-jetbrains">CONTACT</a>
             </nav>
         </header>
     </>
