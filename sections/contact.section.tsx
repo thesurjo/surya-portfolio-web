@@ -5,10 +5,10 @@ export default function ContactSection() {
         <section className="contact w-full" id="contact">
             <h2 className="heading font-bold font-jetbrains">Contact<span className="font-jetbrains"> Me!</span></h2>
             <div className="about">
-                <div className="about-img">
+                <div className="about-img md:w-[40%]">
                     <img src="/images/contact.png" alt="" />
                 </div>
-                <div className="about-content md:ml-10">
+                <div className="about-content md:ml-10 md:w-[60%]">
                     <h3 className="font-bold font-jetbrains">Get in Touch</h3>
                     <p className="font-jetbrains">
                         Have a project in mind or need coding assistance?

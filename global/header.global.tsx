@@ -18,10 +18,10 @@ export default function Header() {
             <i className='bx bx-menu' id="menu-icon" onClick={toggleMenu}></i>
             <nav className={`navbar ${isMenuOpen ? "active" : ""}`}>
                 <a href="/" onClick={handleLinkClick} className="font-jetbrains">HOME</a>
-                <a href="#about" onClick={handleLinkClick} className="font-jetbrains">ABOUT</a>
-                <a href="#services" onClick={handleLinkClick} className="font-jetbrains">SERVICES</a>
-                <a href="#project" onClick={handleLinkClick} className="font-jetbrains">PROJECTS</a>
-                <a href="#contact" onClick={handleLinkClick} className="font-jetbrains">CONTACT</a>
+                <a href="/#about" onClick={handleLinkClick} className="font-jetbrains">ABOUT</a>
+                <a href="/services" onClick={handleLinkClick} className="font-jetbrains">SERVICES</a>
+                <a href="/projects" onClick={handleLinkClick} className="font-jetbrains">PROJECTS</a>
+                <a href="/#contact" onClick={handleLinkClick} className="font-jetbrains">CONTACT</a>
             </nav>
         </header>
     </>
