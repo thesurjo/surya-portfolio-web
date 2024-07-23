@@ -12,12 +12,21 @@ export default function ProjectSection() {
                             <div className="portfolio-layer">
                                 <h4 className="font-bold font-jetbrains">{project.title}</h4>
                                 <p className="font-jetbrains">{project.description}</p>
-                                {
-                                    project.link &&
-                                    <a href={project.link} target="_blank">
-                                        <i className='bx bx-link-external'></i>
-                                    </a>
-                                }
+                                <div className="flex flex-wrap gap-4 justify-center">
+                                        {
+                                            project.technologies.map((skill, index) =>
+                                                <div key={index} className=" border bg-[--second-bg-color] border-gray-300 rounded-full px-6 py-3 shadow-md">
+                                                    <div className="font-jetbrains">{skill}</div>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                                    {
+                                        project.link &&
+                                        <a href={project.link} target="_blank" className='mt-6'>
+                                            <i className='bx bx-link-external'></i>
+                                        </a>
+                                    }
                             </div>
                         </div>
                     ))

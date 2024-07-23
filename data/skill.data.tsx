@@ -4,6 +4,7 @@ interface Skill {
 
 export const skillsData: Skill[] = [
     { name: 'Flutter' },
+    { name: 'Dart' },
     { name: 'React-Native' },
     { name: 'React' },
     { name: 'Next.js' },
