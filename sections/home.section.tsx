@@ -27,7 +27,7 @@ export default function HomeSection() {
                     }
                 </div>
                 <div className="flex flex-wrap gap-5">
-                    <a href={`${cvURL}`} className="btn font-jetbrains" target="_blank">Resume</a>
+                    <a href={`/resume`} className="btn font-jetbrains" target="_blank">Resume</a>
                     <a href={`/contact`} className="btn-outlined font-jetbrains">Contact Me!</a>
                 </div>
             </div>

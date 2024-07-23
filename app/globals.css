@@ -38,8 +38,9 @@ body {
    color: var(--text-color);
 }
 
+
 section {
-   /* min-height: 100vh; */
+   min-height: 100vh;
    padding: 15rem 9% 15rem;
 }
 
@@ -456,7 +457,7 @@ span {
    font-size: 1.6rem;
 }
 
-.footer-top-scroll a {
+.footer-top-scroll button {
    display: inline-flex;
    justify-content: center;
    align-items: center;
@@ -465,11 +466,11 @@ span {
    transition: .5s ease;
 }
 
-.footer-top-scroll a:hover {
+.footer-top-scroll button:hover {
    box-shadow: 0 0 1rem var(--main-color);
 }
 
-.footer-top-scroll a i {
+.footer-top-scroll button i {
    font-size: 2.4rem;
    color: var(--second-bg-color);
 }
