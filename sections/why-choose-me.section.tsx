@@ -5,8 +5,7 @@ export default function WhyChooseMeSection() {
     return (
         <section className="about-section w-full" id="about">
             <h2 className="heading font-bold font-jetbrains">Why<span className="font-jetbrains"> Choose Me?</span></h2>
-            <div className="about">
-
+            <div className="why-choose-me about flex-row-reverse md:flex-row">
                 <div className="about-content md:ml-10 md:w-[60%]">
                     <p className="font-jetbrains">
                         Kickstart your journey in software development with me.
@@ -53,7 +52,6 @@ export default function WhyChooseMeSection() {
                             <p className="m-0 font-jetbrains">Provides training and consultancy</p>
                         </li>
                     </ul>
-
                 </div>
                 <div className="about-img md:w-[40%]">
                     <img src="/images/handshake.png" alt="" />
