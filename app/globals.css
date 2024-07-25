@@ -462,6 +462,13 @@ span {
    font-size: 1.6rem;
 }
 
+.footer-top-scroll {
+   position: fixed;
+   bottom: 5.5rem; 
+   right: 2rem; 
+   z-index: 1000;
+}
+
 .footer-top-scroll button {
    display: inline-flex;
    justify-content: center;
@@ -515,6 +522,10 @@ span {
 @media(max-width:768px) {
    #menu-icon {
       display: block;
+   }
+
+   .footer-top-scroll {
+      bottom: 8.5rem; 
    }
 
    .navbar {
