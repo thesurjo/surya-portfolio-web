@@ -7,6 +7,7 @@ const config: Config = {
     "./sections/**/*.{js,ts,jsx,tsx,mdx}",
     "./global/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./widgets/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
