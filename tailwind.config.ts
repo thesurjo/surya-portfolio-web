@@ -17,6 +17,7 @@ const config: Config = {
       },
       fontFamily: {
         jetbrains: ['"JetBrains Mono"', 'monospace'],
+        londrina: ['"Londrina Outline"', 'sans-serif'],
       },
     },
   },

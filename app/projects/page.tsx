@@ -11,11 +11,10 @@ export default function Projects() {
             <Header />
             <section className="projects w-full" id="project">
                 <h2 className="heading font-bold font-jetbrains">My<span className="font-jetbrains"> Projects</span></h2>
-                <p className="font-jetbrains text-center mb-12">
-                    Welcome to my projects page! Here, you’ll find a showcase of my work as a software developer.
-                    Over the years, I have worked on various mobile and web applications, each reflecting my commitment to creating
-                    intuitive and responsive user experiences. From mobile apps built with Flutter to modern web applications developed
-                    using ReactJS and NextJS, you’ll see a diverse range of projects that demonstrate my skills and expertise.
+                <p className="font-jetbrains text-center mb-12 m-auto max-w-6xl">
+                Welcome to my projects page! Here, you’ll find a variety of mobile and web apps 
+                I’ve worked on, including Flutter, ReactJS, and NextJS projects, 
+                all showcasing my focus on user-friendly designs.
                 </p>
                 <div className="portfolio-container">
                     {
