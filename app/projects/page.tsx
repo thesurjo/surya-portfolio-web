@@ -7,7 +7,7 @@ export default function Projects() {
     const router = useRouter()
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between">
+        <main className="flex min-h-screen flex-col items-center justify-between mt-16 md:mt-0">
             <Header />
             <section className="projects w-full" id="project">
                 <h2 className="heading font-bold font-jetbrains">My<span className="font-jetbrains"> Projects</span></h2>

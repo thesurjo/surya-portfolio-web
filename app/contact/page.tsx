@@ -94,7 +94,7 @@ export default function Contact() {
 
     return (
         <>
-            <main className="flex min-h-screen flex-col items-center justify-between">
+            <main className="flex min-h-screen flex-col items-center justify-between mt-16 md:mt-0">
                 <Header />
                 <section className="contact w-full" id="contact">
                     <h2 className="heading font-bold font-jetbrains">Contact<span className="font-jetbrains"> Me!</span></h2>

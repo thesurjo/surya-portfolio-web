@@ -18,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
+      <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet"/>
       </head>
       <body className={inter.className}>{children}</body>
     </html>

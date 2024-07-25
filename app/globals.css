@@ -22,9 +22,7 @@
    --second-bg-color: #323946;
    --text-color: #e0d4fd;
    --text-color: #f5e6d8;
-   /* Light beige */
    --main-color: #ff6f61;
-   /* Vibrant coral */
 }
 
 html {
@@ -43,6 +41,11 @@ section {
    min-height: 100vh;
    padding: 15rem 9% 15rem;
 }
+
+.timeline {
+   min-height: 80vh!important;
+}
+
 
 .homepage section:nth-child(odd) {
    background: var(--second-bg-color);
@@ -75,7 +78,7 @@ p {
 }
 
 .logo {
-   font-size: 2.5rem;
+   font-size: 3.5rem;
    color: var(--text-color);
    font-weight: 600;
 }
@@ -380,9 +383,6 @@ span {
    transform: translateY(0);
 }
 
-/* .portfolio-box:hover .portfolio-layer {
-  transform: translateY(0);
-} */
 
 .portfolio-layer h4 {
    font-size: 3rem;
@@ -579,7 +579,6 @@ span {
 
    .about img {
       width: 100%;
-      /* margin-top: 4rem; */
    }
 
    .services h2 {

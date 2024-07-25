@@ -2,7 +2,7 @@ import { Header, Footer } from '@/global/page';
 
 export default function PrivacyPolicy() {
     return <>
-        <main className="flex min-h-screen flex-col items-center justify-between">
+        <main className="flex min-h-screen flex-col items-center justify-between mt-16 md:mt-0">
             <Header />
             <section className="privacy-policy w-full" id="privacy-policy">
                 <h2 className="heading font-bold font-jetbrains mb-9">Privacy Policy</h2>

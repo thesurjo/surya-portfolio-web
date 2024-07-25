@@ -12,7 +12,7 @@ export default function AboutSection() {
                 <div className="about-content md:ml-10 md:w-[60%]">
                     {/* <h3 className="font-bold font-jetbrains mb-3">{position}</h3> */}
                     <p className="font-jetbrains">
-                    Hello! I'm Surya, a software developer with over four years of experience in mobile and web development. 
+                    Hello! I'm Surya Basak, a software developer with over four years of experience in mobile and web development. 
                     I specialize in creating engaging mobile apps with Flutter and high-performing web applications using ReactJS and NextJS. 
                     My expertise in HTML, CSS, and JavaScript ensures seamless, dynamic user experiences across platforms.
                     </p>

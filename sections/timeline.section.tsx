@@ -1,6 +1,6 @@
 export default function TimelineSection() {
     return (
-        <section className="w-full">
+        <section className="w-full timeline">
             <div className="mx-auto w-full px-4 sm:px-6 lg:px-8">
                 <h2 className="heading font-bold font-jetbrains"><span className='font-jetbrains'>Development</span> Process</h2>
                 <p className="font-jetbrains text-center mb-16 mx-auto mt-4 max-w-6xl">

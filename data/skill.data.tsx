@@ -19,5 +19,7 @@ export const skillsData: Skill[] = [
     { name: 'PHP' },
     { name: 'SEO' },
     { name: 'AWS' },
-    { name: 'Git' }
+    { name: 'Git' },
+    { name: 'Consulting' },
+    { name: 'Digital Marketing' },
 ];

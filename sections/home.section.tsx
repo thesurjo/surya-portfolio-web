@@ -3,7 +3,7 @@ import { socialMediaLinks } from "@/data/social.data";
 
 export default function HomeSection() {
     return <>
-        <section className="home w-full" id="home">
+        <section className="home w-full mt-16 md:mt-0" id="home">
             <div className="home-content md:w-[50%]">
                 <h3 className="font-jetbrains md:w-[50%]">Hey there</h3>
                 <h1 className="font-jetbrains">I'm {firstName}</h1>
