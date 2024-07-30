@@ -80,7 +80,7 @@ p {
 .logo {
    font-size: 3.5rem;
    color: var(--text-color);
-   font-weight: 600;
+   /* font-weight: 400; */
 }
 
 .navbar a {
@@ -525,7 +525,8 @@ span {
    }
 
    .footer-top-scroll {
-      bottom: 8.5rem; 
+      bottom: 2.5rem; 
+      right: 1rem;
    }
 
    .navbar {
