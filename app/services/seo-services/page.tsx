@@ -9,6 +9,7 @@ export default function Service() {
   return (
     <main className="homepage flex min-h-screen flex-col items-center justify-between mt-16 md:mt-0">
       <Header />
+      
       <section className="about-section w-full" id="about">
         <h2 className="heading font-bold font-jetbrains">SEO Services</h2>
         <div className="about">
