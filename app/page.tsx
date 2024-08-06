@@ -1,5 +1,5 @@
 import { Header, Footer } from "@/global/page";
-import { AboutSection, ContactSection, HomeSection, ProjectSection, ServiceSection, WhyChooseMeSection } from "@/sections/page";
+import { AboutSection, ClientCountSection, ContactSection, HomeSection, ProjectSection, ServiceSection, WhyChooseMeSection } from "@/sections/page";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
       <AboutSection />
       <ServiceSection />
       <WhyChooseMeSection/>
+      <ClientCountSection/>
       <ProjectSection />
       <ContactSection />
       <Footer />

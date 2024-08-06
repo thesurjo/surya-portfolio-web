@@ -38,7 +38,7 @@ body {
 
 
 section {
-   min-height: 100vh;
+   /* min-height: 100vh; */
    padding: 15rem 9% 15rem;
 }
 
@@ -327,7 +327,7 @@ span {
 }
 
 .services-box h3 {
-   font-size: 2.6rem;
+   font-size: 2.1rem;
 }
 
 
@@ -385,7 +385,7 @@ span {
 
 
 .portfolio-layer h4 {
-   font-size: 3rem;
+   font-size: 2.1rem;
 }
 
 .portfolio-layer p {

@@ -22,7 +22,7 @@ export default function Projects() {
                             <div key={index} className="portfolio-box">
                                 <img src={project.imageUrl} alt={project.title} />
                                 <div className="portfolio-layer">
-                                    <h4 className="font-bold font-jetbrains">{project.title}</h4>
+                                    <h4 className="font-bold font-jetbrains mb-4">{project.title}</h4>
                                     <p className="font-jetbrains">{project.description}</p>
                                     
                                     <div className="flex flex-wrap gap-4 justify-center">
