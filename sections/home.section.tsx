@@ -32,7 +32,7 @@ export default function HomeSection() {
                 </div>
             </div>
             <div className="home-img">
-                <img src="images/me2.jpg" alt="" />
+                <img src="images/me2.png" alt="" />
             </div>
         </section>
     </>;
