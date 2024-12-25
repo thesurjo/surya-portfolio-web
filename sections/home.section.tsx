@@ -1,4 +1,4 @@
-import { cvURL, firstName, position } from "@/data/home.data";
+import { firstName, position } from "@/data/home.data";
 import { socialMediaLinks } from "@/data/social.data";
 
 export default function HomeSection() {
@@ -32,7 +32,7 @@ export default function HomeSection() {
                 </div>
             </div>
             <div className="home-img">
-                <img src="images/me.jpg" alt="" />
+                <img src="images/me2.jpg" alt="" />
             </div>
         </section>
     </>;

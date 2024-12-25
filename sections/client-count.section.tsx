@@ -8,21 +8,21 @@ export default function ClientCountSection() {
                 Let's create something extraordinary together.
             </p>
             <div className="flex flex-wrap justify-evenly mt-24">
-                <div className="w-64 flex flex-col justify-start items-center">
+                <div className="w-60 flex flex-col justify-start items-center">
                     <i className="bx bx-smile text-7xl text-[#ff6f61]"></i>
                     <h2 className="heading font-bold font-jetbrains mt-2"><span className="font-jetbrains">15</span>+</h2>
                     <p className="font-jetbrains text-center">
                         Satisfied Clients
                     </p>
                 </div>
-                <div className="w-64 flex flex-col justify-start items-center">
+                <div className="w-60 flex flex-col justify-start items-center">
                     <i className="bx bx-briefcase text-7xl text-[#ff6f61]"></i>
                     <h2 className="heading font-bold font-jetbrains mt-2"><span className="font-jetbrains">30</span>+</h2>
                     <p className="font-jetbrains text-center">
                         Completed Projects
                     </p>
                 </div>
-                <div className="w-64 flex flex-col justify-start items-center">
+                <div className="w-60 flex flex-col justify-start items-center">
                     <i className="bx bx-trophy text-7xl text-[#ff6f61]"></i>
                     <h2 className="heading font-bold font-jetbrains mt-2"><span className="font-jetbrains">100</span>%</h2>
                     <p className="font-jetbrains text-center">
