@@ -80,7 +80,7 @@ export default function DeleteAccountInstructions() {
                 </p>
                 <p className="font-jetbrains text-[1.6rem] opacity-90">
                   Questions? Contact us at{' '}
-                  <span className="text-[var(--main-color)] font-jetbrains">support@daylight.com</span>
+                  <span className="text-[var(--main-color)] font-jetbrains">khorchaofficial@gmail.com</span>
                 </p>
               </div>
             </div>
