@@ -46,8 +46,22 @@ export const projects: Project[] = [
         title: 'Expense Manager App (Landing Page)',
         description: 'Developed a landing page showcasing features of the Expense Manager app, highlighting expense tracking, data visualization, and user convenience.',
         imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
-        link: 'https://khorcha.in/',
+        link: 'https://khorcha.netlify.app/',
         technologies: ['Next.Js', 'TailwindCSS']
+    },
+    {
+        title: 'SMS App',
+        description: 'Developed an SMS app for sending and receiving text messages. Integrated features include notification replies and contact management.',
+        imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
+        link: '',
+        technologies: ['Flutter', 'Dart', 'Kotlin']
+    },
+    {
+        title: 'GYM App',
+        description: 'Developed a gym management app enabling users to handle subscriptions and attendance efficiently.',
+        imageUrl: 'https://i.imgur.com/Ctsjouj.jpg',
+        link: '',
+        technologies: ['Flutter', 'Dart', 'Firebase']
     },
     {
         title: 'TimeSheet Plugin',
