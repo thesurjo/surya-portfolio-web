@@ -1,38 +1,12 @@
 import { services } from '@/data/serviceDetails';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function ServiceSection() {
-    // Animation variants
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                duration: 0.5
-            }
-        }
-    };
-
     return (
-        <section className="services py-20 px-4 md:px-6 lg:px-8" id="services">
-            <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-center max-w-6xl mx-auto mb-16"
+        <section className="services py-16 px-4 md:px-6 lg:px-8" id="services">
+            <div
+                className="text-center max-w-6xl mx-auto mb-16 animate-fadeIn"
             >
                 <h2 className="heading font-bold font-jetbrains text-[28px] md:text-[40px] md:text-4xl mb-6">
                     <span className='font-jetbrains'>Services</span> I Offer
@@ -41,20 +15,16 @@ export default function ServiceSection() {
                     As a versatile software developer, I offer a range of services designed to bring your ideas to
                     life with precision and creativity. Here are the key services I provide:
                 </p>
-            </motion.div>
+            </div>
             
-            <motion.div 
+            <div 
                 className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-7xl mx-auto"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
             >
                 {services.map((service, index) => (
-                    <motion.div 
+                    <div 
                         key={index}
-                        variants={itemVariants}
-                        whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                        className="bg-[--second-bg-color] rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-[--main-color] transition-all duration-300"
+                        className="bg-[--second-bg-color] rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-[--main-color] transition-all duration-300 hover:-translate-y-1 animate-fadeInUp"
+                        style={{ animationDelay: `${index * 100}ms` }}
                     >
                         <Link href={`/services/${service.slug}`} className="block h-full">
                             <div className="p-8 flex flex-col h-full">
@@ -62,7 +32,7 @@ export default function ServiceSection() {
                                     <i className={`${service.iconClass} text-[--main-color] text-4xl`}></i>
                                 </div>
                                 <h3 className='font-bold text-[16px] md:text-[18px] mb-4 font-jetbrains text-center'>{service.title}</h3>
-                                <p className='font-jetbrains text-[10px] md:text-[13px] text-center text-opacity-80 flex-grow'>{service.shortDescription}</p>
+                                <p className='font-jetbrains text-[11px] md:text-[12px] text-center text-opacity-80 flex-grow'>{service.shortDescription}</p>
                                 
                                 {/* Technology tags */}
                                 <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -89,9 +59,9 @@ export default function ServiceSection() {
                                 </div>
                             </div>
                         </Link>
-                    </motion.div>
+                    </div>
                 ))}
-            </motion.div>
+            </div>
         </section>
     );
 }

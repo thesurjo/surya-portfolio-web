@@ -1,7 +1,6 @@
 "use client"
 import { useRouter } from 'next/navigation'
 import { Header, Footer } from '@/global/page';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { getServiceBySlug } from '@/data/serviceDetails';
 import { useParams } from 'next/navigation';
@@ -12,22 +11,6 @@ export default function ServiceDetail() {
   const params = useParams();
   const slug = params.slug as string;
   const serviceData = getServiceBySlug(slug);
-
-  // Animation variants
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
 
   if (!serviceData) {
     return (
@@ -107,11 +90,8 @@ export default function ServiceDetail() {
             {/* Main Content - 8 columns on large screens */}
             <div className="lg:col-span-8 space-y-6 md:space-y-8">
               {/* Hero Image */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-[--second-bg-color] p-20 md:p-24 rounded-2xl border border-gray-800/20 shadow-xl"
+              <div 
+                className="bg-[--second-bg-color] p-20 md:p-24 rounded-2xl border border-gray-800/20 shadow-xl transform hover:scale-[1.02] transition-transform duration-300"
               >
                 <div className="relative overflow-hidden rounded-xl aspect-video">
                   <Image 
@@ -122,14 +102,11 @@ export default function ServiceDetail() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </motion.div>
+              </div>
               
               {/* Description Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="bg-[--second-bg-color] p-6 md:p-8 rounded-2xl border border-gray-800/20 shadow-xl"
+              <div
+                className="bg-[--second-bg-color] p-6 md:p-8 rounded-2xl border border-gray-800/20 shadow-xl transform hover:scale-[1.01] transition-transform duration-300"
               >
                 <h2 className="text-[18px] md:text-[20px] font-bold font-jetbrains mb-5 text-white">About This Service</h2>
                 <div className="space-y-4">
@@ -139,29 +116,20 @@ export default function ServiceDetail() {
                     </p>
                   ))}
                 </div>
-              </motion.div>
+              </div>
               
               {/* Expertise Section */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+              <div 
                 className="bg-[--second-bg-color] p-6 md:p-8 rounded-2xl border border-gray-800/20 shadow-xl"
               >
                 <h2 className="text-[18px] md:text-[20px] font-bold font-jetbrains mb-5 text-white">My Expertise</h2>
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
                   {serviceData.expertise.map((item, index) => (
-                    <motion.div 
+                    <div 
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 * index }}
-                      className="bg-[--background-light] p-6 rounded-xl border border-gray-800/10 hover:border-[--main-color]/30 transition-all duration-300"
+                      className="bg-[--background-light] p-6 rounded-xl border border-gray-800/10 hover:border-[--main-color]/30 transition-all duration-300 transform hover:scale-[1.02]"
                     >
                       <div className="flex items-center gap-4 mb-4">
-                        {/* <div className="bg-[--main-color]/20 text-[--main-color] p-3 rounded-lg">
-                          <i className={`${item.icon} text-2xl`}></i>
-                        </div> */}
                         <h3 className="text-[16px] font-bold font-jetbrains">{item.title}</h3>
                       </div>
                       <ul className="space-y-3">
@@ -172,21 +140,17 @@ export default function ServiceDetail() {
                           </li>
                         ))}
                       </ul>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             </div>
             
             {/* Sidebar - 4 columns on large screens */}
             <div className="lg:col-span-4 space-y-6 md:space-y-8">
-
               {/* Benefits Card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-[--second-bg-color] p-6 md:p-8 rounded-2xl border border-gray-800/20 shadow-xl"
+              <div 
+                className="bg-[--second-bg-color] p-6 md:p-8 rounded-2xl border border-gray-800/20 shadow-xl transform hover:scale-[1.02] transition-transform duration-300"
               >
                 <h2 className="text-[18px] md:text-[20px] font-bold font-jetbrains mb-5 text-white">Benefits</h2>
                 <div className="space-y-4">
@@ -202,14 +166,11 @@ export default function ServiceDetail() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* CTA Card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-gradient-to-br from-[--main-color] to-purple-600 p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden group"
+              <div 
+                className="bg-gradient-to-br from-[--main-color] to-purple-600 p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden group transform hover:scale-[1.02] transition-transform duration-300"
               >
                 <div className="absolute inset-0 bg-black opacity-50 group-hover:opacity-40 transition-opacity duration-300"></div>
                 <div className="relative z-10">
@@ -218,14 +179,14 @@ export default function ServiceDetail() {
                     Let's discuss how I can help you achieve your goals with my {serviceData.title} services.
                   </p>
                   <button 
-                    onClick={() => router.push('/contact')}
+                    onClick={() => router.push('/#contact')}
                     className="w-full bg-white text-[--main-color] hover:bg-opacity-90 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group"
                   >
                     <span className="text-[14px] font-jetbrains">Get in Touch</span>
                     <i className='bx bx-right-arrow-alt text-xl group-hover:translate-x-1 transition-transform'></i>
                   </button>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

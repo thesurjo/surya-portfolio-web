@@ -1,53 +1,55 @@
+"use client";
+
 import { contactLinks } from "@/data/contact.data";
+import { useState } from "react";
 
 export default function ContactSection() {
-    return <>
-        <section className="contact w-full" id="contact">
-            <h2 className="heading font-bold font-jetbrains">Contact<span className="font-jetbrains"> Me!</span></h2>
-            <div className="about">
-                <div className="about-img md:w-[40%]">
-                    <img src="/images/contact.png" alt="" />
-                </div>
-                <div className="about-content md:ml-10 md:w-[60%]">
-                    <h3 className="font-bold font-jetbrains">Get in Touch</h3>
-                    <p className="font-jetbrains">
-                        Have a project in mind or need coding assistance?
-                        I'm here to help! As a passionate programmer,
-                        I'm excited to collaborate on innovative projects and provide solutions to your tech challenges.
-                        Whether you have a specific question, need support, or want to discuss a potential collaboration,
-                        feel free to reach out.
-                    </p><br/>
-                    <p className="font-jetbrains">
-                        Use the contact details below to get in touch, and I'll respond as soon as possible.
-                        Let's work together to bring your ideas to life and solve any programming problems you might have.
-                        Looking forward to hearing from you!
+    const [activeOption, setActiveOption] = useState<string>("email");
+    
+    const contactOptions = [
+        { id: "email", name: "Email", icon: "bx-envelope", desc: "Get in touch via email" },
+        { id: "social", name: "Social", icon: "bx-link", desc: "Connect on social media" },
+        { id: "form", name: "Form", icon: "bx-message-detail", desc: "Fill out the contact form" }
+    ];
+    
+    return (
+        <section className="w-full py-16 px-4 md:px-8 bg-[--bg-color]" id="contact">
+            <div className="max-w-7xl mx-auto">
+                {/* Section Header - Consistent with other sections */}
+                <div className="text-center max-w-6xl mx-auto mb-12 animate-fadeIn">
+                    <h2 className="font-bold font-jetbrains text-[28px] md:text-[40px] mb-6">
+                        Contact <span className="text-[--main-color]">Me</span>
+                    </h2>
+                    <p className="font-jetbrains text-[14px] md:text-[16px] leading-relaxed text-opacity-90 max-w-6xl mx-auto">
+                        Have a project in mind or need coding assistance? I'm here to help you bring your ideas to life with precision and creativity.
                     </p>
-                    <div className="social-media-contact mt-4">
-                        {
-                            contactLinks.map((link, index) => (
-                                <a key={index} href={link.href} aria-label={link.name} target="_blank">
-                                    <i className={link.iconClass}></i>
+                </div>                
+                {/* Contact Content */}
+                <div className="animate-fadeIn">
+                    {/* Email Option */}
+                    <div className="flex flex-wrap justify-center gap-6">
+                            {contactLinks.map((link, index) => (
+                                <a 
+                                    key={index} 
+                                    href={link.href} 
+                                    aria-label={link.name} 
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-16 py-6 bg-[--second-bg-color] rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-[--main-color] transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col items-center text-center"
+                                >
+                                    <div className="bg-[--background-light] w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                                        <i className={`${link.iconClass} text-[--main-color] text-3xl`}></i>
+                                    </div>
+                                    <h3 className="font-bold text-[16px] md:text-[18px] mb-4 font-jetbrains">{link.name}</h3>
+                                    <span className="mt-auto inline-flex items-center text-[--main-color] text-[13px]">
+                                        Connect
+                                        <i className="bx bx-right-arrow-alt ml-1"></i>
+                                    </span>
                                 </a>
-                            ))
-                        }
-                    </div>
-                    <a href={`/contact`} className="btn font-jetbrains mt-9">Contact Me!</a>
+                            ))}                           
+                        </div>
                 </div>
-
             </div>
-            {/* <form action="#" name="submit-to-google-sheet">
-                <div className="input-box">
-                    <input type="text" name="Name" placeholder="Full Name *" required/>
-                    <input type="email" name="Email Address" placeholder="Email Address *" required/>
-                </div>
-                <div className="input-box">
-                    <input type="number" name="Mobile Number" placeholder="Mobile Number" />
-                    <input type="text" name="Subject" placeholder="Subject *" required/>
-                </div>
-                <textarea name="Your Message" id="" cols={10} rows={10} placeholder="Your Message *" required></textarea>
-                <input type="submit" value="Send Message" className="btn" />
-            </form>
-            <span id="msg"></span> */}
         </section>
-    </>;
+    );
 }
