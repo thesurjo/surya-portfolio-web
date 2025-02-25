@@ -21,6 +21,12 @@ const config: Config = {
         londrina: ['"Londrina Outline"', 'sans-serif'],
         sacramento:['"Sacramento"', 'swap'],
       },
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        border: "var(--border)",
+        main: "var(--main-color)",
+      },
     },
   },
   plugins: [],
