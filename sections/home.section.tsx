@@ -62,7 +62,7 @@ export default function HomeSection() {
                                         href={link.href} 
                                         aria-label={link.name} 
                                         target="_blank"
-                                        className="w-10 h-10 rounded-full bg-[--background-light] flex items-center justify-center text-[--main-color] hover:bg-[--main-color] hover:text-white transition-all duration-300 hover:scale-110"
+                                        className="w-16 h-16 rounded-full bg-[--background-light] flex items-center justify-center text-[--main-color] hover:bg-[--main-color] hover:text-white transition-all duration-300 hover:scale-110"
                                     >
                                         <i className={link.iconClass}></i>
                                     </a>
