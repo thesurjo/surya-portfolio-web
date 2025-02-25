@@ -320,9 +320,9 @@ span {
    box-shadow: none;
 }
 
-.about-section {
+/* .about-section {
    background: var(--second-bg-color);
-}
+} */
 
 .about {
    display: flex;
