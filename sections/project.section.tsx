@@ -20,7 +20,7 @@ const staggerContainer = {
 
 export default function ProjectSection() {
     return (
-        <section className="relative w-full py-32 px-4" id="project">
+        <section className="relative w-full py-16 px-4" id="project">
             <div className="absolute inset-0">
                 <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-[--main-color]/5 via-transparent to-[--main-color]/5"></div>
@@ -62,13 +62,13 @@ export default function ProjectSection() {
                     className="flex justify-center"
                 >
                     <div className="text-center">
-                        <a
+                        <Link
                             href="/projects"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-full text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300"
                         >
                             <i className='bx bx-right-arrow-alt text-xl'></i>
                             More Projects
-                        </a>
+                        </Link>
                     </div>
                 </motion.div>
             </div>

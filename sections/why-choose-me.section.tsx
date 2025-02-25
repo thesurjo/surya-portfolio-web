@@ -1,6 +1,7 @@
 "use client";
 
 import { position } from "@/data/home.data";
+import Link from "next/link";
 import { useState } from "react";
 
 // Define the feature categories and items
@@ -141,13 +142,13 @@ export default function WhyChooseMeSection() {
                 
                 {/* Call to Action */}
                 <div className="mt-12 text-center">
-                    <a 
+                    <Link
                         href="#contact" 
                         className="inline-flex items-center gap-2 px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-full text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300"
                     >
                         <i className='bx bx-message-detail'></i>
                         Get in Touch
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

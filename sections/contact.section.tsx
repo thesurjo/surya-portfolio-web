@@ -13,7 +13,7 @@ export default function ContactSection() {
     ];
     
     return (
-        <section className="w-full py-16 md:py-16 px-4 md:px-8 bg-[--bg-color]" id="contact">
+        <section className="w-full py-16 px-4 md:px-8 bg-[--bg-color]" id="contact">
             <div className="max-w-7xl mx-auto">
                 {/* Section Header - Consistent with other sections */}
                 <div className="text-center max-w-6xl mx-auto mb-12 animate-fadeIn">

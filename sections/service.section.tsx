@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function ServiceSection() {
     return (
-        <section className="services py-20 px-4 md:px-6 lg:px-8" id="services">
+        <section className="services py-16 px-4 md:px-6 lg:px-8" id="services">
             <div
                 className="text-center max-w-6xl mx-auto mb-16 animate-fadeIn"
             >
