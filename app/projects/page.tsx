@@ -104,7 +104,7 @@ export default function Projects() {
                     </div>
                 ) : (
                     <motion.div 
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 lg:gap-10 max-w-[90rem] mx-auto"
+                        className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 lg:gap-10 max-w-[90rem] mx-auto"
                         variants={container}
                         initial="hidden"
                         animate="show"
