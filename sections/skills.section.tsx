@@ -25,7 +25,7 @@ export default function SkillsSection() {
                     <h2 className="text-[28px] md:text-[40px] font-bold font-jetbrains mb-4">
                         My <span className="text-[--main-color]">Skills</span>
                     </h2>
-                    <p className="font-jetbrains text-[14px] md:text-[16px] max-w-2xl mx-auto text-opacity-90 mb-6">
+                    <p className="font-jetbrains text-[14px] md:text-[16px] max-w-6xl mx-auto text-opacity-90 mb-6">
                         A collection of technologies and tools I've mastered throughout my professional journey
                     </p>
                     <div className="w-20 h-1 bg-[--main-color] mx-auto rounded-full"></div>
@@ -49,7 +49,7 @@ export default function SkillsSection() {
                 </div>
                 
                 {/* Skills Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 animate-fadeIn">
+                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 animate-fadeIn">
                     {skillsData
                         .filter(skill => skillCategories[activeCategory]?.includes(skill.name))
                         .map((skill, index) => (

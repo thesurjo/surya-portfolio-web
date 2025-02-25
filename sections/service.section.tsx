@@ -32,7 +32,7 @@ export default function ServiceSection() {
                                     <i className={`${service.iconClass} text-[--main-color] text-4xl`}></i>
                                 </div>
                                 <h3 className='font-bold text-[16px] md:text-[18px] mb-4 font-jetbrains text-center'>{service.title}</h3>
-                                <p className='font-jetbrains text-[10px] md:text-[13px] text-center text-opacity-80 flex-grow'>{service.shortDescription}</p>
+                                <p className='font-jetbrains text-[11px] md:text-[12px] text-center text-opacity-80 flex-grow'>{service.shortDescription}</p>
                                 
                                 {/* Technology tags */}
                                 <div className="mt-4 flex flex-wrap justify-center gap-2">

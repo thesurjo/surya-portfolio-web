@@ -20,7 +20,7 @@ export default function AboutSection() {
     ];
 
     return (
-        <section className="w-full py-16 md:py-20 px-4 md:px-9 bg-[--second-bg-color]" id="about">
+        <section className="w-full py-16 md:py-20 px-4 md:px-9" id="about">
             <div className="max-w-7xl mx-auto">
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
@@ -42,12 +42,12 @@ export default function AboutSection() {
                         transition={{ duration: 0.6 }}
                         className="lg:col-span-5 flex justify-center items-center"
                     >
-                        <div className="relative p-6 overflow-hidden">
+                        <div className="relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-[--main-color]/20 to-transparent rounded-xl"></div>
                             <img 
                                 src="/images/skill.png" 
                                 alt="Skills Illustration" 
-                                className="w-full h-auto rounded-xl relative z-10 hover:scale-105 transition-transform duration-300"
+                                className="w-full h-[250px] md:h-auto rounded-xl relative z-10 hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                     </motion.div>
@@ -73,7 +73,7 @@ export default function AboutSection() {
                             {/* Skills Section */}
                             <div className="mt-8">
                                 <h3 className="text-xl font-semibold text-white mb-4">Core Skills</h3>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
                                     {skills.map((skill, index) => (
                                         <motion.div
                                             key={skill.name}

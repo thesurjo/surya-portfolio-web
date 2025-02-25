@@ -71,7 +71,7 @@ export default function WhyChooseMeSection() {
                     <h2 className="text-[28px] md:text-[40px] font-bold font-jetbrains mb-4">
                         Why <span className="text-[--main-color]">Choose Me?</span>
                     </h2>
-                    <p className="font-jetbrains text-[14px] md:text-[16px] max-w-2xl mx-auto text-opacity-90 mb-6">
+                    <p className="font-jetbrains text-[14px] md:text-[16px] max-w-6xl mx-auto text-opacity-90 mb-6">
                         I bring a unique combination of technical expertise, creative problem-solving, and client-focused service
                     </p>
                     <div className="w-20 h-1 bg-[--main-color] mx-auto rounded-full"></div>
@@ -95,7 +95,7 @@ export default function WhyChooseMeSection() {
                 </div>
                 
                 {/* Features Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 animate-fadeIn">
+                <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 animate-fadeIn">
                     {featureCategories[activeTab].features.map((feature, index) => (
                         <div 
                             key={index}
@@ -110,7 +110,7 @@ export default function WhyChooseMeSection() {
                             </h3>
                             
                             <div className="mt-3 w-full">
-                                <p className="text-[12px] md:text-[14px] text-gray-400 mb-3">
+                                <p className="text-[11px] md:text-[12px] text-gray-400 mb-3 font-jetbrains">
                                     {feature.description}
                                 </p>
                             </div>
@@ -119,22 +119,22 @@ export default function WhyChooseMeSection() {
                 </div>
                 
                 {/* Stats Section */}
-                <div className="mt-16 bg-[--second-bg-color] rounded-xl p-6 md:p-8 shadow-lg border border-gray-700">
+                <div className="mt-4 md:mt-6 bg-[--second-bg-color] rounded-xl p-6 md:p-8 shadow-lg border border-gray-700">
                     <h3 className="text-[18px] md:text-[22px] font-bold font-jetbrains mb-6 text-center">
                         Experience & Results
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div className="grid grid-cols-3 md:grid-cols-3 gap-4 md:gap-8">
                         <div className="bg-[--bg-color] p-5 rounded-xl border border-gray-700 text-center">
                             <div className="text-[--main-color] text-[32px] md:text-[40px] font-bold mb-2">4+</div>
-                            <div className="text-[12px] md:text-[14px] text-gray-400">Years Experience</div>
+                            <div className="text-[11px] md:text-[13px] text-gray-400">Years Experience</div>
                         </div>
                         <div className="bg-[--bg-color] p-5 rounded-xl border border-gray-700 text-center">
                             <div className="text-[--main-color] text-[32px] md:text-[40px] font-bold mb-2">50+</div>
-                            <div className="text-[12px] md:text-[14px] text-gray-400">Projects Completed</div>
+                            <div className="text-[11px] md:text-[13px] text-gray-400">Projects Completed</div>
                         </div>
                         <div className="bg-[--bg-color] p-5 rounded-xl border border-gray-700 text-center">
                             <div className="text-[--main-color] text-[32px] md:text-[40px] font-bold mb-2">30+</div>
-                            <div className="text-[12px] md:text-[14px] text-gray-400">Satisfied Clients</div>
+                            <div className="text-[11px] md:text-[13px] text-gray-400">Satisfied Clients</div>
                         </div>
                     </div>
                 </div>

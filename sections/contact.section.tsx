@@ -20,14 +20,14 @@ export default function ContactSection() {
                     <h2 className="font-bold font-jetbrains text-[28px] md:text-[40px] mb-6">
                         Contact <span className="text-[--main-color]">Me</span>
                     </h2>
-                    <p className="font-jetbrains text-[14px] md:text-[16px] leading-relaxed text-opacity-90 max-w-2xl mx-auto">
+                    <p className="font-jetbrains text-[14px] md:text-[16px] leading-relaxed text-opacity-90 max-w-6xl mx-auto">
                         Have a project in mind or need coding assistance? I'm here to help you bring your ideas to life with precision and creativity.
                     </p>
                 </div>                
                 {/* Contact Content */}
                 <div className="animate-fadeIn">
                     {/* Email Option */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div className="flex flex-wrap justify-center gap-6">
                             {contactLinks.map((link, index) => (
                                 <a 
                                     key={index} 
@@ -35,7 +35,7 @@ export default function ContactSection() {
                                     aria-label={link.name} 
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="bg-[--second-bg-color] rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-[--main-color] transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col items-center text-center"
+                                    className="px-16 py-6 bg-[--second-bg-color] rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-[--main-color] transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col items-center text-center"
                                 >
                                     <div className="bg-[--background-light] w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                         <i className={`${link.iconClass} text-[--main-color] text-3xl`}></i>
