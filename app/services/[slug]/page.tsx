@@ -179,7 +179,7 @@ export default function ServiceDetail() {
                     Let's discuss how I can help you achieve your goals with my {serviceData.title} services.
                   </p>
                   <button 
-                    onClick={() => router.push('/contact')}
+                    onClick={() => router.push('/#contact')}
                     className="w-full bg-white text-[--main-color] hover:bg-opacity-90 font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group"
                   >
                     <span className="text-[14px] font-jetbrains">Get in Touch</span>
