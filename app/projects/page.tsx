@@ -51,10 +51,8 @@ export default function Projects() {
             <Header />
             <section className="projects w-full py-20 pt-28 px-4 md:px-6 lg:px-8" id="project">
                 <h2 className="heading font-bold font-jetbrains mb-6 text-[28px] md:text-[40px]">My<span className="font-jetbrains"> Projects</span></h2>
-                <p className="font-jetbrains text-center mb-12 m-auto max-w-7xl text-[16px] md:text-[18px] leading-relaxed">
-                    Welcome to my projects page! Here, you'll find a variety of mobile and web apps 
-                    I've worked on, including Flutter, ReactJS, and NextJS projects, 
-                    all showcasing my focus on user-friendly designs.
+                <p className="font-jetbrains text-center mb-12 m-auto max-w-7xl text-[14px] md:text-[16px] leading-relaxed">
+                    Welcome to my projects page! Here, you'll find a variety of mobile and web apps I've worked on, including Flutter, ReactJS, and NextJS projects, all showcasing my focus on user-friendly designs.
                 </p>
 
                 {/* Search and Filter Section - Changed to stack vertically with gap */}
