@@ -2,4 +2,4 @@ export const cvURL = "https://drive.google.com/file/d/1LRAC06wP7uJls-oPJu6uarD0c
 export const firstName = "Surya"
 export const lastName = "Basak"
 export const position = "Full-Stack Developer"
-export const copyright = "Copyright © 2024 by Surya | All Rights Reserved."
+export const copyright = "Copyright © 2025 by Surya | All Rights Reserved."
