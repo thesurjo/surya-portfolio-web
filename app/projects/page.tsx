@@ -49,21 +49,21 @@ export default function Projects() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between">
             <Header />
-            <section className="projects w-full py-20 pt-28 px-4 md:px-9" id="project">
-                <h2 className="heading font-bold font-jetbrains mb-6 text-4xl">My<span className="font-jetbrains"> Projects</span></h2>
-                <p className="font-jetbrains text-center mb-12 m-auto max-w-3xl text-base md:text-lg">
+            <section className="projects w-full py-20 pt-28 px-4 md:px-6 lg:px-8" id="project">
+                <h2 className="heading font-bold font-jetbrains mb-6 text-[28px] md:text-[40px]">My<span className="font-jetbrains"> Projects</span></h2>
+                <p className="font-jetbrains text-center mb-12 m-auto max-w-7xl text-[16px] md:text-[18px] leading-relaxed">
                     Welcome to my projects page! Here, you'll find a variety of mobile and web apps 
                     I've worked on, including Flutter, ReactJS, and NextJS projects, 
                     all showcasing my focus on user-friendly designs.
                 </p>
 
                 {/* Search and Filter Section - Changed to stack vertically with gap */}
-                <div className="max-w-7xl mx-auto mb-12 flex flex-col gap-6">
+                <div className="max-w-[90rem] mx-auto mb-12 flex flex-col gap-6">
                     <div className="relative w-full">
                         <input 
                             type="text" 
                             placeholder="Search projects..." 
-                            className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-sm md:text-base"
+                            className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px] md:text-[16px]"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -72,10 +72,9 @@ export default function Projects() {
                     
                     {/* Category filter - Centered */}
                     <div className="flex flex-col gap-2 items-center">
-                        <h3 className="text-base font-medium font-jetbrains text-white/90">Categories</h3>
                         <div className="flex flex-wrap gap-2 justify-center">
                             <button 
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 font-jetbrains ${selectedCategory === null ? 'bg-[--main-color] text-[--second-bg-color]' : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80'}`}
+                                className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 font-jetbrains ${selectedCategory === null ? 'bg-[--main-color] text-[--second-bg-color]' : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80'}`}
                                 onClick={() => setSelectedCategory(null)}
                             >
                                 All Categories
@@ -83,7 +82,7 @@ export default function Projects() {
                             {allCategories.map((category) => (
                                 <button 
                                     key={category} 
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 font-jetbrains ${selectedCategory === category ? 'bg-[--main-color] text-[--second-bg-color]' : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80'}`}
+                                    className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 font-jetbrains ${selectedCategory === category ? 'bg-[--main-color] text-[--second-bg-color]' : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80'}`}
                                     onClick={() => setSelectedCategory(category)}
                                 >
                                     {category}
@@ -100,12 +99,12 @@ export default function Projects() {
                 ) : filteredProjects.length === 0 ? (
                     <div className="text-center py-16">
                         <i className='bx bx-search text-4xl text-gray-400 mb-4'></i>
-                        <h3 className="text-xl font-jetbrains mb-2">No projects found</h3>
-                        <p className="text-gray-400 text-base">Try adjusting your search or filter criteria</p>
+                        <h3 className="text-[18px] md:text-[20px] font-jetbrains mb-2">No projects found</h3>
+                        <p className="text-gray-400 text-[16px]">Try adjusting your search or filter criteria</p>
                     </div>
                 ) : (
                     <motion.div 
-                        className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-0 lg:gap-8 max-w-7xl mx-auto"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 lg:gap-10 max-w-[90rem] mx-auto"
                         variants={container}
                         initial="hidden"
                         animate="show"

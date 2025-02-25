@@ -68,7 +68,7 @@ export default function RelatedProjects({
 
   return (
     <div className="mt-12 pt-8 border-t border-gray-800/20">
-      <h2 className="text-xl md:text-2xl font-bold font-jetbrains mb-6 text-white">Related Projects</h2>
+      <h2 className="text-[20px] md:text-[24px] font-bold font-jetbrains mb-6 text-white">Related Projects</h2>
       
       <motion.div 
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"

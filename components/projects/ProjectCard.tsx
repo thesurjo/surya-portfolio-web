@@ -48,13 +48,13 @@ export default function ProjectCard({ project, variants }: ProjectCardProps) {
           {project.technologies.slice(0, 3).map((tech, idx) => (
             <span 
               key={idx} 
-              className="bg-black/40 backdrop-blur-md text-white/90 rounded-md px-3 py-1.5 text-xs md:text-sm font-medium font-jetbrains"
+              className="bg-black/40 backdrop-blur-md text-white/90 rounded-md px-3 py-1.5 text-[10px] md:text-[10px] font-medium font-jetbrains"
             >
               {tech}
             </span>
           ))}
           {project.technologies.length > 3 && (
-            <span className="bg-black/40 backdrop-blur-md text-white/90 rounded-md px-3 py-1.5 text-base md:text-base font-medium font-jetbrains">
+            <span className="bg-black/40 backdrop-blur-md text-white/90 rounded-md px-3 py-1.5 text-[8px] md:text-[8px] font-medium font-jetbrains">
               +{project.technologies.length - 3}
             </span>
           )}
@@ -62,24 +62,24 @@ export default function ProjectCard({ project, variants }: ProjectCardProps) {
       </div>
       
       {/* Content area */}
-      <div className="p-6 flex flex-col flex-grow">
-        <span className="text-base md:text-lg bg-[--main-color]/20 text-[--main-color] rounded-md font-semibold font-jetbrains inline-block mb-2 self-start">
+      <div className="p-7 flex flex-col flex-grow">
+        <span className="text-[12px] md:text-[13px] bg-[--main-color]/20 text-[--main-color] rounded-md font-semibold font-jetbrains inline-block mb-1 self-start">
           {project.category}
         </span>
-        <h3 className="text-2xl md:text-2xl font-bold font-jetbrains mb-4 text-white group-hover:text-[--main-color] transition-colors duration-300">{project.title}</h3>
-        <p className="text-sm md:text-base mb-6 line-clamp-3 leading-relaxed font-jetbrains text-gray-300">
+        <h3 className="text-[16px] md:text-[18px] font-bold font-jetbrains mb-4 text-white group-hover:text-[--main-color] transition-colors duration-300">{project.title}</h3>
+        <p className="text-[11px] md:text-[12px] mb-6 line-clamp-3 leading-relaxed font-jetbrains text-gray-300">
           {project.description}
         </p>
         
         {/* Action button */}
         <div className="mt-auto pt-4 flex justify-between items-center">
-          <div className="text-xs md:text-sm text-gray-400 font-medium font-jetbrains">
+          <div className="text-[12px] md:text-[12px] text-gray-400 font-medium font-jetbrains">
             {project.status || new Date().getFullYear()}
           </div>
           <div className="flex items-center gap-4">
             <Link 
               href={`/projects/${project.slug}`}
-              className="inline-flex items-center gap-3 text-sm md:text-base font-semibold text-[--main-color] hover:text-[--main-color]/80 transition-colors font-jetbrains"
+              className="inline-flex items-center gap-3 text-[12px] md:text-[12px] font-semibold text-[--main-color] hover:text-[--main-color]/80 transition-colors font-jetbrains"
               aria-label="View project details"
             >
               View Details <i className='bx bx-right-arrow-alt text-lg'></i>
@@ -89,7 +89,7 @@ export default function ProjectCard({ project, variants }: ProjectCardProps) {
                 href={project.link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-sm md:text-base font-semibold text-white/70 hover:text-white transition-colors font-jetbrains"
+                className="inline-flex items-center gap-3 text-[14px] md:text-[16px] font-semibold text-white/70 hover:text-white transition-colors font-jetbrains"
                 aria-label="Visit live project"
               >
                 <i className='bx bx-link-external text-lg'></i>
