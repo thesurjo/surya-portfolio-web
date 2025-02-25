@@ -1,6 +1,7 @@
-import { servicesData } from '@/data/service.data';
+import { services } from '@/data/serviceDetails';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ServiceSection() {
     // Animation variants
@@ -36,7 +37,7 @@ export default function ServiceSection() {
                 <h2 className="heading font-bold font-jetbrains text-[28px] md:text-[40px] md:text-4xl mb-6">
                     <span className='font-jetbrains'>Services</span> I Offer
                 </h2>
-                <p className="font-jetbrains  text-[14px] md:text-[16px] leading-relaxed text-opacity-90">
+                <p className="font-jetbrains text-[14px] md:text-[16px] leading-relaxed text-opacity-90">
                     As a versatile software developer, I offer a range of services designed to bring your ideas to
                     life with precision and creativity. Here are the key services I provide:
                 </p>
@@ -48,7 +49,7 @@ export default function ServiceSection() {
                 initial="hidden"
                 animate="visible"
             >
-                {servicesData.map((service, index) => (
+                {services.map((service, index) => (
                     <motion.div 
                         key={index}
                         variants={itemVariants}
@@ -61,7 +62,23 @@ export default function ServiceSection() {
                                     <i className={`${service.iconClass} text-[--main-color] text-4xl`}></i>
                                 </div>
                                 <h3 className='font-bold text-[16px] md:text-[18px] mb-4 font-jetbrains text-center'>{service.title}</h3>
-                                <p className='font-jetbrains text-[10px] md:text-[13px] text-center text-opacity-80 flex-grow'>{service.description}</p>
+                                <p className='font-jetbrains text-[10px] md:text-[13px] text-center text-opacity-80 flex-grow'>{service.shortDescription}</p>
+                                
+                                {/* Technology tags */}
+                                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                                    {service.technologies.slice(0, 3).map((tech, techIndex) => (
+                                        <span 
+                                            key={techIndex} 
+                                            className="bg-[--background-light] text-[10px] px-2 py-1 rounded-full text-[--main-color]"
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                    {service.technologies.length > 3 && (
+                                        <span className="text-[10px] text-gray-400">+{service.technologies.length - 3} more</span>
+                                    )}
+                                </div>
+                                
                                 <div className="mt-6 text-center">
                                     <span className="inline-flex items-center text-[--main-color] text-[11px] md:text-[13px]">
                                         Learn more

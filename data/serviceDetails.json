@@ -1,0 +1,406 @@
+{
+  "services": [
+    {
+      "id": "web-development",
+      "title": "Web Development",
+      "slug": "web-development",
+      "iconClass": "bx bx-code-alt",
+      "heroIcon": "bx bx-code-block",
+      "shortDescription": "Experienced web developer skilled in creating custom websites using modern technologies like ReactJS and NextJS. Proficient in HTML, CSS, and JavaScript for seamless user experiences.",
+      "heroImage": "/images/web-development.png",
+      "heroTitle": "Empowering Your Digital Presence",
+      "heroDescription": [
+        "In today's digital age, having a strong online presence is crucial for any business. I specialize in providing top-notch web development services tailored to your unique business needs. With over four years of experience in the industry, I have the expertise to turn your vision into a reality, delivering websites and web applications that are not only visually appealing but also highly functional and user-friendly.",
+        "I work closely with you to understand your business objectives and create solutions that drive results. Whether you're looking to build a new website from scratch, revamp your existing site, or develop a complex web application, I have the skills and experience to exceed your expectations."
+      ],
+      "expertise": [
+        {
+          "title": "Custom Website Development",
+          "icon": "bx bx-code-alt",
+          "items": [
+            "Tailored Solutions",
+            "Responsive Design",
+            "SEO Optimized",
+            "Scalable Architecture"
+          ]
+        },
+        {
+          "title": "E-commerce Development",
+          "icon": "bx bx-cart",
+          "items": [
+            "Online Store Setup",
+            "Payment Gateway Integration",
+            "Inventory Management",
+            "Customer Management"
+          ]
+        },
+        {
+          "title": "Content Management Systems",
+          "icon": "bx bxl-wordpress",
+          "items": [
+            "WordPress Development",
+            "Joomla and Drupal",
+            "Custom CMS Solutions"
+          ]
+        },
+        {
+          "title": "Web Application Development",
+          "icon": "bx bx-devices",
+          "items": [
+            "Single Page Applications (SPA)",
+            "Progressive Web Apps (PWA)",
+            "API Integration",
+            "Real-time Applications"
+          ]
+        },
+        {
+          "title": "UI/UX Design",
+          "icon": "bx bx-palette",
+          "items": [
+            "User Research",
+            "Wireframing and Prototyping",
+            "Visual Design",
+            "Usability Testing"
+          ]
+        },
+        {
+          "title": "Maintenance and Support",
+          "icon": "bx bx-support",
+          "items": [
+            "Website Maintenance",
+            "Security Updates",
+            "Performance Optimization",
+            "Technical Support"
+          ]
+        }
+      ],
+      "technologies": ["React", "Next.js", "TypeScript", "Node.js", "Express", "MongoDB", "PostgreSQL", "HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
+      "benefits": [
+        "Increased online visibility and brand awareness",
+        "Improved user experience and engagement",
+        "Higher conversion rates and sales",
+        "Scalable solutions that grow with your business",
+        "Mobile-friendly websites that reach users on any device"
+      ]
+    },
+    {
+      "id": "mobile-app-development",
+      "title": "Mobile App Development",
+      "slug": "mobile-app-development",
+      "iconClass": "bx bx-mobile-alt",
+      "heroIcon": "bx bx-devices",
+      "shortDescription": "Specializing in mobile app development with Flutter, I create responsive and intuitive designs focused on user needs and experiences.",
+      "heroImage": "/images/mobile-development.png",
+      "heroTitle": "Transform Your Business with Mobile Apps",
+      "heroDescription": [
+        "In today's mobile-first world, having a powerful mobile application is essential for engaging with your audience. I specialize in delivering top-tier mobile app development services tailored to your unique business requirements. With over four years of experience in the industry, I have the expertise to turn your vision into a reality, creating mobile applications that are not only visually appealing but also highly functional and user-friendly.",
+        "I work closely with you to understand your business objectives and develop solutions that drive results. Whether you're looking to build a new mobile app from scratch, enhance your existing app, or develop complex features, I have the skills and experience to exceed your expectations."
+      ],
+      "expertise": [
+        {
+          "title": "Custom Mobile App Development",
+          "icon": "bx bx-code-curly",
+          "items": [
+            "Tailored Solutions",
+            "Cross-Platform Development",
+            "Native App Development"
+          ]
+        },
+        {
+          "title": "App Design",
+          "icon": "bx bx-palette",
+          "items": [
+            "User Research",
+            "UI/UX Design",
+            "Prototyping and Wireframing"
+          ]
+        },
+        {
+          "title": "App Integration and APIs",
+          "icon": "bx bx-link",
+          "items": [
+            "API Integration",
+            "Backend Integration"
+          ]
+        },
+        {
+          "title": "Performance Optimization",
+          "icon": "bx bx-tachometer",
+          "items": [
+            "Speed Optimization",
+            "Memory Management"
+          ]
+        },
+        {
+          "title": "Testing and Quality Assurance",
+          "icon": "bx bx-check-shield",
+          "items": [
+            "Functional Testing",
+            "Usability Testing",
+            "Bug Fixing"
+          ]
+        },
+        {
+          "title": "Deployment and Maintenance",
+          "icon": "bx bx-rocket",
+          "items": [
+            "App Store Submission",
+            "Regular Updates",
+            "Technical Support"
+          ]
+        }
+      ],
+      "technologies": ["Flutter", "React Native", "Swift", "Kotlin", "Firebase", "RESTful APIs", "GraphQL", "SQLite", "Realm"],
+      "benefits": [
+        "Reach users on multiple platforms with a single codebase",
+        "Enhance customer engagement and loyalty",
+        "Streamline business processes and operations",
+        "Create new revenue streams",
+        "Collect valuable user data and insights"
+      ]
+    },
+    {
+      "id": "wordpress-development",
+      "title": "WordPress Development",
+      "slug": "wordpress-development",
+      "iconClass": "bx bxl-wordpress",
+      "heroIcon": "bx bxl-wordpress",
+      "shortDescription": "Passionate UI/UX designer dedicated to crafting modern, attractive, and user-friendly WordPress interfaces that meet your business needs.",
+      "heroImage": "/images/wordpress.png",
+      "heroTitle": "Elevate Your Online Presence with Professional WordPress Development",
+      "heroDescription": [
+        "In today's digital world, having a robust and visually appealing website is crucial for your business success. I specialize in delivering top-notch WordPress development services tailored to your unique business needs. With over four years of experience in the industry, I have the expertise to create stunning and highly functional WordPress websites that captivate your audience and drive results.",
+        "I work closely with you to understand your business objectives and develop customized WordPress solutions that align with your goals. Whether you're looking to build a new website from scratch, redesign your existing site, or add advanced functionalities, I have the skills and experience to exceed your expectations."
+      ],
+      "expertise": [
+        {
+          "title": "Custom WordPress Development",
+          "icon": "bx bx-code-block",
+          "items": [
+            "Custom Theme Development",
+            "Plugin Development",
+            "Custom Post Types and Taxonomies"
+          ]
+        },
+        {
+          "title": "Theme and Plugin Customization",
+          "icon": "bx bx-customize",
+          "items": [
+            "Theme Customization",
+            "Plugin Customization",
+            "WooCommerce Integration"
+          ]
+        },
+        {
+          "title": "WordPress Maintenance and Support",
+          "icon": "bx bx-support",
+          "items": [
+            "Regular Updates",
+            "Security Monitoring",
+            "Backup and Restore"
+          ]
+        }
+      ],
+      "technologies": ["WordPress", "PHP", "MySQL", "JavaScript", "jQuery", "HTML5", "CSS3", "WooCommerce", "Elementor", "Gutenberg"],
+      "benefits": [
+        "Easy-to-manage content with intuitive CMS",
+        "Scalable website that grows with your business",
+        "SEO-friendly structure for better search rankings",
+        "Responsive design for all devices",
+        "Extensive plugin ecosystem for added functionality"
+      ]
+    },
+    {
+      "id": "seo-services",
+      "title": "SEO Services",
+      "slug": "seo-services",
+      "iconClass": "bx bx-line-chart",
+      "heroIcon": "bx bx-search-alt",
+      "shortDescription": "Offering comprehensive SEO services to improve your website's visibility and ranking on search engines. Skilled in keyword research, on-page optimization, and link building strategies.",
+      "heroImage": "/images/seo.png",
+      "heroTitle": "Boost Your Online Visibility with Expert SEO Services",
+      "heroDescription": [
+        "In the competitive digital landscape, having a strong online presence is crucial for your business success. I specialize in providing top-notch SEO services that enhance your website's visibility and drive organic traffic. With over four years of experience in the industry, I have the expertise to optimize your website for search engines, ensuring that your business stands out and reaches its target audience effectively.",
+        "I work closely with you to understand your business goals and create customized SEO strategies that deliver measurable results. Whether you're looking to improve your search engine rankings, increase website traffic, or boost conversions, I have the skills and experience to exceed your expectations."
+      ],
+      "expertise": [
+        {
+          "title": "On-Page SEO",
+          "icon": "bx bx-file",
+          "items": [
+            "Keyword Research and Optimization",
+            "Meta Tags and Descriptions",
+            "Content Optimization",
+            "Internal Linking"
+          ]
+        },
+        {
+          "title": "Off-Page SEO",
+          "icon": "bx bx-link-external",
+          "items": [
+            "Link Building",
+            "Social Media Engagement",
+            "Local SEO",
+            "Influencer Outreach"
+          ]
+        },
+        {
+          "title": "Technical SEO",
+          "icon": "bx bx-code",
+          "items": [
+            "Website Audit",
+            "Site Speed Optimization",
+            "Mobile Friendliness",
+            "XML Sitemap and Robots.txt"
+          ]
+        },
+        {
+          "title": "SEO Reporting and Analytics",
+          "icon": "bx bx-bar-chart-alt-2",
+          "items": [
+            "Performance Tracking",
+            "Traffic Analysis",
+            "Keyword Ranking Reports",
+            "Competitor Analysis"
+          ]
+        }
+      ],
+      "technologies": ["Google Analytics", "Google Search Console", "SEMrush", "Ahrefs", "Moz", "Screaming Frog", "Yoast SEO", "Schema Markup"],
+      "benefits": [
+        "Increased organic traffic and visibility",
+        "Higher search engine rankings",
+        "Better quality leads and conversions",
+        "Improved user experience",
+        "Long-term sustainable results"
+      ]
+    },
+    {
+      "id": "social-media-marketing",
+      "title": "Social Media Marketing",
+      "slug": "social-media-marketing",
+      "iconClass": "bx bxl-facebook-circle",
+      "heroIcon": "bx bx-globe",
+      "shortDescription": "Providing expert social media marketing services to enhance your brand's presence on platforms like Facebook, Instagram, and Twitter. Specializing in content creation, community management, and advertising campaigns.",
+      "heroImage": "/images/marketing.png",
+      "heroTitle": "Amplify Your Brand with Dynamic Social Media Marketing",
+      "heroDescription": [
+        "In today's digital era, social media is a powerful tool for connecting with your audience and building your brand. I specialize in delivering exceptional social media marketing services that elevate your online presence and drive engagement. With over four years of experience in the industry, I have the expertise to create compelling social media strategies that resonate with your target audience and deliver tangible results.",
+        "I work closely with you to understand your business objectives and develop tailored social media campaigns that align with your goals. Whether you're looking to increase brand awareness, boost engagement, or drive conversions, I have the skills and experience to exceed your expectations."
+      ],
+      "expertise": [
+        {
+          "title": "Strategy Development",
+          "icon": "bx bx-target-lock",
+          "items": [
+            "Social Media Audits",
+            "Audience Research",
+            "Competitive Analysis",
+            "Content Strategy"
+          ]
+        },
+        {
+          "title": "Content Creation",
+          "icon": "bx bx-image-alt",
+          "items": [
+            "Graphic Design",
+            "Video Production",
+            "Copywriting",
+            "Content Scheduling"
+          ]
+        },
+        {
+          "title": "Social Media Management",
+          "icon": "bx bx-user-voice",
+          "items": [
+            "Account Setup and Optimization",
+            "Daily Monitoring",
+            "Engagement and Community Management",
+            "Performance Reporting"
+          ]
+        },
+        {
+          "title": "Advertising Campaigns",
+          "icon": "bx bx-trending-up",
+          "items": [
+            "Ad Creation and Management",
+            "Targeted Advertising",
+            "Budget Management",
+            "Analytics and Optimization"
+          ]
+        }
+      ],
+      "technologies": ["Facebook", "Instagram", "Twitter", "LinkedIn", "TikTok", "Pinterest", "Hootsuite", "Buffer", "Canva", "Adobe Creative Suite"],
+      "benefits": [
+        "Increased brand awareness and recognition",
+        "Enhanced customer engagement and loyalty",
+        "Direct communication with your audience",
+        "Valuable market insights and feedback",
+        "Cost-effective marketing with measurable ROI"
+      ]
+    },
+    {
+      "id": "training-consultancy",
+      "title": "Training & Consultancy",
+      "slug": "training-consultancy",
+      "iconClass": "bx bx-conversation",
+      "heroIcon": "bx bx-chalkboard",
+      "shortDescription": "Offering personalized training and consultancy services to help you understand and leverage the latest technologies and best practices in web and mobile development. Tailored solutions for skill enhancement and strategic guidance.",
+      "heroImage": "/images/consulting.png",
+      "heroTitle": "Unlock Your Potential with Expert Training & Consultancy",
+      "heroDescription": [
+        "In an ever-evolving digital landscape, staying ahead of the curve is essential for success. I specialize in providing comprehensive training and consultancy services that empower you and your team with the skills and knowledge needed to thrive. With over four years of experience in the industry, I have the expertise to deliver tailored training programs and strategic consultancy that drive growth and innovation.",
+        "I work closely with you to understand your specific needs and create customized solutions that deliver measurable results. Whether you're looking to enhance your technical skills, improve your business processes, or develop a winning digital strategy, I have the skills and experience to exceed your expectations."
+      ],
+      "expertise": [
+        {
+          "title": "Training Programs",
+          "icon": "bx bx-book-open",
+          "items": [
+            "Web Development Training",
+            "Mobile App Development Training",
+            "WordPress Development Training",
+            "SEO and Social Media Marketing Training"
+          ]
+        },
+        {
+          "title": "Consultancy Services",
+          "icon": "bx bx-bulb",
+          "items": [
+            "Project Scoping and Planning",
+            "Technical Architecture Consultation",
+            "Code Review and Best Practices",
+            "Technology Stack Recommendations"
+          ]
+        },
+        {
+          "title": "Workshops and Seminars",
+          "icon": "bx bx-group",
+          "items": [
+            "Hands-On Workshops",
+            "Industry Seminars",
+            "Guest Lectures and Talks",
+            "Networking Events"
+          ]
+        },
+        {
+          "title": "Mentorship and Support",
+          "icon": "bx bx-user-check",
+          "items": [
+            "One-on-One Mentoring",
+            "Technical Support",
+            "Career Guidance",
+            "Project Guidance"
+          ]
+        }
+      ],
+      "technologies": ["Web Development", "Mobile Development", "WordPress", "SEO", "Social Media Marketing", "Project Management", "Agile Methodologies"],
+      "benefits": [
+        "Enhanced team skills and productivity",
+        "Improved project outcomes and quality",
+        "Strategic guidance for business growth",
+        "Reduced development time and costs",
+        "Access to industry best practices and trends"
+      ]
+    }
+  ]
+} 
