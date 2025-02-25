@@ -6,6 +6,7 @@ import ProjectSection from '@/sections/project.section';
 import WhyChooseMeSection from '@/sections/why-choose-me.section';
 import TimelineSection from '@/sections/timeline.section';
 import ClientCountSection from '@/sections/client-count.section';
+import SkillsSection from '@/sections/skills.section';
 
 export {
     AboutSection,
@@ -15,5 +16,6 @@ export {
     ProjectSection,
     WhyChooseMeSection,
     TimelineSection,
-    ClientCountSection
+    ClientCountSection,
+    SkillsSection
 }
