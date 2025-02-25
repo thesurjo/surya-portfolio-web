@@ -9,10 +9,10 @@ export default function Home() {
         <HomeSection />
         <AboutSection />
         <SkillsSection />
+        <ProjectSection />
         <ServiceSection />
         <WhyChooseMeSection/>
         {/* <ClientCountSection/> */}
-        <ProjectSection />
         <ContactSection />
       </div>
       <Footer />

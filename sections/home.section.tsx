@@ -80,7 +80,7 @@ export default function HomeSection() {
                                     Resume
                                 </Link>
                                 <Link
-                                    href="/contact"
+                                    href="/#contact"
                                     className="px-6 py-3 bg-transparent border-[--main-color] text-[--main-color] hover:bg-[--main-color]/10 transition-all duration-300 text-[14px] font-medium font-jetbrains flex items-center gap-2 hover:translate-y-[-2px] border-2 border-solid rounded-full"
                                 >
                                     <i className='bx bx-envelope'></i>
