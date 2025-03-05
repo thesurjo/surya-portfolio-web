@@ -64,11 +64,11 @@ export default function ProjectCard({ project, variants }: ProjectCardProps) {
         
         {/* Content area */}
         <div className="p-7 flex flex-col flex-grow">
-          <span className="text-[12px] md:text-[13px] bg-[--main-color]/20 text-[--main-color] rounded-md font-semibold font-jetbrains inline-block mb-1 self-start">
+          <span className="text-[13px] md:text-[13px] bg-[--main-color]/20 text-[--main-color] rounded-md font-semibold font-jetbrains inline-block mb-1 self-start">
             {project.category}
           </span>
-          <h3 className="text-[16px] md:text-[18px] font-bold font-jetbrains mb-4 text-white group-hover:text-[--main-color] transition-colors duration-300">{project.title}</h3>
-          <p className="text-[11px] md:text-[12px] mb-6 line-clamp-3 leading-relaxed font-jetbrains text-gray-300">
+          <h3 className="text-[18px] md:text-[18px] font-bold font-jetbrains mb-4 text-white group-hover:text-[--main-color] transition-colors duration-300">{project.title}</h3>
+          <p className="text-[12px] md:text-[12px] mb-6 line-clamp-3 leading-relaxed font-jetbrains text-gray-300">
             {project.description}
           </p>
           

@@ -42,7 +42,7 @@ export default function AboutSection() {
                         transition={{ duration: 0.5, ease: "easeOut" }}
                         className="lg:col-span-5 flex justify-center items-center"
                     >
-                        <div className="relative w-full max-w-[500px] overflow-hidden">
+                        <div className="relative w-full max-w-[250px] md:max-w-[500px] overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-[--main-color]/20 to-transparent rounded-xl"></div>
                             <img 
                                 src="/images/skill.png" 
