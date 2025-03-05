@@ -34,29 +34,29 @@ export default function AboutSection() {
                     <div className="w-20 h-1 bg-[--main-color] mx-auto rounded-full"></div>
                 </motion.div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 overflow-hidden">
                     {/* Image Column */}
                     <motion.div 
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                         className="lg:col-span-5 flex justify-center items-center"
                     >
-                        <div className="relative overflow-hidden">
+                        <div className="relative w-full max-w-[500px] overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-[--main-color]/20 to-transparent rounded-xl"></div>
                             <img 
                                 src="/images/skill.png" 
                                 alt="Skills Illustration" 
-                                className="w-full h-[250px] md:h-auto rounded-xl relative z-10 hover:scale-105 transition-transform duration-300"
+                                className="w-full h-auto object-cover rounded-xl relative z-10 hover:scale-105 transition-transform duration-300"
                             />
                         </div>
                     </motion.div>
                     
                     {/* Content Column */}
                     <motion.div 
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                         className="lg:col-span-7"
                     >
                         <div className="p-6 md:p-8 h-full space-y-6">
@@ -77,9 +77,9 @@ export default function AboutSection() {
                                     {skills.map((skill, index) => (
                                         <motion.div
                                             key={skill.name}
-                                            initial={{ opacity: 0, y: 20 }}
+                                            initial={{ opacity: 0, y: 10 }}
                                             whileInView={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.4, delay: index * 0.1 }}
+                                            transition={{ duration: 0.3, delay: index * 0.1 }}
                                             className="bg-[--bg-color] p-4 rounded-lg"
                                         >
                                             <div className="flex justify-between items-center mb-2">
