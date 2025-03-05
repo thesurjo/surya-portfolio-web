@@ -20,10 +20,7 @@ export default function HomeSection() {
             const floatX = Math.sin(time * 0.5) * 3; // Slower X oscillation
             const floatY = Math.cos(time * 0.3) * 2; // Even slower Y oscillation
 
-            // Apply the transform to the container but not the image
-            droplet.style.borderRadius = `${50 + Math.sin(time * 0.7) * 10}% ${40 + Math.cos(time * 0.6) * 10}% ${60 + Math.sin(time * 0.5) * 10}% ${30 + Math.cos(time * 0.4) * 10}% / ${30 + Math.sin(time * 0.3) * 10}% ${60 + Math.cos(time * 0.5) * 10}% ${40 + Math.sin(time * 0.6) * 10}% ${50 + Math.cos(time * 0.7) * 10}%`;
-
-            // Apply a subtle rotation to simulate space drift
+            // Apply only the floating transform
             droplet.style.transform = `translate(${floatX}px, ${floatY}px) rotate(${Math.sin(time * 0.2) * 2}deg)`;
 
             requestAnimationFrame(animateDroplet);
@@ -93,8 +90,12 @@ export default function HomeSection() {
                     {/* Image Side */}
                     <div className="w-full md:w-1/2 flex justify-center animate-fadeInUp">
                         <div
-                            className="space-droplet w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px] rounded-2xl overflow-hidden relative transform hover:scale-[1.02] transition-all duration-500"
+                            className="space-droplet w-[280px] h-[280px] md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px] overflow-hidden relative transform hover:scale-[1.02] transition-all duration-500"
                             ref={dropletRef}
+                            style={{
+                                borderRadius: '50% 40% 60% 30% / 30% 60% 40% 50%',
+                                transform: 'translate(0px, 0px) rotate(0deg)'
+                            }}
                         >
                             <div className="stars"></div>
                             <img

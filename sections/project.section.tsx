@@ -43,7 +43,7 @@ export default function ProjectSection() {
                     whileInView="animate"
                     viewport={{ once: true }}
                     variants={staggerContainer}
-                    className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
                 >
                     {projects.slice(0, 3).map((project, index) => (
                         <ProjectCard

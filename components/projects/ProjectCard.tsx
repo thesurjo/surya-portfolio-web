@@ -30,77 +30,64 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, variants }: ProjectCardProps) {
   return (
-    <motion.div 
-      className="group relative bg-[--second-bg-color] rounded-2xl overflow-hidden flex flex-col h-full border border-gray-800/20 hover:border-[--main-color]/30 transition-all duration-300"
-      variants={variants}
-    >
-      {/* Image container with overlay */}
-      <div className="relative overflow-hidden aspect-video">
-        <img 
-          src={project.imageUrl} 
-          alt={project.title} 
-          className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[--second-bg-color] via-transparent to-transparent opacity-80"></div>
-        
-        {/* Technology badges positioned over image */}
-        <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 max-w-[80%]">
-          {project.technologies.slice(0, 3).map((tech, idx) => (
-            <span 
-              key={idx} 
-              className="bg-black/40 backdrop-blur-md text-white/90 rounded-md px-3 py-1.5 text-[10px] md:text-[10px] font-medium font-jetbrains"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.technologies.length > 3 && (
-            <span className="bg-black/40 backdrop-blur-md text-white/90 rounded-md px-3 py-1.5 text-[8px] md:text-[8px] font-medium font-jetbrains">
-              +{project.technologies.length - 3}
-            </span>
-          )}
-        </div>
-      </div>
-      
-      {/* Content area */}
-      <div className="p-7 flex flex-col flex-grow">
-        <span className="text-[12px] md:text-[13px] bg-[--main-color]/20 text-[--main-color] rounded-md font-semibold font-jetbrains inline-block mb-1 self-start">
-          {project.category}
-        </span>
-        <h3 className="text-[16px] md:text-[18px] font-bold font-jetbrains mb-4 text-white group-hover:text-[--main-color] transition-colors duration-300">{project.title}</h3>
-        <p className="text-[11px] md:text-[12px] mb-6 line-clamp-3 leading-relaxed font-jetbrains text-gray-300">
-          {project.description}
-        </p>
-        
-        {/* Action button */}
-        <div className="mt-auto pt-4 flex justify-between items-center">
-          <div className="text-[12px] md:text-[12px] text-gray-400 font-medium font-jetbrains">
-            {project.status || new Date().getFullYear()}
-          </div>
-          <div className="flex items-center gap-4">
-            <Link 
-              href={`/projects/${project.slug}`}
-              className="inline-flex items-center gap-3 text-[12px] md:text-[12px] font-semibold text-[--main-color] hover:text-[--main-color]/80 transition-colors font-jetbrains"
-              aria-label="View project details"
-            >
-              View Details <i className='bx bx-right-arrow-alt text-lg'></i>
-            </Link>
-            {project.link && (
-              <a 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-[14px] md:text-[16px] font-semibold text-white/70 hover:text-white transition-colors font-jetbrains"
-                aria-label="Visit live project"
+    <Link href={`/projects/${project.slug}`}>
+      <motion.div 
+        className="group relative bg-[--second-bg-color] rounded-2xl overflow-hidden flex flex-col h-full border border-gray-800/20 hover:border-[--main-color]/30 transition-all duration-300 cursor-pointer"
+        variants={variants}
+      >
+        {/* Image container with overlay */}
+        <div className="relative overflow-hidden aspect-video">
+          <img 
+            src={project.imageUrl} 
+            alt={project.title} 
+            className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[--second-bg-color] via-transparent to-transparent opacity-80"></div>
+          
+          {/* Technology badges positioned over image */}
+          <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 max-w-[80%]">
+            {project.technologies.slice(0, 3).map((tech, idx) => (
+              <span 
+                key={idx} 
+                className="bg-black/40 backdrop-blur-md text-white/90 rounded-md px-3 py-1.5 text-[10px] md:text-[10px] font-medium font-jetbrains"
               >
-                <i className='bx bx-link-external text-lg'></i>
-              </a>
+                {tech}
+              </span>
+            ))}
+            {project.technologies.length > 3 && (
+              <span className="bg-black/40 backdrop-blur-md text-white/90 rounded-md px-3 py-1.5 text-[8px] md:text-[8px] font-medium font-jetbrains">
+                +{project.technologies.length - 3}
+              </span>
             )}
           </div>
         </div>
-      </div>
-      
-      {/* Hover effect overlay */}
-      <div className="absolute inset-0 border-2 border-transparent group-hover:border-[--main-color]/20 rounded-2xl pointer-events-none transition-all duration-300"></div>
-    </motion.div>
+        
+        {/* Content area */}
+        <div className="p-7 flex flex-col flex-grow">
+          <span className="text-[13px] md:text-[13px] bg-[--main-color]/20 text-[--main-color] rounded-md font-semibold font-jetbrains inline-block mb-1 self-start">
+            {project.category}
+          </span>
+          <h3 className="text-[18px] md:text-[18px] font-bold font-jetbrains mb-4 text-white group-hover:text-[--main-color] transition-colors duration-300">{project.title}</h3>
+          <p className="text-[12px] md:text-[12px] mb-6 line-clamp-3 leading-relaxed font-jetbrains text-gray-300">
+            {project.description}
+          </p>
+          
+          {/* Action button */}
+          <div className="mt-auto pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+            <div className="text-[12px] md:text-[12px] text-gray-400 font-medium font-jetbrains">
+              {project.status || new Date().getFullYear()}
+            </div>
+            <div 
+              className="inline-flex items-center gap-3 text-[12px] md:text-[12px] font-semibold text-[--main-color] group-hover:text-[--main-color]/80 transition-colors font-jetbrains"
+            >
+              View Details <i className='bx bx-right-arrow-alt text-lg'></i>
+            </div>
+          </div>
+        </div>
+        
+        {/* Hover effect overlay */}
+        <div className="absolute inset-0 border-2 border-transparent group-hover:border-[--main-color]/20 rounded-2xl pointer-events-none transition-all duration-300"></div>
+      </motion.div>
+    </Link>
   );
 } 
