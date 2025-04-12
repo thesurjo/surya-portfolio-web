@@ -60,7 +60,7 @@ export const projects: Project[] = [
         "description": "A comprehensive gym management app that helps gym owners track memberships, manage attendance, and streamline operations.",
         "imageUrl": "https://i.imgur.com/KwjCall.png",
         "logoUrl": "https://i.imgur.com/jjKbnUM.png",
-        "link": "https://g.co/kgs/UWsoU9C",
+        "link": "https://play.google.com/store/apps/details?id=com.fitness.k9&pcampaignid=web_share",
         "technologies": ["Flutter", "Dart", "Firebase"],
         "category": "Mobile Development",
         "slug": "gym-manager-app",
