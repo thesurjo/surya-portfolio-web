@@ -24,7 +24,7 @@ export default function SkillsSection() {
     const [activeCategory, setActiveCategory] = useState<CategoryName>("Frontend");
 
     return (
-        <section className="w-full py-16 px-4 md:px-9 bg-[--bg-color]" id="skills">
+        <section className="w-full py-16 px-4 md:px-9" id="skills">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-12 animate-fadeIn">
                     <h2 className="text-[28px] md:text-[40px] font-bold font-jetbrains mb-4">

@@ -64,7 +64,7 @@ export default function WhyChooseMeSection() {
     const [activeTab, setActiveTab] = useState<number>(0);
 
     return (
-        <section className="w-full py-16 md:py-20 px-4 md:px-9 bg-[--bg-color]" id="why-choose-me">
+        <section className="w-full py-16 md:py-20 px-4 md:px-9" id="why-choose-me">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-12 animate-fadeIn">
                     <h2 className="text-[28px] md:text-[40px] font-bold font-jetbrains mb-4">

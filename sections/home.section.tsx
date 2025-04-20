@@ -30,7 +30,7 @@ export default function HomeSection() {
     }, []);
 
     return (
-        <section className="w-full py-16 md:py-24 px-4 md:px-9 bg-[--bg-color]" id="home">
+        <section className="w-full py-16 md:py-24 px-4 md:px-9" id="home">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
                     {/* Content Side */}
