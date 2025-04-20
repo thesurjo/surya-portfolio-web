@@ -22,7 +22,7 @@ export default function ProjectSection() {
     return (
         <section className="relative w-full py-16 px-4" id="project">
             <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
+                <div className="absolute inset-0 opacity-5"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-[--main-color]/5 via-transparent to-[--main-color]/5"></div>
                 <div className="absolute inset-0 backdrop-blur-[1px]"></div>
             </div>
