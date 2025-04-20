@@ -1,6 +1,4 @@
 "use client";
-
-import { position } from "@/data/home.data";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -130,11 +128,11 @@ export default function WhyChooseMeSection() {
                             <div className="text-[11px] md:text-[13px] text-gray-400">Years Experience</div>
                         </div>
                         <div className="bg-[--bg-color] p-5 rounded-xl border border-gray-700 text-center">
-                            <div className="text-[--main-color] text-[32px] md:text-[40px] font-bold mb-2">50+</div>
+                            <div className="text-[--main-color] text-[32px] md:text-[40px] font-bold mb-2">30+</div>
                             <div className="text-[11px] md:text-[13px] text-gray-400">Projects Completed</div>
                         </div>
                         <div className="bg-[--bg-color] p-5 rounded-xl border border-gray-700 text-center">
-                            <div className="text-[--main-color] text-[32px] md:text-[40px] font-bold mb-2">30+</div>
+                            <div className="text-[--main-color] text-[32px] md:text-[40px] font-bold mb-2">15+</div>
                             <div className="text-[11px] md:text-[13px] text-gray-400">Satisfied Clients</div>
                         </div>
                     </div>

@@ -6,10 +6,11 @@ import { position } from "@/data/home.data";
 
 export default function AboutSection() {
     const skills = [
-        { name: 'Flutter', level: 90 },
-        { name: 'React', level: 85 },
-        { name: 'Next.js', level: 80 },
-        { name: 'Django', level: 75 },
+        { name: 'Flutter', level: 100 },
+        { name: 'React', level: 100 },
+        { name: 'Next.js', level: 100 },
+        { name: 'WordPress', level: 100 },
+        { name: 'Digital Marketing', level: 80 },
         { name: 'Flask', level: 70 }
     ];
 
