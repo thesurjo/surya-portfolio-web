@@ -1,8 +1,8 @@
 'use client';
 
 import Script from 'next/script';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 // Declare gtag as a global type
 declare global {
@@ -18,11 +18,16 @@ declare global {
 
 export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID: string }) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const [searchParams, setSearchParams] = useState('');
+  
+  // Only use searchParams on the client side
+  useEffect(() => {
+    setSearchParams(window.location.search);
+  }, [pathname]);
 
   useEffect(() => {
     if (pathname && window.gtag) {
-      const url = pathname + searchParams.toString();
+      const url = pathname + searchParams;
       window.gtag('config', GA_MEASUREMENT_ID, {
         page_path: url,
       });
