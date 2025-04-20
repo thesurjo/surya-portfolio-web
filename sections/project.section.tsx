@@ -27,10 +27,10 @@ export default function ProjectSection() {
                 <div className="absolute inset-0 backdrop-blur-[1px]"></div>
             </div>
 
-            <div className="max-w-7xl mx-auto relative">               
-                    <div className="text-center mb-12 animate-fadeIn">
+            <div className="max-w-7xl mx-auto relative">
+                <div className="text-center mb-12 animate-fadeIn">
                     <h2 className="text-[28px] md:text-[40px] font-bold font-jetbrains mb-4">
-                    My Latest <span className="text-[--main-color]">Projects</span>
+                        My Latest <span className="text-[--main-color]">Projects</span>
                     </h2>
                     <p className="font-jetbrains text-[14px] md:text-[16px] max-w-6xl mx-auto text-opacity-90 mb-6">
                         I have created intuitive and responsive user experiences with Flutter, ReactJS, and NextJS.

@@ -1,5 +1,5 @@
 import { Header, Footer } from "@/global/page";
-import { AboutSection, ClientCountSection, ContactSection, HomeSection, ProjectSection, ServiceSection, SkillsSection, WhyChooseMeSection } from "@/sections/page";
+import { AboutSection, ClientCountSection, ContactSection, GitHubContributionsSection, HomeSection, ProjectSection, ServiceSection, SkillsSection, WhyChooseMeSection } from "@/sections/page";
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
         <ServiceSection />
         <WhyChooseMeSection/>
         {/* <ClientCountSection/> */}
+        <GitHubContributionsSection />
         <ContactSection />
       </div>
       <Footer />

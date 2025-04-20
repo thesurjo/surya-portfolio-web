@@ -5,16 +5,18 @@ export default function ContactSection() {
         <section className="w-full py-16 px-4 md:px-8" id="contact">
             <div className="max-w-7xl mx-auto">
                 {/* Section Header - Consistent with other sections */}
-                <div className="text-center max-w-6xl mx-auto mb-12 animate-fadeIn">
+                <div className="text-center max-w-6xl mx-auto mb-6 animate-fadeIn">
                     <h2 className="font-bold font-jetbrains text-[28px] md:text-[40px] mb-6">
                         Contact <span className="text-[--main-color]">Me</span>
                     </h2>
                     <p className="font-jetbrains text-[14px] md:text-[16px] leading-relaxed text-opacity-90 max-w-6xl mx-auto">
                         Have a project in mind or need coding assistance? I'm here to help you bring your ideas to life with precision and creativity.
                     </p>
-                </div>                
+                </div>      
+                <div className="w-20 h-1 bg-[--main-color] mx-auto rounded-full"></div>
+          
                 {/* Contact Content */}
-                <div className="animate-fadeIn">
+                <div className="animate-fadeIn mt-12">
                     {/* Email Option */}
                     <div className="flex flex-wrap justify-center gap-6">
                             {contactLinks.map((link, index) => (
