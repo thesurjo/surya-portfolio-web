@@ -38,7 +38,7 @@ export const projects: Project[] = [
         ],
         technologies: ['Flutter', 'Dart', 'SQLite'],
         category: 'Mobile Development',
-        slug: 'expense-manager-app',
+        slug: 'khorcha',
         fullDescription: 'The Expense Manager App is a powerful financial tracking tool that helps users monitor their spending habits and manage their budget effectively. The app provides detailed insights through interactive charts and graphs, allowing users to visualize their financial patterns. With features like expense categorization, budget setting, and recurring transaction tracking, it offers a complete solution for personal finance management.',
         features: [
             'Income and expense tracking with categories',
@@ -63,7 +63,7 @@ export const projects: Project[] = [
         "link": "https://play.google.com/store/apps/details?id=com.fitness.k9&pcampaignid=web_share",
         "technologies": ["Flutter", "Dart", "Firebase"],
         "category": "Mobile Development",
-        "slug": "gym-manager-app",
+        "slug": "k9-fitness",
         "fullDescription": "Gym Manager is a powerful application designed to simplify gym management by tracking member details, attendance, and payments. Gym owners can register new members, monitor their check-ins via QR codes or manual entry, and set automated membership renewal reminders. With Firebase integration, the app ensures secure data storage and real-time updates.",
         "features": [
             "Member registration and profile management",
@@ -113,7 +113,7 @@ export const projects: Project[] = [
         "link": "https://billit-invoice.netlify.app/",
         "technologies": ["Next.js", "TailwindCSS"],
         "category": "Web Development",
-        "slug": "billit-invoice-generator",
+        "slug": "billit",
         "fullDescription": "BiLLiT is a fast and lightweight invoice generator designed for freelancers, small businesses, and individuals who need a quick and hassle-free way to create invoices. The app works entirely on the client-side, ensuring privacy and security by not storing any data on a server. Users can customize invoices with their business details, add multiple items, apply taxes or discounts, and download PDFs instantly.",
         "features": [
             "Client-side invoice generation",

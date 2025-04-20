@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "../components/GoogleAnalytics";
@@ -7,11 +6,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 // Get the measurement ID from environment variables
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
-
-export const metadata: Metadata = {
-  title: "Surya Basak",
-  description: "I'm Surya, a software developer specializing in mobile and web development with over four years of experience",
-};
 
 export default function RootLayout({
   children,

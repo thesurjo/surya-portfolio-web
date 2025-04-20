@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://suryabasak.com/sitemap-main.xml</loc>
+    <lastmod>2024-09-01</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://suryabasak.com/project_sitemap.xml</loc>
+    <lastmod>2024-09-01</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://suryabasak.com/service_sitemap.xml</loc>
+    <lastmod>2024-09-01</lastmod>
+  </sitemap>
+</sitemapindex> 
