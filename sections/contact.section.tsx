@@ -1,17 +1,6 @@
-"use client";
-
 import { contactLinks } from "@/data/contact.data";
-import { useState } from "react";
 
-export default function ContactSection() {
-    const [activeOption, setActiveOption] = useState<string>("email");
-    
-    const contactOptions = [
-        { id: "email", name: "Email", icon: "bx-envelope", desc: "Get in touch via email" },
-        { id: "social", name: "Social", icon: "bx-link", desc: "Connect on social media" },
-        { id: "form", name: "Form", icon: "bx-message-detail", desc: "Fill out the contact form" }
-    ];
-    
+export default function ContactSection() {    
     return (
         <section className="w-full py-16 px-4 md:px-8" id="contact">
             <div className="max-w-7xl mx-auto">

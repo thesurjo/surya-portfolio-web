@@ -1,6 +1,5 @@
 import { services } from '@/data/serviceDetails';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function ServiceSection() {
     return (

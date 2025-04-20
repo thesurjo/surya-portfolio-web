@@ -12,9 +12,9 @@ const skillCategories: Record<CategoryName, string[]> = {
         "Flutter", "Dart", "React-Native",
         "Django", "Flask", "Chalice", "PHP",
         "WordPress", "SEO", "Digital Marketing",
-        "AWS", "Git", "Consulting"],
-    "Frontend": ["React", "Next.js", "HTML", "CSS", "JavaScript", "TypeScript", "Tailwind CSS"],
-    "Mobile": ["Flutter", "Dart", "React-Native"],
+        "AWS", "Git", "Consulting", "Java", "Python"],
+    "Frontend": ["React", "Next.js", "HTML", "CSS", "JavaScript", "TypeScript", "Tailwind CSS", "WordPress", "Shopify"],
+    "Mobile": ["Flutter", "Dart", "React-Native", "Java"],
     "Backend": ["Django", "Flask", "Chalice", "PHP"],
     "CMS & Marketing": ["WordPress", "SEO", "Digital Marketing"],
     "DevOps & Tools": ["AWS", "Git", "Consulting"]
@@ -43,8 +43,8 @@ export default function SkillsSection() {
                             key={category}
                             onClick={() => setActiveCategory(category as CategoryName)}
                             className={`px-4 py-2 rounded-full text-[12px] md:text-[14px] font-medium transition-all duration-300 ${activeCategory === category
-                                    ? "bg-[--main-color] text-[--bg-color]"
-                                    : "bg-[--second-bg-color] hover:bg-[--second-bg-color]/80"
+                                ? "bg-[--main-color] text-[--bg-color]"
+                                : "bg-[--second-bg-color] hover:bg-[--second-bg-color]/80"
                                 }`}
                         >
                             {category}
@@ -67,23 +67,7 @@ export default function SkillsSection() {
                                 </div>
                                 <h3 className="text-[12px] md:text-[12px] font-medium font-jetbrains">
                                     {skill.name}
-                                </h3>
-
-                                {/* Proficiency indicator */}
-                                {/* {skill.proficiency && (
-                                    <div className="mt-3 w-full">
-                                        <div className="flex justify-between text-[10px] text-gray-400 mb-1">
-                                            <span>Proficiency</span>
-                                            <span>{skill.proficiency}/5</span>
-                                        </div>
-                                        <div className="w-full bg-[--background-light] h-1.5 rounded-full overflow-hidden">
-                                            <div
-                                                className="h-full bg-[--main-color] rounded-full transition-all duration-500 ease-out group-hover:opacity-100 opacity-80"
-                                                style={{ width: `${(skill.proficiency / 5) * 100}%` }}
-                                            ></div>
-                                        </div>
-                                    </div>
-                                )} */}
+                                </h3>                              
                             </div>
                         ))}
                 </div>
@@ -98,6 +82,7 @@ function getIconForSkill(skillName: string): string {
         "React": "bxl-react",
         "Next.js": "bxl-nodejs",
         "Flutter": "bxl-flutter",
+        "Java": "bxl-java",
         "JavaScript": "bxl-javascript",
         "TypeScript": "bxl-typescript",
         "HTML": "bxl-html5",
@@ -130,6 +115,7 @@ function getIconForSkill(skillName: string): string {
         "PHP": "bxl-php",
         "Digital Marketing": "bx-trending-up",
         "Consulting": "bx-conversation",
+        "Shopify": "bxl-shopify",
     };
 
     // Default icon if not found in map

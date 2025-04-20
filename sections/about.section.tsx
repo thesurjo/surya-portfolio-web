@@ -1,8 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaCode, FaMobileAlt, FaServer } from 'react-icons/fa';
-import { position } from "@/data/home.data";
 
 export default function AboutSection() {
     const skills = [
@@ -12,12 +10,6 @@ export default function AboutSection() {
         { name: 'WordPress', level: 100 },
         { name: 'Digital Marketing', level: 80 },
         { name: 'Flask', level: 70 }
-    ];
-
-    const stats = [
-        { label: 'Years Experience', value: '4+' },
-        { label: 'Projects Completed', value: '50+' },
-        { label: 'Happy Clients', value: '30+' }
     ];
 
     return (
