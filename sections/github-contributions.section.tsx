@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaGithub } from 'react-icons/fa';
 import Link from 'next/link';
 
 // Define types for contribution data
