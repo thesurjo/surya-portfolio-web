@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Google Analytics Setup
+
+This project is configured to use Google Analytics. To enable it:
+
+1. Create a Google Analytics 4 property in your [Google Analytics account](https://analytics.google.com/)
+2. Get your Measurement ID (begins with "G-")
+3. Create a `.env.local` file in the project root if it doesn't exist
+4. Add your Measurement ID to the `.env.local` file:
+   ```
+   NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX"
+   ```
+5. Replace "G-XXXXXXXXXX" with your actual Measurement ID
+6. Restart your development server if it's running
