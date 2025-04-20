@@ -39,7 +39,7 @@ export default function GitHubContributionsSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [contributionData, setContributionData] = useState<ContributionData>([]);
-  const username = 'TheSurjo'; // Your GitHub username
+  const username = 'thesurjo'; // Your GitHub username
   const months = getMonthNames();
 
   // Get contribution color based on level
@@ -201,7 +201,7 @@ export default function GitHubContributionsSection() {
             </div>
             <div className="mt-12 text-center">
                     <Link
-                        href={`https://github.com/${username}`}
+                        href={`https://github.com/${username}`} target="_blank"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-full text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300"
                     >
                         <i className='bx bxl-github'></i>
