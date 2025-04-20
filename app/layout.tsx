@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "../components/GoogleAnalytics";
+import AnimatedBackground from "./components/AnimatedBackground";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +18,10 @@ export default function RootLayout({
       <head>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'/>
       <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
       </head>
       <body className={inter.className}>
+        <AnimatedBackground />
         {children}
         {/* Add Google Analytics */}
         <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />

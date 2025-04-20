@@ -24,7 +24,7 @@ export default function ProjectSection() {
             <div className="absolute inset-0">
                 <div className="absolute inset-0 opacity-5"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-[--main-color]/5 via-transparent to-[--main-color]/5"></div>
-                <div className="absolute inset-0 backdrop-blur-[1px]"></div>
+                <div className="absolute inset-0"></div>
             </div>
 
             <div className="max-w-7xl mx-auto relative">
