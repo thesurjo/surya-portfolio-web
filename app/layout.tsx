@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "../components/GoogleAnalytics";
-import AnimatedBackground from "./components/AnimatedBackground";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +20,6 @@ export default function RootLayout({
       <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
       </head>
       <body className={inter.className}>
-        <AnimatedBackground />
         {children}
         {/* Add Google Analytics */}
         <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
