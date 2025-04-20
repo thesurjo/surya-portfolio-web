@@ -29,7 +29,7 @@ export default function Header() {
     return (
         <div className="h-32 relative">
             <header className={`fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-[70rem] backdrop-blur-md supports-[backdrop-filter]:bg-background/60 rounded-full border border-border/40 dark:border-white/5 shadow-lg transition-all duration-300 min-h-[4.5rem] ${scrolled ? 'bg-background/95' : 'bg-background/80'}`}>
-                <div className="flex items-center justify-between px-6 md:px-12 py-6 md:py-4">
+                <div className="flex items-center justify-between px-6 md:px-12 py-3 md:py-4">
                     <a href="/" className="gap-2 logo font-jetbrains flex items-center text-[var(--text-color)] text-xl md:text-3xl tracking-tight">
                         <span className="font-jetbrains">&lt; </span>
                         {firstName} 
