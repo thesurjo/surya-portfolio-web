@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from '@/components/projects/ProjectCard';
 
+
 export default function Projects() {
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');

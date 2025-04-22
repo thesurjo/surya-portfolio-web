@@ -1,5 +1,16 @@
 import { Header, Footer } from '@/global/page';
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Privacy Policy - Surya Basak",
+  description: "Privacy policy for Surya Basak's personal portfolio website. Learn how your personal information is collected, used, and protected.",
+  openGraph: {
+    title: "Privacy Policy - Surya Basak",
+    description: "Privacy policy for Surya Basak's personal portfolio website.",
+    url: "https://suryabasak.com/privacy-policy",
+    type: "website",
+  },
+}; 
 export default function PrivacyPolicy() {
     return <>
         <main className="flex min-h-screen flex-col items-center justify-between mt-16 md:mt-0">
