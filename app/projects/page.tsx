@@ -22,12 +22,12 @@ export default function Projects() {
     useEffect(() => {
         // Filter projects based on search term and selected category
         const results = projects.filter(project => {
-            const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                                 project.description.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                project.description.toLowerCase().includes(searchTerm.toLowerCase());
             const matchesCategory = selectedCategory ? project.category === selectedCategory : true;
             return matchesSearch && matchesCategory;
         });
-        
+
         setFilteredProjects(results);
         setIsLoading(false);
     }, [searchTerm, selectedCategory]);
@@ -51,36 +51,41 @@ export default function Projects() {
         <main className="flex min-h-screen flex-col items-center justify-between">
             <Header />
             <section className="projects w-full py-20 pt-28 px-4 md:px-6 lg:px-8" id="project">
-                <h2 className="heading font-bold font-jetbrains mb-6 text-[28px] md:text-[40px]">My<span className="font-jetbrains"> Projects</span></h2>
-                <p className="font-jetbrains text-center mb-12 m-auto max-w-7xl text-[14px] md:text-[16px] leading-relaxed">
-                    Welcome to my projects page! Here, you'll find a variety of mobile and web apps I've worked on, including Flutter, ReactJS, and NextJS projects, all showcasing my focus on user-friendly designs.
-                </p>
+                <div className="text-center mb-12 animate-fadeIn">
+                    <h2 className="text-[28px] md:text-[40px] font-bold font-jetbrains mb-4">
+                        My <span className="text-[--main-color]">Projects</span>
+                    </h2>
+                    <p className="font-jetbrains text-[14px] md:text-[16px] max-w-6xl mx-auto text-opacity-90 mb-6">
+                        Welcome to my projects page! Here, you'll find a variety of mobile and web apps I've worked on, including Flutter, ReactJS, and NextJS projects, all showcasing my focus on user-friendly designs.
+                    </p>
+                    <div className="w-20 h-1 bg-[--main-color] mx-auto rounded-full"></div>
+                </div>
 
                 {/* Search and Filter Section - Changed to stack vertically with gap */}
                 <div className="max-w-[90rem] mx-auto mb-12 flex flex-col gap-6">
                     <div className="relative w-full">
-                        <input 
-                            type="text" 
-                            placeholder="Search projects..." 
+                        <input
+                            type="text"
+                            placeholder="Search projects..."
                             className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px] md:text-[16px]"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                         <i className='bx bx-search absolute right-4 top-1/2 transform -translate-y-1/2 text-xl text-gray-400'></i>
                     </div>
-                    
+
                     {/* Category filter - Centered */}
                     <div className="flex flex-col gap-2 items-center">
                         <div className="flex flex-wrap gap-2 justify-center">
-                            <button 
+                            <button
                                 className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 font-jetbrains ${selectedCategory === null ? 'bg-[--main-color] text-[--second-bg-color]' : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80'}`}
                                 onClick={() => setSelectedCategory(null)}
                             >
                                 All Categories
                             </button>
                             {allCategories.map((category) => (
-                                <button 
-                                    key={category} 
+                                <button
+                                    key={category}
                                     className={`px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300 font-jetbrains ${selectedCategory === category ? 'bg-[--main-color] text-[--second-bg-color]' : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80'}`}
                                     onClick={() => setSelectedCategory(category)}
                                 >
@@ -102,14 +107,14 @@ export default function Projects() {
                         <p className="text-gray-400 text-[16px]">Try adjusting your search or filter criteria</p>
                     </div>
                 ) : (
-                    <motion.div 
+                    <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 lg:gap-10 max-w-[90rem] mx-auto"
                         variants={container}
                         initial="hidden"
                         animate="show"
                     >
                         {filteredProjects.map((project, index) => (
-                            <ProjectCard 
+                            <ProjectCard
                                 key={index}
                                 project={project}
                                 variants={item}

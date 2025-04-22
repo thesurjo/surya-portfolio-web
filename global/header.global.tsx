@@ -1,15 +1,92 @@
 "use client"
 import { firstName, lastName } from "@/data/home.data";
 import { useState, useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+
+// Menu items structure
+const menuItems = [
+    { href: "/", label: "Home" },
+    { href: "/#about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/projects", label: "Projects" },
+    { href: "/#contact", label: "Contact" }
+];
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [mounted, setMounted] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [currentHash, setCurrentHash] = useState<string>("");
+    const [activeMenu, setActiveMenu] = useState<string>("/");
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    // Force component to re-render when route changes
+    useEffect(() => {
+        // This empty effect ensures the component re-renders when pathname changes
+    }, [pathname, searchParams]);
+
+    // Set correct active menu item whenever pathname or hash changes
+    useEffect(() => {
+        // Get initial hash on mount and track hash changes
+        const updateHash = () => {
+            setCurrentHash(window.location.hash);
+            updateActiveMenu();
+        };
+
+        // Determine which menu item should be active
+        const updateActiveMenu = () => {
+            const hash = window.location.hash;
+            
+            // If we're on the home page
+            if (pathname === "/") {
+                // If there's a hash, find the menu item that matches it
+                if (hash) {
+                    const matchingItem = menuItems.find(item => item.href.includes(hash));
+                    if (matchingItem) {
+                        setActiveMenu(matchingItem.href);
+                        return;
+                    }
+                }
+                // Otherwise, set Home as active
+                setActiveMenu("/");
+                return;
+            }
+            
+            // For other pages, find the most specific match
+            // Sort menu items by length (descending) to match the most specific path first
+            const sortedItems = [...menuItems].sort((a, b) => {
+                // Extract path without hash
+                const aPath = a.href.split("#")[0];
+                const bPath = b.href.split("#")[0];
+                return bPath.length - aPath.length;
+            });
+            
+            // Find the first item that matches the current path
+            const matchingItem = sortedItems.find(item => {
+                const itemPath = item.href.split("#")[0];
+                return pathname.startsWith(itemPath) && itemPath !== "/";
+            });
+            
+            if (matchingItem) {
+                setActiveMenu(matchingItem.href);
+            } else {
+                // Default to home if nothing matches
+                setActiveMenu("/");
+            }
+        };
+
+        // Initial update
+        updateHash();
+        
+        // Listen for hash changes
+        window.addEventListener('hashchange', updateHash);
+        
+        return () => {
+            window.removeEventListener('hashchange', updateHash);
+        };
+    }, [pathname]);
 
     useEffect(() => {
-        setMounted(true);
-        
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
         };
@@ -38,11 +115,21 @@ export default function Header() {
                     
                     {/* Desktop Navigation */}
                     <nav className={`navbar hidden md:flex items-center space-x-8`}>
-                        <a href="/" onClick={handleLinkClick} className="font-jetbrains tracking-wide transition-colors hover:text-[var(--main-color)] text-base">Home</a>
-                        <a href="/#about" onClick={handleLinkClick} className="font-jetbrains tracking-wide transition-colors hover:text-[var(--main-color)] text-base">About</a>
-                        <a href="/services" onClick={handleLinkClick} className="font-jetbrains tracking-wide transition-colors hover:text-[var(--main-color)] text-base">Services</a>
-                        <a href="/projects" onClick={handleLinkClick} className="font-jetbrains tracking-wide transition-colors hover:text-[var(--main-color)] text-base">Projects</a>
-                        <a href="/#contact" onClick={handleLinkClick} className="font-jetbrains tracking-wide transition-colors hover:text-[var(--main-color)] text-base">Contact</a>
+                        {menuItems.map((item, index) => (
+                            <a 
+                                key={index}
+                                href={item.href} 
+                                onClick={handleLinkClick} 
+                                data-active={activeMenu === item.href ? "true" : "false"}
+                                className={`font-jetbrains tracking-wide transition-colors text-base ${
+                                    activeMenu === item.href
+                                    ? 'text-[var(--main-color)]' 
+                                    : 'hover:text-[var(--main-color)]'
+                                }`}
+                            >
+                                {item.label}
+                            </a>
+                        ))}
                     </nav>
                     
                     {/* Mobile Menu Button */}
@@ -64,11 +151,21 @@ export default function Header() {
             {isMenuOpen && (
                 <div className="fixed top-32 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-[70rem] md:hidden bg-background/95 backdrop-blur-md rounded-xl border border-border/40 dark:border-white/5 shadow-lg">
                     <div className="space-y-1 px-6 py-6">
-                        <a href="/" onClick={handleLinkClick} className="block rounded-md px-4 py-4 text-lg font-medium hover:bg-[var(--main-color)]/10 hover:text-[var(--main-color)]">Home</a>
-                        <a href="/#about" onClick={handleLinkClick} className="block rounded-md px-4 py-4 text-lg font-medium hover:bg-[var(--main-color)]/10 hover:text-[var(--main-color)]">About</a>
-                        <a href="/services" onClick={handleLinkClick} className="block rounded-md px-4 py-4 text-lg font-medium hover:bg-[var(--main-color)]/10 hover:text-[var(--main-color)]">Services</a>
-                        <a href="/projects" onClick={handleLinkClick} className="block rounded-md px-4 py-4 text-lg font-medium hover:bg-[var(--main-color)]/10 hover:text-[var(--main-color)]">Projects</a>
-                        <a href="/#contact" onClick={handleLinkClick} className="block rounded-md px-4 py-4 text-lg font-medium hover:bg-[var(--main-color)]/10 hover:text-[var(--main-color)]">Contact</a>
+                        {menuItems.map((item, index) => (
+                            <a 
+                                key={index}
+                                href={item.href} 
+                                onClick={handleLinkClick} 
+                                data-active={activeMenu === item.href ? "true" : "false"}
+                                className={`block rounded-md px-4 py-4 text-[14px] font-medium ${
+                                    activeMenu === item.href
+                                    ? 'text-[var(--main-color)] bg-[var(--main-color)]/10'
+                                    : 'hover:bg-[var(--main-color)]/10 hover:text-[var(--main-color)]'
+                                }`}
+                            >
+                                {item.label}
+                            </a>
+                        ))}
                     </div>
                 </div>
             )}

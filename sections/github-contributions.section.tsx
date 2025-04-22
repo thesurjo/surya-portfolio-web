@@ -56,62 +56,62 @@ export default function GitHubContributionsSection() {
   const fetchContributions = async (username: string) => {
     try {
       setLoading(true);
-      
+
       // Create start and end dates (1 year of data)
       const endDate = new Date();
       const startDate = new Date(endDate);
       startDate.setFullYear(startDate.getFullYear() - 1);
-      
+
       // Format dates for GitHub API
       const fromDate = startDate.toISOString().split('T')[0];
       const toDate = endDate.toISOString().split('T')[0];
-      
+
       // GitHub API proxy or public contribution data source
       // This uses a public API that scrapes public GitHub profiles
       const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch GitHub contributions');
       }
-      
+
       const data = await response.json();
-      
+
       // Process the contributions data
       if (data.contributions) {
         // Create a full year's data structure (52 weeks × 7 days)
         // This will hold our processed data in the correct format
         const processedData: ContributionData = [];
-        
+
         // Create a map for quick lookup of contributions by date
         const contributionsByDate: Record<string, number> = {};
         data.contributions.forEach((contrib: any) => {
           contributionsByDate[contrib.date] = contrib.count;
         });
-        
+
         // Create the 52 weeks structure from endDate backward
         for (let weekIndex = 0; weekIndex < 52; weekIndex++) {
           const weekData: ContributionDay[] = [];
-          
+
           // For each day in the week (0 = Sunday, 6 = Saturday)
           for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
             // Calculate the date for this cell (going backward from endDate)
             // We arrange by column (weekIndex) and row (dayIndex)
             const dayDate = new Date(endDate);
             dayDate.setDate(endDate.getDate() - ((51 - weekIndex) * 7 + (6 - dayIndex)));
-            
+
             const dateStr = dayDate.toISOString().split('T')[0];
             const count = contributionsByDate[dateStr] || 0;
-            
+
             weekData.push({
               date: dateStr,
               count,
               level: getContributionLevel(count)
             });
           }
-          
+
           processedData.push(weekData);
         }
-        
+
         setContributionData(processedData);
       } else {
         throw new Error('Invalid response format');
@@ -132,7 +132,7 @@ export default function GitHubContributionsSection() {
     <section className="w-full py-16 px-4 md:px-9" id="github-contributions">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 animate-fadeIn">
-          <h2 className="text-[28px] md:text-[40px] font-bold font-jetbrains mb-2">
+          <h2 className="text-[28px] md:text-[40px] font-bold font-jetbrains mb-4">
             GitHub <span className="text-[--main-color]">Contributions</span>
           </h2>
           <p className="font-jetbrains text-[14px] md:text-[16px] max-w-6xl mx-auto text-opacity-90 mb-6">
@@ -140,7 +140,6 @@ export default function GitHubContributionsSection() {
           </p>
           <div className="w-20 h-1 bg-[--main-color] mx-auto rounded-full"></div>
         </div>
-        
         {loading ? (
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[--main-color]"></div>
@@ -148,7 +147,7 @@ export default function GitHubContributionsSection() {
         ) : error ? (
           <div className="text-center py-8">
             <p className="text-red-500 dark:text-red-400">{error}</p>
-            <button 
+            <button
               onClick={() => fetchContributions(username)}
               className="mt-4 px-6 py-2 bg-[--main-color] text-white font-medium rounded-full text-[14px] hover:opacity-90 transition-all duration-300"
             >
@@ -166,7 +165,7 @@ export default function GitHubContributionsSection() {
                     <div key={`month-${idx}`} className="flex-1 text-center font-jetbrains">{month}</div>
                   ))}
                 </div>
-                
+
                 {/* Contribution grid */}
                 <div className="flex">
                   {/* Contribution cells */}
@@ -184,7 +183,7 @@ export default function GitHubContributionsSection() {
                     ))}
                   </div>
                 </div>
-                
+
                 {/* Legend */}
                 <div className="flex justify-end pt-2 items-center text-xs text-gray-500 dark:text-gray-400 font-jetbrains">
                   <span className="mr-2">Less</span>
@@ -198,14 +197,14 @@ export default function GitHubContributionsSection() {
               </div>
             </div>
             <div className="mt-12 text-center">
-                    <Link
-                        href={`https://github.com/${username}`} target="_blank"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-full text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300"
-                    >
-                        <i className='bx bxl-github'></i>
-                        View on GitHub
-                    </Link>
-                </div>
+              <Link
+                href={`https://github.com/${username}`} target="_blank"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-full text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300"
+              >
+                <i className='bx bxl-github'></i>
+                View on GitHub
+              </Link>
+            </div>
           </div>
         )}
       </div>
