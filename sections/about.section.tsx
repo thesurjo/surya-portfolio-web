@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 
 export default function AboutSection() {
     const skills = [
-        { name: 'Flutter', level: 100 },
-        { name: 'React', level: 100 },
-        { name: 'Next.js', level: 100 },
-        { name: 'WordPress', level: 100 },
-        { name: 'Digital Marketing', level: 80 },
-        { name: 'Flask', level: 70 }
+        { name: 'Flutter', icon: 'bxl-flutter' },
+        { name: 'React', icon: 'bxl-react' },
+        { name: 'Next.js', icon: 'bxl-nodejs' },
+        { name: 'WordPress', icon: 'bxl-wordpress' },
+        { name: 'Digital Marketing', icon: 'bx-trending-up' },
+        { name: 'Flask', icon: 'bxs-flask' }
     ];
 
     return (
@@ -65,26 +65,18 @@ export default function AboutSection() {
 
                             {/* Skills Section */}
                             <div className="mt-8">
-                                <h3 className="text-xl font-semibold text-white mb-4">Core Skills</h3>
-                                <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
+                                <h3 className="text-2xl font-semibold text-white mb-4">Core Skills</h3>
+                                <div className="flex flex-wrap gap-3">
                                     {skills.map((skill, index) => (
                                         <motion.div
                                             key={skill.name}
                                             initial={{ opacity: 0, y: 10 }}
                                             whileInView={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.3, delay: index * 0.1 }}
-                                            className="bg-[--bg-color] p-4 rounded-lg"
+                                            className="group bg-[--second-bg-color] px-4 py-2 rounded-full inline-flex items-center gap-2 hover:border-[--main-color] border border-gray-700 transition-all duration-300 hover:-translate-y-1"
                                         >
-                                            <div className="flex justify-between items-center mb-2">
-                                                <span className="text-gray-200">{skill.name}</span>
-                                                <span className="text-[--main-color]">{skill.level}%</span>
-                                            </div>
-                                            <div className="w-full bg-gray-700 rounded-full h-2">
-                                                <div 
-                                                    className="bg-[--main-color] h-2 rounded-full"
-                                                    style={{ width: `${skill.level}%` }}
-                                                ></div>
-                                            </div>
+                                            <i className={`bx ${skill.icon} text-lg text-[--main-color] leading-none group-hover:scale-110 transition-transform duration-300`}></i>
+                                            <span className="text-[12px] md:text-[13px] font-medium font-jetbrains leading-none">{skill.name}</span>
                                         </motion.div>
                                     ))}
                                 </div>
