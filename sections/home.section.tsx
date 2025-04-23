@@ -65,6 +65,21 @@ export default function HomeSection() {
                                         <i className={link.iconClass}></i>
                                     </a>
                                 ))}
+                                <a
+                                    href="https://cal.com/suryabasak"
+                                    aria-label="Schedule a meeting"
+                                    target="_blank"
+                                    className="w-16 h-16 rounded-full bg-[--background-light] flex items-center justify-center text-[--main-color] hover:bg-[--main-color] hover:text-white transition-all duration-300 hover:scale-110"
+                                >
+                                    <i className="bx bx-calendar text-2xl"></i>
+                                </a>
+                                <a
+                                    href="tel:+918906376002"
+                                    aria-label="Call me"
+                                    className="w-16 h-16 rounded-full bg-[--background-light] flex items-center justify-center text-[--main-color] hover:bg-[--main-color] hover:text-white transition-all duration-300 hover:scale-110"
+                                >
+                                    <i className="bx bx-phone text-2xl"></i>
+                                </a>
                             </div>
 
                             {/* CTA Buttons */}

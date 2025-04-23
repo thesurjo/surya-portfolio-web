@@ -8,6 +8,7 @@ import TimelineSection from '@/sections/timeline.section';
 import ClientCountSection from '@/sections/client-count.section';
 import SkillsSection from '@/sections/skills.section';
 import GitHubContributionsSection from '@/sections/github-contributions.section';
+import CalComSection from '@/sections/calcom.section';
 
 export {
     AboutSection,
@@ -19,5 +20,6 @@ export {
     TimelineSection,
     ClientCountSection,
     SkillsSection,
-    GitHubContributionsSection
+    GitHubContributionsSection,
+    CalComSection
 }

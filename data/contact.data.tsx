@@ -7,4 +7,5 @@ interface Contact {
 export const contactLinks: Contact[] = [
     { href: 'mailto:suryabasak10@gmail.com', iconClass: 'bx bxs-envelope', name: 'Email' },
     { href: 'https://www.linkedin.com/in/suryabasak', iconClass: 'bx bxl-linkedin-square', name: 'LinkedIn' },
+    { href: 'tel:+918906376002', iconClass: 'bx bxs-phone', name: 'Phone' },
 ];

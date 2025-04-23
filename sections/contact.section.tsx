@@ -32,6 +32,9 @@ export default function ContactSection() {
                                         <i className={`${link.iconClass} text-[--main-color] text-3xl`}></i>
                                     </div>
                                     <h3 className="font-bold text-[16px] md:text-[18px] mb-4 font-jetbrains">{link.name}</h3>
+                                    {link.name === 'Phone' && (
+                                        <p className="text-[14px] text-gray-300 mb-3">+91 8906 376 002</p>
+                                    )}
                                     <span className="mt-auto inline-flex items-center text-[--main-color] text-[13px]">
                                         Connect
                                         <i className="bx bx-right-arrow-alt ml-1"></i>

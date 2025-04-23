@@ -1,5 +1,5 @@
 import { Header, Footer } from "@/global/page";
-import { AboutSection, ContactSection, GitHubContributionsSection, HomeSection, ProjectSection, ServiceSection, SkillsSection, WhyChooseMeSection } from "@/sections/page";
+import { AboutSection, ContactSection, GitHubContributionsSection, HomeSection, ProjectSection, ServiceSection, SkillsSection, WhyChooseMeSection, CalComSection } from "@/sections/page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,6 +26,7 @@ export default function Home() {
         <WhyChooseMeSection/>
         {/* <ClientCountSection/> */}
         <GitHubContributionsSection />
+        <CalComSection />
         <ContactSection />
       </div>
       <Footer />
