@@ -1,6 +1,6 @@
 # Google reCAPTCHA Integration for Next.js
 
-This project uses Google reCAPTCHA to protect your website from spam and abuse. The implementation is configured to work correctly with Next.js server-side rendering (SSR) and static site generation (SSG).
+This project uses Google reCAPTCHA for general site protection. The implementation is configured to work correctly with Next.js server-side rendering (SSR) and static site generation (SSG).
 
 ## Setup Instructions
 
@@ -11,7 +11,7 @@ This project uses Google reCAPTCHA to protect your website from spam and abuse. 
 3. Click on the "+" (Create) button
 4. Fill in the form:
    - Label: Your website name (e.g., "Surya Portfolio Website")
-   - reCAPTCHA type: Select "reCAPTCHA v2" with the "I'm not a robot" checkbox or "Invisible reCAPTCHA"
+   - reCAPTCHA type: Select "reCAPTCHA v2" with the "Invisible reCAPTCHA" option
    - Domains: Add your domains (e.g., "suryabasak.com") and localhost for development
    - Accept the Terms of Service
    - Click "Submit"
@@ -36,114 +36,13 @@ The implementation is designed to work with Next.js's SSR and SSG features:
 
 1. The entire website is wrapped in a `GoogleCaptchaWrapper` component with a Suspense boundary
 2. reCAPTCHA runs invisibly in the background without disrupting server rendering
-3. When a form is submitted, the system gets a fresh reCAPTCHA token
-4. The token is sent to the server along with the form data
-5. The server verifies the token with Google before processing the form
-
-## Using reCAPTCHA in Your Components
-
-This implementation provides a custom hook `useReCaptcha()` to easily integrate reCAPTCHA verification into any component:
-
-```tsx
-"use client";
-import { Suspense } from 'react';
-import useReCaptcha from '@/hooks/useReCaptcha';
-
-// Create a component that will be wrapped in Suspense
-function MyFormContent() {
-  const { getToken } = useReCaptcha();
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Get a fresh reCAPTCHA token
-    const recaptchaToken = await getToken();
-    
-    // Use the token in your API request
-    const response = await fetch('/api/your-endpoint', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        // your form data
-        recaptchaToken
-      })
-    });
-    
-    // Handle the response
-  };
-  
-  return (
-    <form onSubmit={handleSubmit}>
-      {/* Your form fields */}
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
-
-// Loading state for Suspense
-function LoadingState() {
-  return <div>Loading...</div>;
-}
-
-// Export the component with Suspense
-export default function MyForm() {
-  return (
-    <Suspense fallback={<LoadingState />}>
-      <MyFormContent />
-    </Suspense>
-  );
-}
-```
-
-## Server-Side Verification
-
-In your API routes, use the following pattern to verify reCAPTCHA tokens:
-
-```tsx
-// app/api/your-endpoint/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-
-export const dynamic = 'force-dynamic';
-
-export async function POST(req: NextRequest) {
-  try {
-    const { recaptchaToken, ...formData } = await req.json();
-    
-    // Verify reCAPTCHA token
-    const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
-    const verificationResponse = await fetch(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret}&response=${recaptchaToken}`,
-      { method: 'POST' }
-    );
-    
-    const recaptchaResult = await verificationResponse.json();
-    
-    if (!recaptchaResult.success) {
-      return NextResponse.json(
-        { message: 'reCAPTCHA verification failed' },
-        { status: 400 }
-      );
-    }
-    
-    // Process form data here
-    
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json(
-      { message: 'Error processing request' },
-      { status: 500 }
-    );
-  }
-}
-```
+3. The Google reCAPTCHA badge is hidden via CSS since the required notice is added elsewhere
 
 ## Legal Requirements
 
 When using Google reCAPTCHA, you must:
 
-1. Add the following privacy notice near your forms:
+1. Include a reference to Google's reCAPTCHA service on your site:
 
 ```
 This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
@@ -155,10 +54,9 @@ This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of S
 
 ## Troubleshooting
 
-- If you see build errors about `useSearchParams()`, ensure you're using the Suspense boundary as shown in the examples
+- If you see build errors about `useSearchParams()`, ensure you're using the Suspense boundary as shown in the wrapper
 - For static site generation or SSR, ensure that your components using reCAPTCHA are wrapped in a Suspense boundary
-- Add `console.log` statements in your API route to check if the reCAPTCHA verification is working
-- Ensure your site key and secret key are correctly set in your environment variables
+- Ensure your site key is correctly set in your environment variables
 - Make sure the domains in your reCAPTCHA settings include all domains where your site is running
 
 For more information, visit the official documentation:

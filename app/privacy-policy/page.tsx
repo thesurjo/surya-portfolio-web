@@ -66,7 +66,7 @@ export default function PrivacyPolicy() {
                 <h2 className="subheading font-bold font-jetbrains">7. Contact Information</h2>
                 <p className="font-jetbrains">
                     If you have any questions or concerns about this Privacy Policy, please feel free to 
-                    <a href="/contact" className="text-blue-500"> contact me</a>.
+                    <a href="/#contact" className="text-blue-500"> contact me</a>.
                 </p>
             </section>
             <Footer />
