@@ -42,13 +42,16 @@
 html {
    font-size: 65%;
    overflow-x: hidden;
-
+   width: 100%;
 }
 
 body {
    background: var(--bg-color);
    color: var(--text-color);
    position: relative;
+   overflow-x: hidden;
+   width: 100%;
+   max-width: 100vw;
 }
 
 body::before {
@@ -108,9 +111,11 @@ body::before {
 
 section {
    /* min-height: 100vh; */
-   padding: 15rem 9% 15rem;
+   padding: 15rem 5% 15rem;
    position: relative;
    z-index: 1;
+   width: 100%;
+   box-sizing: border-box;
 }
 
 .timeline {
