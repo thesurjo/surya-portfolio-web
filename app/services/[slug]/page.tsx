@@ -4,7 +4,6 @@ import { Header, Footer } from '@/global/page';
 import Image from 'next/image';
 import { getServiceBySlug } from '@/data/serviceDetails';
 import { useParams } from 'next/navigation';
-import Link from 'next/link';
 
 export default function ServiceDetail() {
   const router = useRouter();
