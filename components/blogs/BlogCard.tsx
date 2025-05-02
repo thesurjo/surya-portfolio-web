@@ -1,30 +1,10 @@
 "use client"
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-
-// Define the blog type to match your data structure
-export interface Blog {
-  slug: string;
-  title: string;
-  description: string;
-  category: string;
-  imageUrl: string;
-  logoUrl?: string;
-  link?: string;
-  technologies: string[];
-  fullDescription?: string;
-  features?: string[];
-  gallery?: string[];
-  client?: string;
-  duration?: string;
-  role?: string;
-  teamSize?: string;
-  blogType?: string;
-  status?: 'Completed' | 'In Progress' | 'Ongoing';
-}
+import { BlogPost } from '@/lib/types/blog';
 
 interface BlogCardProps {
-  blog: Blog;
+  blog: BlogPost;
   variants?: any; // For framer-motion animation variants
 }
 
@@ -38,7 +18,7 @@ export default function BlogCard({ blog, variants }: BlogCardProps) {
         {/* Image container with overlay */}
         <div className="relative overflow-hidden aspect-video">
           <img 
-            src={blog.imageUrl} 
+            src={blog.coverImage} 
             alt={blog.title} 
             className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
           />
@@ -47,17 +27,24 @@ export default function BlogCard({ blog, variants }: BlogCardProps) {
         
         {/* Content area */}
         <div className="p-7 flex flex-col flex-grow">
-          <span className="text-[13px] md:text-[13px] bg-[--main-color]/20 text-[--main-color] rounded-md font-semibold font-jetbrains inline-block mb-1 self-start">
-            {blog.category}
-          </span>
+          {blog.category && (
+            <span className="text-[13px] md:text-[13px] bg-[--main-color]/20 text-[--main-color] rounded-md font-semibold font-jetbrains inline-block mb-1 self-start">
+              {blog.category}
+            </span>
+          )}
           <h3 className="text-[18px] md:text-[18px] font-bold font-jetbrains mb-4 text-white group-hover:text-[--main-color] transition-colors duration-300">{blog.title}</h3>
           <p className="text-[12px] md:text-[12px] mb-6 line-clamp-3 leading-relaxed font-jetbrains text-gray-300">
-            {blog.description}
+            {blog.excerpt}
           </p>
           
           {/* Action button */}
           <div className="mt-auto pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
             <div className="text-[12px] md:text-[12px] text-gray-400 font-medium font-jetbrains">
+              {new Date(blog.publishedAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
             </div>
             <div 
               className="inline-flex items-center gap-3 text-[12px] md:text-[12px] font-semibold text-[--main-color] group-hover:text-[--main-color]/80 transition-colors font-jetbrains"
@@ -72,4 +59,4 @@ export default function BlogCard({ blog, variants }: BlogCardProps) {
       </motion.div>
     </Link>
   );
-} 
+}

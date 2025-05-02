@@ -44,11 +44,12 @@ export default function Blog() {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await fetch('/api/blog');
+                // Only fetch published posts
+                const response = await fetch('/api/blog?status=published');
                 const data: BlogPost[] = await response.json();
                 setBlogs(data);
                 
-                // Extract unique tags
+                // Extract unique tags from published posts
                 const allTags = Array.from(
                     new Set(data.flatMap((blog: BlogPost) => blog.tags))
                 ).sort();

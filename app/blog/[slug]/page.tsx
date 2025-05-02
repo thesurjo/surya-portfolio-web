@@ -25,6 +25,13 @@ export default function BlogDetail() {
                         throw new Error('Blog not found');
                     }
                     const data = await response.json();
+                    
+                    // Only show published posts
+                    if (data.status !== 'published') {
+                        router.push('/blog');
+                        return;
+                    }
+                    
                     setBlog(data);
                 }
             } catch (error) {
@@ -35,7 +42,7 @@ export default function BlogDetail() {
         };
 
         fetchBlog();
-    }, [params.slug]);
+    }, [params.slug, router]);
 
     if (loading) {
         return (

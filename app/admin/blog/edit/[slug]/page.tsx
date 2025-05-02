@@ -22,6 +22,7 @@ export default function EditBlogPost() {
     const [seoTitle, setSeoTitle] = useState('');
     const [seoDescription, setSeoDescription] = useState('');
     const [seoKeywords, setSeoKeywords] = useState('');
+    const [status, setStatus] = useState<'draft' | 'published' | 'trash'>('draft');
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
 
@@ -36,6 +37,7 @@ export default function EditBlogPost() {
                     setTitle(data.title);
                     setContent(data.content);
                     setTags(data.tags || []);
+                    setStatus(data.status || 'draft');
                     setSeoTitle(data.seo?.title || '');
                     setSeoDescription(data.seo?.description || '');
                     setSeoKeywords(data.seo?.keywords?.join(', ') || '');
@@ -78,6 +80,7 @@ export default function EditBlogPost() {
             formData.append('title', title);
             formData.append('content', content);
             formData.append('tags', JSON.stringify(tags));
+            formData.append('status', status);
             formData.append('seo', JSON.stringify({
                 title: seoTitle || title,
                 description: seoDescription,
@@ -137,18 +140,34 @@ export default function EditBlogPost() {
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Title Input */}
-                        <div>
-                            <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                Title *
-                            </label>
-                            <input
-                                type="text"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
-                                required
-                            />
+                        {/* Title and Status */}
+                        <div className="flex gap-4">
+                            <div className="flex-1">
+                                <label className="block text-[14px] font-medium font-jetbrains mb-2">
+                                    Title *
+                                </label>
+                                <input
+                                    type="text"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                    required
+                                />
+                            </div>
+                            <div className="w-32">
+                                <label className="block text-[14px] font-medium font-jetbrains mb-2">
+                                    Status
+                                </label>
+                                <select
+                                    value={status}
+                                    onChange={(e) => setStatus(e.target.value as 'draft' | 'published' | 'trash')}
+                                    className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                >
+                                    <option value="draft">Draft</option>
+                                    <option value="published">Published</option>
+                                    <option value="trash">Trash</option>
+                                </select>
+                            </div>
                         </div>
 
                         {/* Tags Input */}
@@ -239,13 +258,18 @@ export default function EditBlogPost() {
                         </div>
 
                         {/* Submit Button */}
-                        <div className="flex justify-end pt-6">
+                        <div className="flex justify-between pt-6">
+                            <button
+                                type="button"
+                                onClick={() => router.push('/admin/blog/manage')}
+                                className="px-6 py-3 bg-gray-600 text-white rounded-lg text-[14px] font-medium hover:bg-gray-700 transition-all duration-300 flex items-center gap-2"
+                            >
+                                Cancel
+                            </button>
                             <button
                                 type="submit"
                                 disabled={saving}
-                                className={`px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-lg text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300 flex items-center gap-2 ${
-                                    saving ? 'opacity-50 cursor-not-allowed' : ''
-                                }`}
+                                className={`px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-lg text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300 flex items-center gap-2 ${saving ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
                                 {saving ? (
                                     <>
@@ -255,7 +279,7 @@ export default function EditBlogPost() {
                                 ) : (
                                     <>
                                         <i className='bx bx-save'></i>
-                                        Save Changes
+                                        {status === 'published' ? 'Update & Publish' : `Save as ${status.charAt(0).toUpperCase() + status.slice(1)}`}
                                     </>
                                 )}
                             </button>

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { db, storage } from '@/lib/firebase';
-import { collection, addDoc, getDocs, query, orderBy } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db } from '@/lib/firebase';
+import { collection, addDoc, getDocs, query, orderBy, where } from 'firebase/firestore';
+import imagekit from '@/lib/config/imagekit';
 
 export async function POST(request: Request) {
   try {
@@ -11,11 +11,15 @@ export async function POST(request: Request) {
     const coverImage = formData.get('coverImage') as File;
     const tags = JSON.parse(formData.get('tags') as string);
     const seo = JSON.parse(formData.get('seo') as string);
+    const status = formData.get('status') as 'draft' | 'published' | 'trash' || 'draft';
     
-    // Upload image to Firebase Storage
-    const imageRef = ref(storage, `blog-images/${Date.now()}-${coverImage.name}`);
-    await uploadBytes(imageRef, coverImage);
-    const imageUrl = await getDownloadURL(imageRef);
+    // Upload image to ImageKit
+    const buffer = Buffer.from(await coverImage.arrayBuffer());
+    const uploadResponse = await imagekit.upload({
+      file: buffer,
+      fileName: `${Date.now()}-${coverImage.name}`,
+      folder: '/blog-images'
+    });
     
     // Create slug from title
     const slug = title.toLowerCase()
@@ -28,12 +32,13 @@ export async function POST(request: Request) {
       slug,
       content,
       excerpt: content.substring(0, 150) + '...',
-      coverImage: imageUrl,
+      coverImage: uploadResponse.url,
       author: {
         name: 'Surya Basak',
         image: '/images/me4.jpeg'
       },
       tags,
+      status,
       publishedAt: new Date(),
       updatedAt: new Date(),
       seo
@@ -41,13 +46,32 @@ export async function POST(request: Request) {
     
     return NextResponse.json({ id: docRef.id, success: true });
   } catch (error) {
+    console.error('Error creating blog post:', error);
     return NextResponse.json({ error: 'Error creating blog post' }, { status: 500 });
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const blogQuery = query(collection(db, 'blogs'), orderBy('publishedAt', 'desc'));
+    const { searchParams } = new URL(request.url);
+    const status = searchParams.get('status');
+    
+    let blogQuery;
+    if (status) {
+      blogQuery = query(
+        collection(db, 'blogs'),
+        where('status', '==', status),
+        orderBy('publishedAt', 'desc')
+      );
+    } else {
+      // By default, only show published posts
+      blogQuery = query(
+        collection(db, 'blogs'),
+        where('status', '==', 'published'),
+        orderBy('publishedAt', 'desc')
+      );
+    }
+    
     const snapshot = await getDocs(blogQuery);
     const blogs = snapshot.docs.map(doc => ({
       id: doc.id,

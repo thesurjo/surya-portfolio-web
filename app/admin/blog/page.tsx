@@ -22,6 +22,7 @@ export default function AdminBlog() {
     const [seoTitle, setSeoTitle] = useState('');
     const [seoDescription, setSeoDescription] = useState('');
     const [seoKeywords, setSeoKeywords] = useState('');
+    const [status, setStatus] = useState<'draft' | 'published' | 'trash'>('draft');
     const [loading, setLoading] = useState(false);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +65,7 @@ export default function AdminBlog() {
             formData.append('content', content);
             formData.append('coverImage', coverImage);
             formData.append('tags', JSON.stringify(tags));
+            formData.append('status', status);
             formData.append('seo', JSON.stringify({
                 title: seoTitle || title,
                 description: seoDescription,
@@ -79,7 +81,7 @@ export default function AdminBlog() {
                 throw new Error('Failed to create blog post');
             }
 
-            router.push('/blog');
+            router.push('/admin/blog/manage');
         } catch (error) {
             console.error('Error creating blog post:', error);
             alert(error instanceof Error ? error.message : 'Failed to create blog post');
@@ -93,23 +95,48 @@ export default function AdminBlog() {
             <Header />
             <section className="w-full py-8 pt-28 px-4 md:px-9 bg-[--second-bg-color]/30">
                 <div className="max-w-4xl mx-auto">
-                    <h1 className="text-[32px] md:text-[40px] font-bold font-jetbrains mb-8">
-                        Create New Blog Post
-                    </h1>
+                    <div className="flex justify-between items-center mb-8">
+                        <h1 className="text-[32px] md:text-[40px] font-bold font-jetbrains">
+                            Create New Blog Post
+                        </h1>
+                        <button
+                            onClick={() => router.push('/admin/blog/manage')}
+                            className="px-6 py-3 bg-[--second-bg-color] text-[--text-color] rounded-lg text-[14px] font-medium hover:bg-[--second-bg-color]/90 transition-all duration-300 flex items-center gap-2"
+                        >
+                            <i className='bx bx-arrow-back'></i>
+                            Back to List
+                        </button>
+                    </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Title Input */}
-                        <div>
-                            <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                Title *
-                            </label>
-                            <input
-                                type="text"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
-                                required
-                            />
+                        <div className="flex gap-4">
+                            <div className="flex-1">
+                                <label className="block text-[14px] font-medium font-jetbrains mb-2">
+                                    Title *
+                                </label>
+                                <input
+                                    type="text"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                    required
+                                />
+                            </div>
+                            <div className="w-32">
+                                <label className="block text-[14px] font-medium font-jetbrains mb-2">
+                                    Status
+                                </label>
+                                <select
+                                    value={status}
+                                    onChange={(e) => setStatus(e.target.value as 'draft' | 'published' | 'trash')}
+                                    className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                >
+                                    <option value="draft">Draft</option>
+                                    <option value="published">Published</option>
+                                    <option value="trash">Trash</option>
+                                </select>
+                            </div>
                         </div>
 
                         {/* Cover Image Upload */}
@@ -232,7 +259,14 @@ export default function AdminBlog() {
                         </div>
 
                         {/* Submit Button */}
-                        <div className="flex justify-end pt-6">
+                        <div className="flex justify-between pt-6">
+                            <button
+                                type="button"
+                                onClick={() => router.push('/admin/blog/manage')}
+                                className="px-6 py-3 bg-gray-600 text-white rounded-lg text-[14px] font-medium hover:bg-gray-700 transition-all duration-300 flex items-center gap-2"
+                            >
+                                Cancel
+                            </button>
                             <button
                                 type="submit"
                                 disabled={loading}
@@ -241,12 +275,12 @@ export default function AdminBlog() {
                                 {loading ? (
                                     <>
                                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                        Publishing...
+                                        Saving...
                                     </>
                                 ) : (
                                     <>
-                                        <i className='bx bx-paper-plane'></i>
-                                        Publish Post
+                                        <i className='bx bx-save'></i>
+                                        {status === 'published' ? 'Publish Post' : 'Save as ' + status.charAt(0).toUpperCase() + status.slice(1)}
                                     </>
                                 )}
                             </button>

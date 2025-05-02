@@ -14,6 +14,7 @@ export interface BlogPost {
     image: string;
   };
   tags: string[];
+  status: 'draft' | 'published' | 'trash';
   publishedAt: Date;
   updatedAt: Date;
   seo: {

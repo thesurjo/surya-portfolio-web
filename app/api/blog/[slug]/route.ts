@@ -38,11 +38,35 @@ export async function GET(request: Request, { params }: { params: { slug: string
 export async function PUT(request: Request, { params }: { params: { slug: string } }) {
   try {
     const { slug } = params;
-    const formData = await request.formData();
-    const title = formData.get('title') as string;
-    const content = formData.get('content') as string;
-    const tags = JSON.parse(formData.get('tags') as string);
-    const seo = JSON.parse(formData.get('seo') as string);
+    const contentType = request.headers.get('content-type');
+    
+    let updateData: any;
+    
+    if (contentType?.includes('multipart/form-data')) {
+      const formData = await request.formData();
+      const title = formData.get('title') as string;
+      const content = formData.get('content') as string;
+      const tags = JSON.parse(formData.get('tags') as string);
+      const seo = JSON.parse(formData.get('seo') as string);
+      const status = formData.get('status') as 'draft' | 'published' | 'trash';
+      
+      updateData = {
+        title,
+        content,
+        excerpt: content.substring(0, 150) + '...',
+        tags,
+        status,
+        updatedAt: new Date(),
+        seo
+      };
+    } else {
+      // Handle JSON requests for status updates
+      const jsonData = await request.json();
+      updateData = {
+        ...jsonData,
+        updatedAt: new Date()
+      };
+    }
     
     const blogQuery = query(collection(db, 'blogs'), where('slug', '==', slug));
     const snapshot = await getDocs(blogQuery);
@@ -52,17 +76,11 @@ export async function PUT(request: Request, { params }: { params: { slug: string
     }
     
     const blogDoc = doc(db, 'blogs', snapshot.docs[0].id);
-    await updateDoc(blogDoc, {
-      title,
-      content,
-      excerpt: content.substring(0, 150) + '...',
-      tags,
-      updatedAt: new Date(),
-      seo
-    });
+    await updateDoc(blogDoc, updateData);
     
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error('Error updating blog post:', error);
     return NextResponse.json({ error: 'Error updating blog post' }, { status: 500 });
   }
 }
@@ -77,9 +95,21 @@ export async function DELETE(request: Request, { params }: { params: { slug: str
       return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
     }
     
-    await deleteDoc(doc(db, 'blogs', snapshot.docs[0].id));
+    const blogDoc = snapshot.docs[0];
+    const blogData = blogDoc.data();
+    
+    // Only allow permanent deletion if the post is in trash
+    if (blogData.status !== 'trash') {
+      return NextResponse.json(
+        { error: 'Only posts in trash can be permanently deleted' }, 
+        { status: 400 }
+      );
+    }
+    
+    await deleteDoc(doc(db, 'blogs', blogDoc.id));
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error('Error deleting blog post:', error);
     return NextResponse.json({ error: 'Error deleting blog post' }, { status: 500 });
   }
 }

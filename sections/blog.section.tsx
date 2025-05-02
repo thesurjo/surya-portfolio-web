@@ -1,20 +1,28 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import BlogCard from '@/components/blogs/BlogCard';
 import { BlogPost } from '@/lib/types/blog';
-
-const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 }
-};
+import BlogCard from '@/components/blogs/BlogCard';
 
 const staggerContainer = {
+    initial: {},
     animate: {
         transition: {
-            staggerChildren: 0.1
+            staggerChildren: 0.1,
+            delayChildren: 0.3
+        }
+    }
+};
+
+const fadeInUp = {
+    initial: { y: 20, opacity: 0 },
+    animate: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.5
         }
     }
 };
@@ -26,7 +34,7 @@ export default function BlogSection() {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await fetch('/api/blog');
+                const response = await fetch('/api/blog?status=published');
                 const data = await response.json();
                 setBlogs(data);
             } catch (error) {
