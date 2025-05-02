@@ -1,9 +1,10 @@
 "use client"
 
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { projects } from "@/data/project.data";
 import Link from 'next/link';
 import BlogCard from '@/components/blogs/BlogCard';
+import { BlogPost } from '@/lib/types/blog';
 
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -19,8 +20,27 @@ const staggerContainer = {
 };
 
 export default function BlogSection() {
+    const [blogs, setBlogs] = useState<BlogPost[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await fetch('/api/blog');
+                const data = await response.json();
+                setBlogs(data);
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
+
     return (
-        <section className="relative w-full py-16 px-4" id="project">
+        <section className="relative w-full py-16 px-4" id="blog">
             <div className="absolute inset-0">
                 <div className="absolute inset-0 opacity-5"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-[--main-color]/5 via-transparent to-[--main-color]/5"></div>
@@ -33,25 +53,38 @@ export default function BlogSection() {
                         My Latest <span className="text-[--main-color]">Blogs</span>
                     </h2>
                     <p className="font-jetbrains text-[14px] md:text-[16px] max-w-6xl mx-auto text-opacity-90 mb-6">
-                    From quick tips to deep dives, my blog covers the code, creativity, and challenges behind modern app development.
+                        From quick tips to deep dives, my blog covers the code, creativity, and challenges behind modern app development.
                     </p>
                     <div className="w-20 h-1 bg-[--main-color] mx-auto rounded-full"></div>
                 </div>
-                <motion.div
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    variants={staggerContainer}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
-                >
-                    {projects.slice(0, 3).map((blog, index) => (
-                        <BlogCard
-                            key={index}
-                            blog={blog}
-                            variants={fadeInUp}
-                        />
-                    ))}
-                </motion.div>
+
+                {loading ? (
+                    <div className="flex justify-center items-center h-64">
+                        <div className="loader"></div>
+                    </div>
+                ) : blogs.length === 0 ? (
+                    <div className="text-center py-16">
+                        <i className='bx bx-book-content text-4xl text-gray-400 mb-4'></i>
+                        <h3 className="text-[18px] md:text-[20px] font-jetbrains mb-2">No blogs published yet</h3>
+                        <p className="text-gray-400 text-[14px] md:text-[16px]">Check back soon for new content!</p>
+                    </div>
+                ) : (
+                    <motion.div
+                        initial="initial"
+                        whileInView="animate"
+                        viewport={{ once: true }}
+                        variants={staggerContainer}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                    >
+                        {blogs.slice(0, 3).map((blog) => (
+                            <BlogCard
+                                key={blog.id}
+                                blog={blog}
+                                variants={fadeInUp}
+                            />
+                        ))}
+                    </motion.div>
+                )}
 
                 <motion.div
                     initial="initial"
@@ -62,11 +95,11 @@ export default function BlogSection() {
                 >
                     <div className="text-center">
                         <Link
-                            href="/projects"
+                            href="/blog"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-full text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300"
                         >
-                            <i className='bx bx-refresh text-xl'></i>
-                            Load More
+                            <i className='bx bx-book-open text-xl'></i>
+                            View All Posts
                         </Link>
                     </div>
                 </motion.div>
