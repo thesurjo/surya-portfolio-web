@@ -90,4 +90,4 @@ export default function ProjectCard({ project, variants }: ProjectCardProps) {
       </motion.div>
     </Link>
   );
-} 
+}
