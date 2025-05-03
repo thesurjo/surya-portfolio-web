@@ -102,7 +102,17 @@ export async function GET(request: Request) {
     // Verify Firebase initialization
     if (!db) {
       console.error('Firestore database instance is undefined');
-      return NextResponse.json({ error: 'Database connection failed - db not initialized' }, { status: 500 });
+      return NextResponse.json(
+        { error: 'Database connection failed - db not initialized' }, 
+        { 
+          status: 500,
+          headers: {
+            'Cache-Control': 'no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+          }
+        }
+      );
     }
 
     try {
@@ -112,7 +122,17 @@ export async function GET(request: Request) {
       console.log('Database connection test successful');
     } catch (connectionError) {
       console.error('Database connection test failed:', connectionError);
-      return NextResponse.json({ error: 'Database connection test failed' }, { status: 500 });
+      return NextResponse.json(
+        { error: 'Database connection test failed' }, 
+        { 
+          status: 500,
+          headers: {
+            'Cache-Control': 'no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+          }
+        }
+      );
     }
     
     let blogQuery;
@@ -146,7 +166,16 @@ export async function GET(request: Request) {
         ...doc.data()
       }));
       
-      return NextResponse.json(blogs);
+      return NextResponse.json(
+        blogs,
+        {
+          headers: {
+            'Cache-Control': 'no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+          }
+        }
+      );
     } catch (queryError: any) {
       console.error('Error executing Firestore query:', {
         error: queryError,
@@ -154,10 +183,20 @@ export async function GET(request: Request) {
         code: queryError.code,
         details: queryError.details
       });
-      return NextResponse.json({ 
-        error: 'Failed to fetch blog posts from database',
-        details: queryError.message 
-      }, { status: 500 });
+      return NextResponse.json(
+        { 
+          error: 'Failed to fetch blog posts from database',
+          details: queryError.message 
+        }, 
+        { 
+          status: 500,
+          headers: {
+            'Cache-Control': 'no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+          }
+        }
+      );
     }
   } catch (error: any) {
     console.error('Error in blog GET endpoint:', {
@@ -166,9 +205,19 @@ export async function GET(request: Request) {
       code: error.code,
       details: error.details
     });
-    return NextResponse.json({ 
-      error: 'Unknown error fetching blog posts',
-      details: error.message
-    }, { status: 500 });
+    return NextResponse.json(
+      { 
+        error: 'Unknown error fetching blog posts',
+        details: error.message
+      }, 
+      { 
+        status: 500,
+        headers: {
+          'Cache-Control': 'no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      }
+    );
   }
 }

@@ -8,6 +8,10 @@ import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface BlogDetailProps {
     params: Promise<{ slug: string }>;
 }

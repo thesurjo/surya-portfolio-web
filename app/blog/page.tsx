@@ -4,6 +4,10 @@ import { BlogPost } from '@/lib/types/blog';
 import type { Metadata } from "next";
 import { SearchAndFilter } from './search-filter';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Blog - Surya Basak",
   description: "Explore insightful articles and blog posts by Surya Basak about software development, technology trends, and more.",
@@ -18,7 +22,10 @@ export const metadata: Metadata = {
 async function getBlogs() {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog?status=published`, {
-      next: { revalidate: 3600 } // Revalidate every hour
+      cache: 'no-store', // Disable caching to always get fresh data
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
     });
     
     if (!response.ok) {
