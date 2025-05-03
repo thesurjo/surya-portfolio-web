@@ -35,10 +35,15 @@ export default function BlogSection() {
         const fetchBlogs = async () => {
             try {
                 const response = await fetch('/api/blog?status=published');
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Blog section fetch error:', errorData);
+                    throw new Error(errorData.details || errorData.error || 'Failed to fetch blog posts');
+                }
                 const data = await response.json();
                 setBlogs(data);
             } catch (error) {
-                console.error('Error fetching blogs:', error);
+                console.error('Error fetching blogs in section:', error);
             } finally {
                 setLoading(false);
             }

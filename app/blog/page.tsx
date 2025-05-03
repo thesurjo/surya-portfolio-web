@@ -44,18 +44,22 @@ export default function Blog() {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                // Only fetch published posts
                 const response = await fetch('/api/blog?status=published');
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Blog fetch error:', errorData);
+                    throw new Error(errorData.details || errorData.error || 'Failed to fetch blog posts');
+                }
                 const data: BlogPost[] = await response.json();
                 setBlogs(data);
                 
-                // Extract unique tags from published posts
                 const allTags = Array.from(
                     new Set(data.flatMap((blog: BlogPost) => blog.tags))
                 ).sort();
                 setTags(allTags);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
+                // You might want to set an error state here to display to the user
             } finally {
                 setLoading(false);
             }
