@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
 import { collection, query, where, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import imagekit from '@/lib/config/imagekit';
 
 export async function GET(request: Request, { params }: {
   params: Promise<{ slug: string }>;
