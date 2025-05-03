@@ -6,11 +6,52 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 interface BlogDetailProps {
     params: {
         slug: string;
     };
+}
+
+// Generate dynamic metadata
+export async function generateMetadata({ params }: BlogDetailProps): Promise<Metadata> {
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/${params.slug}`);
+        const blog: BlogPost = await response.json();
+
+        return {
+            title: `${blog.title} | Surya Basak's Blog`,
+            description: blog.excerpt || blog.content.slice(0, 160),
+            openGraph: {
+                title: blog.title,
+                description: blog.excerpt || blog.content.slice(0, 160),
+                images: [
+                    {
+                        url: blog.coverImage,
+                        width: 1200,
+                        height: 630,
+                        alt: blog.title,
+                    },
+                ],
+                type: 'article',
+                publishedTime: new Date(blog.publishedAt).toISOString(),
+                authors: [blog.author.name],
+                tags: blog.tags,
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: blog.title,
+                description: blog.excerpt || blog.content.slice(0, 160),
+                images: [blog.coverImage],
+            },
+        };
+    } catch (error) {
+        return {
+            title: 'Blog Post | Surya Basak',
+            description: 'Read interesting articles about web development, programming, and technology.',
+        };
+    }
 }
 
 export default async function BlogDetail({ params }: BlogDetailProps) {
