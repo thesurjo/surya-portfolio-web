@@ -14,9 +14,8 @@ export default function ServiceSection() {
                 </p>
                 <div className="w-20 h-1 bg-[--main-color] mx-auto rounded-full"></div>
             </div>
-            <div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-7xl mx-auto"
-            >
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-7xl mx-auto">
                 {services.map((service, index) => (
                     <div
                         key={index}
@@ -28,6 +27,7 @@ export default function ServiceSection() {
                                 <div className="bg-[--background-light] w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
                                     <i className={`${service.iconClass} text-[--main-color] text-4xl`}></i>
                                 </div>
+
                                 <h3 className='font-bold text-[18px] md:text-[18px] mb-4 font-jetbrains text-center'>{service.title}</h3>
                                 <p className='font-jetbrains text-[12px] md:text-[12px] text-center text-opacity-80 flex-grow'>{service.shortDescription}</p>
 
