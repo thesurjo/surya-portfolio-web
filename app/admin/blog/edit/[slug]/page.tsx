@@ -23,6 +23,9 @@ export default function EditBlogPost() {
     const [status, setStatus] = useState<'draft' | 'published' | 'trash'>('draft');
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [slug, setSlug] = useState('');
+    const [slugError, setSlugError] = useState('');
+
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -40,6 +43,8 @@ export default function EditBlogPost() {
                     setSeoDescription(data.seo?.description || '');
                     setSeoKeywords(data.seo?.keywords?.join(', ') || '');
                     setPreviewUrl(data.coverImage || '');
+                    setSlug(data.slug || '');
+
                 }
             } catch (error) {
                 console.error('Error fetching blog:', error);
@@ -94,8 +99,12 @@ export default function EditBlogPost() {
             if (!title || !content) {
                 throw new Error('Please fill in all required fields');
             }
-
+            if (!slug || slugError) {
+                throw new Error('Invalid or missing slug');
+            }
             const formData = new FormData();
+
+            formData.append('slug', slug);
             formData.append('title', title);
             formData.append('content', content);
             formData.append('tags', JSON.stringify(tags));
@@ -179,10 +188,30 @@ export default function EditBlogPost() {
                                     className="w-full py-4 px-6 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[20px] mb-6"
                                     required
                                 />
-
+                                <input
+                                    type="text"
+                                    value={slug}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        setSlug(value);
+                                        const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+                                        if (!slugRegex.test(value)) {
+                                            setSlugError('Slug must be lowercase, use hyphens instead of spaces, and contain no special characters.');
+                                        } else {
+                                            setSlugError('');
+                                        }
+                                    }}
+                                    placeholder="custom-post-slug"
+                                    className="w-full py-4 px-6 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[20px] mb-6"
+                                />
+                                {slugError && (
+                                    <p className="text-red-500 text-sm font-jetbrains">{slugError}</p>
+                                )}
                                 {/* Content Editor */}
                                 <TipTapEditor content={content} onChange={setContent} />
+
                             </div>
+
 
                             {/* Sidebar Column */}
                             <div className="w-80 space-y-6">

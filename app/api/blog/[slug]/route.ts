@@ -75,7 +75,8 @@ export async function PUT(request: Request, { params }: {
         tags,
         status,
         updatedAt: new Date(),
-        seo
+        seo,
+        slug
       };
 
       // If new image is uploaded

@@ -34,7 +34,7 @@ export default function BlogCard({ blog, variants }: BlogCardProps) {
           )}
           <h3 className="text-[18px] md:text-[18px] font-bold font-jetbrains mb-4 text-white group-hover:text-[--main-color] transition-colors duration-300">{blog.title}</h3>
           <p className="text-[12px] md:text-[12px] mb-6 line-clamp-3 leading-relaxed font-jetbrains text-gray-300">
-            {blog.excerpt}
+            {blog.seo.description}
           </p>
           
           {/* Action button */}
