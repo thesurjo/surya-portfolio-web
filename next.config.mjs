@@ -1,8 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['ik.imagekit.io', 'i.imgur.com']
-    }
-};
-
-export default nextConfig;
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'ik.imagekit.io',
+        },
+        {
+          protocol: 'https',
+          hostname: 'i.imgur.com',
+        },
+      ],
+    },
+  };
+  
+  export default nextConfig;
+  
