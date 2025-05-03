@@ -99,7 +99,6 @@ export async function GET(request: Request) {
     
     console.log('Blog fetch request received with status:', status);
     
-    // Verify Firebase initialization
     if (!db) {
       console.error('Firestore database instance is undefined');
       return NextResponse.json(
@@ -116,7 +115,6 @@ export async function GET(request: Request) {
     }
 
     try {
-      // Test database connection
       const testRef = collection(db, 'blogs');
       await getDocs(query(testRef, limit(1)));
       console.log('Database connection test successful');
@@ -124,14 +122,7 @@ export async function GET(request: Request) {
       console.error('Database connection test failed:', connectionError);
       return NextResponse.json(
         { error: 'Database connection test failed' }, 
-        { 
-          status: 500,
-          headers: {
-            'Cache-Control': 'no-store, must-revalidate',
-            'Pragma': 'no-cache',
-            'Expires': '0'
-          }
-        }
+        { status: 500 }
       );
     }
     
@@ -161,10 +152,15 @@ export async function GET(request: Request) {
       const snapshot = await getDocs(blogQuery);
       console.log('Query successful, document count:', snapshot.size);
       
-      const blogs = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
+      const blogs = snapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          ...data,
+          publishedAt: data.publishedAt?.toDate?.()?.toISOString() || null,
+          updatedAt: data.updatedAt?.toDate?.()?.toISOString() || null
+        };
+      });
       
       return NextResponse.json(
         blogs,
@@ -176,48 +172,18 @@ export async function GET(request: Request) {
           }
         }
       );
-    } catch (queryError: any) {
-      console.error('Error executing Firestore query:', {
-        error: queryError,
-        message: queryError.message,
-        code: queryError.code,
-        details: queryError.details
-      });
+    } catch (queryError) {
+      console.error('Error executing Firestore query:', queryError);
       return NextResponse.json(
-        { 
-          error: 'Failed to fetch blog posts from database',
-          details: queryError.message 
-        }, 
-        { 
-          status: 500,
-          headers: {
-            'Cache-Control': 'no-store, must-revalidate',
-            'Pragma': 'no-cache',
-            'Expires': '0'
-          }
-        }
+        { error: 'Failed to fetch blog posts from database' }, 
+        { status: 500 }
       );
     }
-  } catch (error: any) {
-    console.error('Error in blog GET endpoint:', {
-      error,
-      message: error.message,
-      code: error.code,
-      details: error.details
-    });
+  } catch (error) {
+    console.error('Error in blog GET endpoint:', error);
     return NextResponse.json(
-      { 
-        error: 'Unknown error fetching blog posts',
-        details: error.message
-      }, 
-      { 
-        status: 500,
-        headers: {
-          'Cache-Control': 'no-store, must-revalidate',
-          'Pragma': 'no-cache',
-          'Expires': '0'
-        }
-      }
+      { error: 'Unknown error fetching blog posts' }, 
+      { status: 500 }
     );
   }
 }

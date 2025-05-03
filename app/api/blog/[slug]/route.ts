@@ -23,9 +23,12 @@ export async function GET(request: Request, { params }: {
 
     // Get the first (and should be only) matching document
     const blogDoc = querySnapshot.docs[0];
+    const data = blogDoc.data();
     const blogData = {
       id: blogDoc.id,
-      ...blogDoc.data()
+      ...data,
+      publishedAt: data.publishedAt?.toDate?.()?.toISOString() || null,
+      updatedAt: data.updatedAt?.toDate?.()?.toISOString() || null
     };
 
     return NextResponse.json(blogData);
