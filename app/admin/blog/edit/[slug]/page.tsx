@@ -2,15 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import dynamic from 'next/dynamic';
 import { Header, Footer } from '@/global/page';
 import { BlogPost } from '@/lib/types/blog';
 import { useDropzone } from 'react-dropzone';
-
-const MDEditor = dynamic(
-    () => import("@uiw/react-md-editor"),
-    { ssr: false }
-);
+import TipTapEditor from '@/components/blogs/TipTapEditor';
 
 export default function EditBlogPost() {
     const router = useRouter();
@@ -186,42 +181,7 @@ export default function EditBlogPost() {
                                 />
 
                                 {/* Content Editor */}
-                                <div>
-                                    <MDEditor
-                                        value={content}
-                                        onChange={value => setContent(value || '')}
-                                        preview="edit"
-                                        height={500}
-                                        hideToolbar={false}
-                                        enableScroll={true}
-                                        textareaProps={{
-                                            spellCheck: false,
-                                            style: { 
-                                                fontSize: '16px',
-                                                lineHeight: '1.5',
-                                                padding: '16px',
-                                                caretColor: 'var(--text-color)',
-                                                position: 'relative',
-                                                inset: '0',
-                                                display: 'block',
-                                                minHeight: '200px',
-                                                backgroundColor: 'var(--second-bg-color)',
-                                                color: 'var(--text-color)',
-                                                whiteSpace: 'pre-wrap',
-                                                overflowWrap: 'break-word'
-                                            }
-                                        }}
-                                        previewOptions={{
-                                            style: {
-                                                padding: '16px',
-                                                fontSize: '16px',
-                                                lineHeight: '1.5',
-                                                backgroundColor: 'var(--second-bg-color)',
-                                                color: 'var(--text-color)'
-                                            }
-                                        }}
-                                    />
-                                </div>
+                                <TipTapEditor content={content} onChange={setContent} />
                             </div>
 
                             {/* Sidebar Column */}
@@ -245,20 +205,6 @@ export default function EditBlogPost() {
                                             <img src={previewUrl} alt="Preview" className="w-full h-auto rounded-lg" />
                                         </div>
                                     )}
-                                </div>
-
-                                {/* Status Selector */}
-                                <div className="bg-[--second-bg-color] p-4 rounded-lg">
-                                    <h3 className="text-[16px] font-bold font-jetbrains mb-4">Status</h3>
-                                    <select
-                                        value={status}
-                                        onChange={(e) => setStatus(e.target.value as 'draft' | 'published' | 'trash')}
-                                        className="w-full py-2 px-3 rounded-lg bg-[--bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
-                                    >
-                                        <option value="draft">Draft</option>
-                                        <option value="published">Published</option>
-                                        <option value="trash">Trash</option>
-                                    </select>
                                 </div>
 
                                 {/* Tags Section */}

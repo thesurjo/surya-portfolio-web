@@ -1,21 +1,10 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import dynamic from 'next/dynamic';
 import { Header, Footer } from '@/global/page';
-import { BlogPost } from '@/lib/types/blog';
 import { useDropzone } from 'react-dropzone';
-import { Tab } from '@headlessui/react';
-import '@uiw/react-md-editor/markdown-editor.css';
-import '@uiw/react-markdown-preview/markdown.css';
-
-const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
-const MDPreview = dynamic(() => import('@uiw/react-markdown-preview'), { ssr: false });
-
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
+import TipTapEditor from '@/components/blogs/TipTapEditor';
 
 export default function AdminBlog() {
     const router = useRouter();
@@ -30,7 +19,6 @@ export default function AdminBlog() {
     const [seoKeywords, setSeoKeywords] = useState('');
     const [status, setStatus] = useState<'draft' | 'published' | 'trash'>('draft');
     const [loading, setLoading] = useState(false);
-    const [activeTab, setActiveTab] = useState(0);
 
     const onDrop = (acceptedFiles: File[]) => {
         const file = acceptedFiles[0];
@@ -146,81 +134,8 @@ export default function AdminBlog() {
                                     required
                                 />
 
-                                <Tab.Group>
-                                    <Tab.List className="flex space-x-1 rounded-xl bg-[--second-bg-color] p-1 mb-4">
-                                        <Tab
-                                            className={({ selected }) =>
-                                                classNames(
-                                                    'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
-                                                    'ring-white/60 ring-offset-2 ring-offset-[--main-color] focus:outline-none focus:ring-2',
-                                                    selected
-                                                        ? 'bg-[--main-color] text-white shadow'
-                                                        : 'text-[--text-color] hover:bg-white/[0.12] hover:text-white'
-                                                )
-                                            }
-                                        >
-                                            Editor
-                                        </Tab>
-                                        <Tab
-                                            className={({ selected }) =>
-                                                classNames(
-                                                    'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
-                                                    'ring-white/60 ring-offset-2 ring-offset-[--main-color] focus:outline-none focus:ring-2',
-                                                    selected
-                                                        ? 'bg-[--main-color] text-white shadow'
-                                                        : 'text-[--text-color] hover:bg-white/[0.12] hover:text-white'
-                                                )
-                                            }
-                                        >
-                                            Preview
-                                        </Tab>
-                                    </Tab.List>
-                                    <Tab.Panels>
-                                        <Tab.Panel>
-                                            <MDEditor
-                                                value={content}
-                                                onChange={value => setContent(value || '')}
-                                                preview="edit"
-                                                height={500}
-                                                hideToolbar={false}
-                                                enableScroll={true}
-                                                textareaProps={{
-                                                    spellCheck: false,
-                                                    style: { 
-                                                        fontSize: '16px',
-                                                        lineHeight: '1.5',
-                                                        padding: '16px',
-                                                        caretColor: 'var(--text-color)',
-                                                        position: 'relative',
-                                                        inset: '0',
-                                                        display: 'block',
-                                                        minHeight: '200px',
-                                                        backgroundColor: 'var(--second-bg-color)',
-                                                        color: 'var(--text-color)',
-                                                        whiteSpace: 'pre-wrap',
-                                                        overflowWrap: 'break-word'
-                                                    }
-                                                }}
-                                                previewOptions={{
-                                                    style: {
-                                                        padding: '16px',
-                                                        fontSize: '16px',
-                                                        lineHeight: '1.5',
-                                                        backgroundColor: 'var(--second-bg-color)',
-                                                        color: 'var(--text-color)'
-                                                    }
-                                                }}
-                                            />
-                                        </Tab.Panel>
-                                        <Tab.Panel>
-                                            <div className="prose prose-invert max-w-none min-h-[500px] p-6 bg-[--second-bg-color] rounded-lg">
-                                                {content && (
-                                                    <MDPreview source={content} />
-                                                )}
-                                            </div>
-                                        </Tab.Panel>
-                                    </Tab.Panels>
-                                </Tab.Group>
+                                {/* Content Editor */}
+                                <TipTapEditor content={content} onChange={setContent} />
                             </div>
 
                             {/* Sidebar Column */}
@@ -230,38 +145,20 @@ export default function AdminBlog() {
                                     <h3 className="text-[16px] font-bold font-jetbrains mb-4">Cover Image</h3>
                                     <div
                                         {...getRootProps()}
-                                        className={classNames(
-                                            "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-all duration-200",
-                                            isDragActive ? "border-[--main-color] bg-[--main-color]/10" : "border-gray-700 hover:border-[--main-color]"
-                                        )}
+                                        className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer ${isDragActive ? 'border-[--main-color]' : 'border-gray-700'}`}
                                     >
                                         <input {...getInputProps()} />
-                                        {previewUrl ? (
-                                            <div className="relative">
-                                                <img
-                                                    src={previewUrl}
-                                                    alt="Preview"
-                                                    className="w-full h-48 object-cover rounded-lg"
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        setCoverImage(null);
-                                                        setPreviewUrl('');
-                                                    }}
-                                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
-                                                >
-                                                    <i className='bx bx-x text-xl'></i>
-                                                </button>
-                                            </div>
+                                        {isDragActive ? (
+                                            <p>Drop the image here...</p>
                                         ) : (
-                                            <div className="text-[14px] text-gray-400">
-                                                <i className='bx bx-upload text-2xl mb-2'></i>
-                                                <p>Drag & drop an image here, or click to select</p>
-                                            </div>
+                                            <p>Drag & drop an image here, or click to select one</p>
                                         )}
                                     </div>
+                                    {previewUrl && (
+                                        <div className="mt-4">
+                                            <img src={previewUrl} alt="Preview" className="w-full h-auto rounded-lg" />
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Tags Section */}
@@ -323,13 +220,13 @@ export default function AdminBlog() {
                                         </div>
                                         <div>
                                             <label className="block text-[12px] font-medium font-jetbrains mb-2">
-                                                Keywords
+                                                Keywords (comma-separated)
                                             </label>
                                             <input
                                                 type="text"
                                                 value={seoKeywords}
                                                 onChange={(e) => setSeoKeywords(e.target.value)}
-                                                placeholder="Comma-separated keywords"
+                                                placeholder="e.g. technology, programming, web development"
                                                 className="w-full py-2 px-3 rounded-lg bg-[--bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
                                             />
                                         </div>

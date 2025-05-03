@@ -8,6 +8,7 @@ import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
+import rehypeRaw from 'rehype-raw';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -185,6 +186,7 @@ export default async function BlogDetail({ params }: BlogDetailProps) {
                     <div className="prose prose-invert prose-h1:font-jetbrains prose-h2:font-jetbrains prose-h3:font-jetbrains prose-p:font-jetbrains prose-li:font-jetbrains max-w-none">
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
                             components={components}
                         >
                             {blog.content}
