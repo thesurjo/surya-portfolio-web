@@ -13,13 +13,14 @@ const allCategories = Array.from(
     new Set(projects.map(project => project.category))
 ).sort();
 
-export default function Projects({ 
-    searchParams 
-}: { 
-    searchParams: { search?: string; category?: string } 
-}) {
-    const searchTerm = searchParams.search || '';
-    const selectedCategory = searchParams.category || '';
+export default async function Projects({
+    searchParams,
+  }: {
+    searchParams: Promise<{ search?: string; category?: string }>;
+  }) {
+    // Await the whole params object
+    const { search: searchTerm = '', category: selectedCategory = '' } =
+      await searchParams;
 
     // Filter projects based on search term and selected category
     const filteredProjects = projects.filter(project => {
