@@ -1,14 +1,12 @@
 "use client"
 import { projects } from '@/data/project.data';
 import { Header, Footer } from '@/global/page';
-import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from '@/components/projects/ProjectCard';
 
 
 export default function Projects() {
-    const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [filteredProjects, setFilteredProjects] = useState(projects);
