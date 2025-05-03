@@ -2,9 +2,11 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
 import { collection, query, where, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 
-export async function GET(request: Request, { params }: { params: { slug: string } }) {
+export async function GET(request: Request, { params }: {
+  params: Promise<{ slug: string }>;
+}) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
 
     // Query Firestore for the blog post with matching slug
     const blogsRef = collection(db, 'blogs');
@@ -35,13 +37,15 @@ export async function GET(request: Request, { params }: { params: { slug: string
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { slug: string } }) {
+export async function PUT(request: Request, { params }: {
+  params: Promise<{ slug: string }>;
+}) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const contentType = request.headers.get('content-type');
-    
+
     let updateData: any;
-    
+
     if (contentType?.includes('multipart/form-data')) {
       const formData = await request.formData();
       const title = formData.get('title') as string;
@@ -49,7 +53,7 @@ export async function PUT(request: Request, { params }: { params: { slug: string
       const tags = JSON.parse(formData.get('tags') as string);
       const seo = JSON.parse(formData.get('seo') as string);
       const status = formData.get('status') as 'draft' | 'published' | 'trash';
-      
+
       updateData = {
         title,
         content,
@@ -67,17 +71,17 @@ export async function PUT(request: Request, { params }: { params: { slug: string
         updatedAt: new Date()
       };
     }
-    
+
     const blogQuery = query(collection(db, 'blogs'), where('slug', '==', slug));
     const snapshot = await getDocs(blogQuery);
-    
+
     if (snapshot.empty) {
       return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
     }
-    
+
     const blogDoc = doc(db, 'blogs', snapshot.docs[0].id);
     await updateDoc(blogDoc, updateData);
-    
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error updating blog post:', error);
@@ -85,27 +89,29 @@ export async function PUT(request: Request, { params }: { params: { slug: string
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { slug: string } }) {
+export async function DELETE(request: Request, { params }: {
+  params: Promise<{ slug: string }>;
+}) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     const blogQuery = query(collection(db, 'blogs'), where('slug', '==', slug));
     const snapshot = await getDocs(blogQuery);
-    
+
     if (snapshot.empty) {
       return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
     }
-    
+
     const blogDoc = snapshot.docs[0];
     const blogData = blogDoc.data();
-    
+
     // Only allow permanent deletion if the post is in trash
     if (blogData.status !== 'trash') {
       return NextResponse.json(
-        { error: 'Only posts in trash can be permanently deleted' }, 
+        { error: 'Only posts in trash can be permanently deleted' },
         { status: 400 }
       );
     }
-    
+
     await deleteDoc(doc(db, 'blogs', blogDoc.id));
     return NextResponse.json({ success: true });
   } catch (error) {

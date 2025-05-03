@@ -9,15 +9,14 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
 interface BlogDetailProps {
-    params: {
-        slug: string;
-    };
+    params: Promise<{ slug: string }>;
 }
 
 // Generate dynamic metadata
 export async function generateMetadata({ params }: BlogDetailProps): Promise<Metadata> {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/${params.slug}`);
+        const { slug } = await params;
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/${slug}`);
         const blog: BlogPost = await response.json();
 
         return {
@@ -55,15 +54,16 @@ export async function generateMetadata({ params }: BlogDetailProps): Promise<Met
 }
 
 export default async function BlogDetail({ params }: BlogDetailProps) {
+    const { slug } = await params;
     // Server-side data fetching
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/${params.slug}`);
-    
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/${slug}`);
+
     if (!response.ok) {
         notFound();
     }
-    
+
     const blog: BlogPost = await response.json();
-    
+
     // Redirect if not published
     if (blog.status !== 'published') {
         notFound();
@@ -162,16 +162,16 @@ export default async function BlogDetail({ params }: BlogDetailProps) {
                             <div className="flex items-center gap-4">
                                 <span className="text-[14px] font-jetbrains text-gray-400">Share this post:</span>
                                 <div className="flex items-center gap-2">
-                                    <a 
-                                        href={`https://twitter.com/intent/tweet?text=${blog.title}&url=${process.env.NEXT_PUBLIC_BASE_URL}/blog/${params.slug}`}
+                                    <a
+                                        href={`https://twitter.com/intent/tweet?text=${blog.title}&url=${process.env.NEXT_PUBLIC_BASE_URL}/blog/${slug}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-8 h-8 rounded-full bg-[--second-bg-color] flex items-center justify-center text-[--main-color] hover:bg-[--main-color] hover:text-white transition-all duration-300"
                                     >
                                         <i className='bx bxl-twitter'></i>
                                     </a>
-                                    <a 
-                                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_BASE_URL}/blog/${params.slug}`}
+                                    <a
+                                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_BASE_URL}/blog/${slug}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-8 h-8 rounded-full bg-[--second-bg-color] flex items-center justify-center text-[--main-color] hover:bg-[--main-color] hover:text-white transition-all duration-300"
