@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect, useState } from 'react';
-import { useRouter, useParams } from 'next/navigation';
 import { Header, Footer } from '@/global/page';
 import Image from 'next/image';
 import { BlogPost } from '@/lib/types/blog';
@@ -9,73 +5,27 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { notFound } from 'next/navigation';
 
-export default function BlogDetail() {
-    const router = useRouter();
-    const params = useParams();
-    const [blog, setBlog] = useState<BlogPost | null>(null);
-    const [loading, setLoading] = useState(true);
+interface BlogDetailProps {
+    params: {
+        slug: string;
+    };
+}
+
+export default async function BlogDetail({ params }: BlogDetailProps) {
+    // Server-side data fetching
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/${params.slug}`);
     
-    useEffect(() => {
-        const fetchBlog = async () => {
-            try {
-                if (params.slug) {
-                    const response = await fetch(`/api/blog/${params.slug}`);
-                    if (!response.ok) {
-                        throw new Error('Blog not found');
-                    }
-                    const data = await response.json();
-                    
-                    // Only show published posts
-                    if (data.status !== 'published') {
-                        router.push('/blog');
-                        return;
-                    }
-                    
-                    setBlog(data);
-                }
-            } catch (error) {
-                console.error('Error fetching blog:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchBlog();
-    }, [params.slug, router]);
-
-    if (loading) {
-        return (
-            <main className="flex min-h-screen flex-col items-center justify-between">
-                <Header />
-                <div className="flex justify-center items-center h-screen">
-                    <div className="loader"></div>
-                </div>
-                <Footer />
-            </main>
-        );
+    if (!response.ok) {
+        notFound();
     }
-
-    if (!blog) {
-        return (
-            <main className="flex min-h-screen flex-col items-center justify-between mt-16 md:mt-0">
-                <Header />
-                <div className="w-full py-20 px-4 text-center">
-                    <h1 className="text-[32px] md:text-[48px] font-bold mb-6 font-jetbrains">Blog not found</h1>
-                    <p className="text-[16px] md:text-[18px] mb-8 font-jetbrains text-gray-400">
-                        The blog post you're looking for doesn't exist or has been moved.
-                    </p>
-                    <button
-                        onClick={() => router.push('/blog')}
-                        className="bg-[--main-color] hover:bg-[--main-color]/90 text-white font-bold py-3 px-8 rounded-full transition duration-300 flex items-center mx-auto gap-2"
-                    >
-                        <i className='bx bx-left-arrow-alt'></i>
-                        Back to Blog
-                    </button>
-                </div>
-                <Footer />
-            </main>
-        );
+    
+    const blog: BlogPost = await response.json();
+    
+    // Redirect if not published
+    if (blog.status !== 'published') {
+        notFound();
     }
 
     return (
@@ -85,13 +35,13 @@ export default function BlogDetail() {
                 <div className="max-w-4xl mx-auto">
                     {/* Back button */}
                     <div className="mb-6">
-                        <button
-                            onClick={() => router.push('/blog')}
+                        <a
+                            href="/blog"
                             className="inline-flex items-center gap-2 text-[14px] md:text-[16px] font-medium text-[--main-color] hover:text-[--main-color]/80 transition-colors font-jetbrains group"
                         >
                             <i className='bx bx-left-arrow-alt text-lg group-hover:-translate-x-1 transition-transform'></i>
                             Back to Blog
-                        </button>
+                        </a>
                     </div>
 
                     {/* Blog Header */}
@@ -171,18 +121,22 @@ export default function BlogDetail() {
                             <div className="flex items-center gap-4">
                                 <span className="text-[14px] font-jetbrains text-gray-400">Share this post:</span>
                                 <div className="flex items-center gap-2">
-                                    <button 
-                                        onClick={() => window.open(`https://twitter.com/intent/tweet?text=${blog.title}&url=${window.location.href}`, '_blank')}
+                                    <a 
+                                        href={`https://twitter.com/intent/tweet?text=${blog.title}&url=${process.env.NEXT_PUBLIC_BASE_URL}/blog/${params.slug}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="w-8 h-8 rounded-full bg-[--second-bg-color] flex items-center justify-center text-[--main-color] hover:bg-[--main-color] hover:text-white transition-all duration-300"
                                     >
                                         <i className='bx bxl-twitter'></i>
-                                    </button>
-                                    <button 
-                                        onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`, '_blank')}
+                                    </a>
+                                    <a 
+                                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_BASE_URL}/blog/${params.slug}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="w-8 h-8 rounded-full bg-[--second-bg-color] flex items-center justify-center text-[--main-color] hover:bg-[--main-color] hover:text-white transition-all duration-300"
                                     >
                                         <i className='bx bxl-linkedin'></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
