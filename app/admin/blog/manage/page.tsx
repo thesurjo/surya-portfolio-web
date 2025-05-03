@@ -93,35 +93,41 @@ export default function ManageBlogPosts() {
                         </h1>
                         <Link
                             href="/admin/blog"
-                            className="px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-lg text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300 flex items-center gap-2"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-full text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300"
                         >
-                            <i className='bx bx-plus'></i>
+                            <i className='bx bx-plus text-xl'></i>
                             New Post
                         </Link>
                     </div>
 
                     {/* Status Filter */}
-                    <div className="flex gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2 mb-6">
                         <button
                             onClick={() => setSelectedStatus(null)}
-                            className={`px-4 py-2 rounded-lg text-[14px] font-medium transition-all duration-300 ${
+                            className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-[14px] font-medium transition-all duration-300 ${
                                 selectedStatus === null 
                                     ? 'bg-[--main-color] text-[--bg-color]' 
-                                    : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80'
+                                    : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80 border border-gray-700'
                             }`}
                         >
+                            <i className='bx bx-list-ul text-xl'></i>
                             All Posts
                         </button>
                         {['published', 'draft', 'trash'].map((status) => (
                             <button
                                 key={status}
                                 onClick={() => setSelectedStatus(status)}
-                                className={`px-4 py-2 rounded-lg text-[14px] font-medium transition-all duration-300 ${
+                                className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-[14px] font-medium transition-all duration-300 ${
                                     selectedStatus === status 
                                         ? 'bg-[--main-color] text-[--bg-color]' 
-                                        : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80'
+                                        : 'bg-[--second-bg-color] text-[--text-color] hover:bg-opacity-80 border border-gray-700'
                                 }`}
                             >
+                                <i className={`bx ${
+                                    status === 'published' ? 'bx-check-circle' :
+                                    status === 'draft' ? 'bx-edit-alt' :
+                                    'bx-trash'
+                                } text-xl`}></i>
                                 {status.charAt(0).toUpperCase() + status.slice(1)}
                             </button>
                         ))}
@@ -179,14 +185,16 @@ export default function ManageBlogPosts() {
                                             <>
                                                 <Link
                                                     href={`/admin/blog/edit/${blog.slug}`}
-                                                    className="px-4 py-2 bg-[--main-color]/20 text-[--main-color] rounded-lg text-[12px] font-medium hover:bg-[--main-color]/30 transition-all duration-300"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 bg-[--main-color]/20 text-[--main-color] rounded-full text-[12px] font-medium hover:bg-[--main-color]/30 transition-all duration-300"
                                                 >
+                                                    <i className='bx bx-edit-alt text-base'></i>
                                                     Edit
                                                 </Link>
                                                 <button
                                                     onClick={() => handleStatusChange(blog.slug, blog.status === 'draft' ? 'published' : 'draft')}
-                                                    className="px-4 py-2 bg-blue-500/20 text-blue-500 rounded-lg text-[12px] font-medium hover:bg-blue-500/30 transition-all duration-300"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 text-blue-500 rounded-full text-[12px] font-medium hover:bg-blue-500/30 transition-all duration-300"
                                                 >
+                                                    <i className={`bx ${blog.status === 'draft' ? 'bx-check-circle' : 'bx-hide'} text-base`}></i>
                                                     {blog.status === 'draft' ? 'Publish' : 'Unpublish'}
                                                 </button>
                                             </>
@@ -195,22 +203,25 @@ export default function ManageBlogPosts() {
                                             <>
                                                 <button
                                                     onClick={() => handleDelete(blog.slug)}
-                                                    className="px-4 py-2 bg-red-500/20 text-red-500 rounded-lg text-[12px] font-medium hover:bg-red-500/30 transition-all duration-300"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/20 text-red-500 rounded-full text-[12px] font-medium hover:bg-red-500/30 transition-all duration-300"
                                                 >
+                                                    <i className='bx bx-trash text-base'></i>
                                                     Delete Permanently
                                                 </button>
                                                 <button
                                                     onClick={() => handleStatusChange(blog.slug, 'draft')}
-                                                    className="px-4 py-2 bg-green-500/20 text-green-500 rounded-lg text-[12px] font-medium hover:bg-green-500/30 transition-all duration-300"
+                                                    className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-500 rounded-full text-[12px] font-medium hover:bg-green-500/30 transition-all duration-300"
                                                 >
+                                                    <i className='bx bx-revision text-base'></i>
                                                     Restore
                                                 </button>
                                             </>
                                         ) : (
                                             <button
                                                 onClick={() => handleStatusChange(blog.slug, 'trash')}
-                                                className="px-4 py-2 bg-red-500/20 text-red-500 rounded-lg text-[12px] font-medium hover:bg-red-500/30 transition-all duration-300"
+                                                className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/20 text-red-500 rounded-full text-[12px] font-medium hover:bg-red-500/30 transition-all duration-300"
                                             >
+                                                <i className='bx bx-trash text-base'></i>
                                                 Move to Trash
                                             </button>
                                         )}

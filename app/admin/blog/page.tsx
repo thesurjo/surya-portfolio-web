@@ -5,11 +5,17 @@ import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { Header, Footer } from '@/global/page';
 import { BlogPost } from '@/lib/types/blog';
+import { useDropzone } from 'react-dropzone';
+import { Tab } from '@headlessui/react';
+import '@uiw/react-md-editor/markdown-editor.css';
+import '@uiw/react-markdown-preview/markdown.css';
 
-const MDEditor = dynamic(
-  () => import("@uiw/react-md-editor"),
-  { ssr: false }
-);
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
+const MDPreview = dynamic(() => import('@uiw/react-markdown-preview'), { ssr: false });
+
+function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(' ')
+}
 
 export default function AdminBlog() {
     const router = useRouter();
@@ -24,9 +30,10 @@ export default function AdminBlog() {
     const [seoKeywords, setSeoKeywords] = useState('');
     const [status, setStatus] = useState<'draft' | 'published' | 'trash'>('draft');
     const [loading, setLoading] = useState(false);
+    const [activeTab, setActiveTab] = useState(0);
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
+    const onDrop = (acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
         if (file) {
             setCoverImage(file);
             const reader = new FileReader();
@@ -36,6 +43,14 @@ export default function AdminBlog() {
             reader.readAsDataURL(file);
         }
     };
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+        accept: {
+            'image/*': ['.png', '.jpg', '.jpeg', '.gif', '.webp']
+        },
+        maxFiles: 1
+    });
 
     const handleTagInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && tagInput.trim()) {
@@ -94,183 +109,221 @@ export default function AdminBlog() {
         <main className="flex min-h-screen flex-col items-center justify-between">
             <Header />
             <section className="w-full py-8 pt-28 px-4 md:px-9 bg-[--second-bg-color]/30">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-5xl mx-auto">
                     <div className="flex justify-between items-center mb-8">
                         <h1 className="text-[32px] md:text-[40px] font-bold font-jetbrains">
                             Create New Blog Post
                         </h1>
-                        <button
-                            onClick={() => router.push('/admin/blog/manage')}
-                            className="px-6 py-3 bg-[--second-bg-color] text-[--text-color] rounded-lg text-[14px] font-medium hover:bg-[--second-bg-color]/90 transition-all duration-300 flex items-center gap-2"
-                        >
-                            <i className='bx bx-arrow-back'></i>
-                            Back to List
-                        </button>
+                        <div className="flex items-center gap-4">
+                            <select
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value as 'draft' | 'published' | 'trash')}
+                                className="py-3 px-4 rounded-full bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                            >
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                            </select>
+                            <button
+                                onClick={() => router.push('/admin/blog/manage')}
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-[--second-bg-color] text-[--text-color] rounded-full text-[14px] font-medium hover:bg-[--second-bg-color]/90 transition-all duration-300 border border-gray-700"
+                            >
+                                <i className='bx bx-arrow-back text-xl'></i>
+                                Back to List
+                            </button>
+                        </div>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Title Input */}
-                        <div className="flex gap-4">
+                        <div className="flex gap-8">
+                            {/* Main Content Column */}
                             <div className="flex-1">
-                                <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                    Title *
-                                </label>
                                 <input
                                     type="text"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                    className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                    placeholder="Enter post title..."
+                                    className="w-full py-4 px-6 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[20px] mb-6"
                                     required
                                 />
-                            </div>
-                            <div className="w-32">
-                                <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                    Status
-                                </label>
-                                <select
-                                    value={status}
-                                    onChange={(e) => setStatus(e.target.value as 'draft' | 'published' | 'trash')}
-                                    className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
-                                >
-                                    <option value="draft">Draft</option>
-                                    <option value="published">Published</option>
-                                    <option value="trash">Trash</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        {/* Cover Image Upload */}
-                        <div>
-                            <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                Cover Image *
-                            </label>
-                            <div className="flex items-center gap-4">
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleImageChange}
-                                    className="hidden"
-                                    id="coverImage"
-                                    required
-                                />
-                                <label
-                                    htmlFor="coverImage"
-                                    className="px-4 py-2 bg-[--main-color] text-[--bg-color] rounded-lg cursor-pointer text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300"
-                                >
-                                    Choose File
-                                </label>
-                                {previewUrl && (
-                                    <div className="relative w-20 h-20 rounded-lg overflow-hidden">
-                                        <img
-                                            src={previewUrl}
-                                            alt="Preview"
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Tags Input */}
-                        <div>
-                            <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                Tags
-                            </label>
-                            <div className="flex flex-wrap gap-2 mb-2">
-                                {tags.map((tag, index) => (
-                                    <span
-                                        key={index}
-                                        className="bg-[--main-color]/20 text-[--main-color] px-3 py-1 rounded-md text-[12px] font-medium font-jetbrains flex items-center gap-2"
-                                    >
-                                        {tag}
-                                        <button
-                                            type="button"
-                                            onClick={() => removeTag(tag)}
-                                            className="text-[--main-color] hover:text-[--main-color]/80"
+                                <Tab.Group>
+                                    <Tab.List className="flex space-x-1 rounded-xl bg-[--second-bg-color] p-1 mb-4">
+                                        <Tab
+                                            className={({ selected }) =>
+                                                classNames(
+                                                    'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
+                                                    'ring-white/60 ring-offset-2 ring-offset-[--main-color] focus:outline-none focus:ring-2',
+                                                    selected
+                                                        ? 'bg-[--main-color] text-white shadow'
+                                                        : 'text-[--text-color] hover:bg-white/[0.12] hover:text-white'
+                                                )
+                                            }
                                         >
-                                            ×
-                                        </button>
-                                    </span>
-                                ))}
+                                            Editor
+                                        </Tab>
+                                        <Tab
+                                            className={({ selected }) =>
+                                                classNames(
+                                                    'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
+                                                    'ring-white/60 ring-offset-2 ring-offset-[--main-color] focus:outline-none focus:ring-2',
+                                                    selected
+                                                        ? 'bg-[--main-color] text-white shadow'
+                                                        : 'text-[--text-color] hover:bg-white/[0.12] hover:text-white'
+                                                )
+                                            }
+                                        >
+                                            Preview
+                                        </Tab>
+                                    </Tab.List>
+                                    <Tab.Panels>
+                                        <Tab.Panel>
+                                            <MDEditor
+                                                value={content}
+                                                onChange={value => setContent(value || '')}
+                                                preview="edit"
+                                                height={500}
+                                            />
+                                        </Tab.Panel>
+                                        <Tab.Panel>
+                                            <div className="prose prose-invert max-w-none min-h-[500px] p-6 bg-[--second-bg-color] rounded-lg">
+                                                {content && (
+                                                    <MDPreview source={content} />
+                                                )}
+                                            </div>
+                                        </Tab.Panel>
+                                    </Tab.Panels>
+                                </Tab.Group>
                             </div>
-                            <input
-                                type="text"
-                                value={tagInput}
-                                onChange={(e) => setTagInput(e.target.value)}
-                                onKeyDown={handleTagInput}
-                                placeholder="Type and press Enter to add tags"
-                                className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
-                            />
-                        </div>
 
-                        {/* Content Editor */}
-                        <div>
-                            <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                Content *
-                            </label>
-                            <MDEditor
-                                value={content}
-                                onChange={value => setContent(value || '')}
-                                preview="edit"
-                                height={400}
-                            />
-                        </div>
+                            {/* Sidebar Column */}
+                            <div className="w-80 space-y-6">
+                                {/* Cover Image Upload */}
+                                <div className="bg-[--second-bg-color] p-4 rounded-lg">
+                                    <h3 className="text-[16px] font-bold font-jetbrains mb-4">Cover Image</h3>
+                                    <div
+                                        {...getRootProps()}
+                                        className={classNames(
+                                            "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-all duration-200",
+                                            isDragActive ? "border-[--main-color] bg-[--main-color]/10" : "border-gray-700 hover:border-[--main-color]"
+                                        )}
+                                    >
+                                        <input {...getInputProps()} />
+                                        {previewUrl ? (
+                                            <div className="relative">
+                                                <img
+                                                    src={previewUrl}
+                                                    alt="Preview"
+                                                    className="w-full h-48 object-cover rounded-lg"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setCoverImage(null);
+                                                        setPreviewUrl('');
+                                                    }}
+                                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                                                >
+                                                    <i className='bx bx-x text-xl'></i>
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="text-[14px] text-gray-400">
+                                                <i className='bx bx-upload text-2xl mb-2'></i>
+                                                <p>Drag & drop an image here, or click to select</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
 
-                        {/* SEO Section */}
-                        <div className="border-t border-gray-700 pt-6">
-                            <h2 className="text-[20px] font-bold font-jetbrains mb-4">SEO Settings</h2>
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                        SEO Title
-                                    </label>
+                                {/* Tags Section */}
+                                <div className="bg-[--second-bg-color] p-4 rounded-lg">
+                                    <h3 className="text-[16px] font-bold font-jetbrains mb-4">Tags</h3>
+                                    <div className="flex flex-wrap gap-2 mb-3">
+                                        {tags.map((tag, index) => (
+                                            <span
+                                                key={index}
+                                                className="bg-[--main-color]/20 text-[--main-color] px-3 py-1 rounded-md text-[12px] font-medium font-jetbrains flex items-center gap-2 group"
+                                            >
+                                                {tag}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => removeTag(tag)}
+                                                    className="text-[--main-color] opacity-0 group-hover:opacity-100 transition-opacity"
+                                                >
+                                                    <i className='bx bx-x'></i>
+                                                </button>
+                                            </span>
+                                        ))}
+                                    </div>
                                     <input
                                         type="text"
-                                        value={seoTitle}
-                                        onChange={(e) => setSeoTitle(e.target.value)}
-                                        placeholder="Leave blank to use post title"
-                                        className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                        value={tagInput}
+                                        onChange={(e) => setTagInput(e.target.value)}
+                                        onKeyDown={handleTagInput}
+                                        placeholder="Add a tag..."
+                                        className="w-full py-2 px-3 rounded-lg bg-[--bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
                                     />
                                 </div>
-                                <div>
-                                    <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                        Meta Description
-                                    </label>
-                                    <textarea
-                                        value={seoDescription}
-                                        onChange={(e) => setSeoDescription(e.target.value)}
-                                        rows={3}
-                                        className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-[14px] font-medium font-jetbrains mb-2">
-                                        Keywords (comma-separated)
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={seoKeywords}
-                                        onChange={(e) => setSeoKeywords(e.target.value)}
-                                        placeholder="e.g. technology, programming, web development"
-                                        className="w-full py-3 px-4 rounded-lg bg-[--second-bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
-                                    />
+
+                                {/* SEO Section */}
+                                <div className="bg-[--second-bg-color] p-4 rounded-lg">
+                                    <h3 className="text-[16px] font-bold font-jetbrains mb-4">SEO Settings</h3>
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="block text-[12px] font-medium font-jetbrains mb-2">
+                                                SEO Title
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={seoTitle}
+                                                onChange={(e) => setSeoTitle(e.target.value)}
+                                                placeholder="Leave blank to use post title"
+                                                className="w-full py-2 px-3 rounded-lg bg-[--bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-[12px] font-medium font-jetbrains mb-2">
+                                                Meta Description
+                                            </label>
+                                            <textarea
+                                                value={seoDescription}
+                                                onChange={(e) => setSeoDescription(e.target.value)}
+                                                rows={3}
+                                                className="w-full py-2 px-3 rounded-lg bg-[--bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-[12px] font-medium font-jetbrains mb-2">
+                                                Keywords
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={seoKeywords}
+                                                onChange={(e) => setSeoKeywords(e.target.value)}
+                                                placeholder="Comma-separated keywords"
+                                                className="w-full py-2 px-3 rounded-lg bg-[--bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none font-jetbrains text-[14px]"
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Submit Button */}
-                        <div className="flex justify-between pt-6">
+                        <div className="flex justify-between pt-6 border-t border-gray-700">
                             <button
                                 type="button"
                                 onClick={() => router.push('/admin/blog/manage')}
-                                className="px-6 py-3 bg-gray-600 text-white rounded-lg text-[14px] font-medium hover:bg-gray-700 transition-all duration-300 flex items-center gap-2"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border-[--main-color] text-[--main-color] hover:bg-[--main-color]/10 transition-all duration-300 text-[14px] font-medium font-jetbrains border-2 rounded-full"
                             >
+                                <i className='bx bx-x text-xl'></i>
                                 Cancel
                             </button>
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className={`px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-lg text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300 flex items-center gap-2 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                className={`inline-flex items-center gap-2 px-6 py-3 bg-[--main-color] text-[--bg-color] rounded-full text-[14px] font-medium hover:bg-[--main-color]/90 transition-all duration-300 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
                                 {loading ? (
                                     <>
@@ -279,8 +332,8 @@ export default function AdminBlog() {
                                     </>
                                 ) : (
                                     <>
-                                        <i className='bx bx-save'></i>
-                                        {status === 'published' ? 'Publish Post' : 'Save as ' + status.charAt(0).toUpperCase() + status.slice(1)}
+                                        <i className='bx bx-save text-xl'></i>
+                                        {status === 'published' ? 'Publish Post' : 'Save as Draft'}
                                     </>
                                 )}
                             </button>
