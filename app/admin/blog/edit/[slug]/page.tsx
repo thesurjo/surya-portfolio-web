@@ -1,10 +1,11 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { Header, Footer } from '@/global/page';
 import { BlogPost } from '@/lib/types/blog';
+import { useDropzone } from 'react-dropzone';
 
 const MDEditor = dynamic(
     () => import("@uiw/react-md-editor"),
@@ -19,6 +20,8 @@ export default function EditBlogPost() {
     const [content, setContent] = useState('');
     const [tags, setTags] = useState<string[]>([]);
     const [tagInput, setTagInput] = useState('');
+    const [coverImage, setCoverImage] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState('');
     const [seoTitle, setSeoTitle] = useState('');
     const [seoDescription, setSeoDescription] = useState('');
     const [seoKeywords, setSeoKeywords] = useState('');
@@ -41,6 +44,7 @@ export default function EditBlogPost() {
                     setSeoTitle(data.seo?.title || '');
                     setSeoDescription(data.seo?.description || '');
                     setSeoKeywords(data.seo?.keywords?.join(', ') || '');
+                    setPreviewUrl(data.coverImage || '');
                 }
             } catch (error) {
                 console.error('Error fetching blog:', error);
@@ -52,6 +56,26 @@ export default function EditBlogPost() {
 
         fetchBlog();
     }, [params.slug]);
+
+    const onDrop = useCallback((acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        if (file) {
+            setCoverImage(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviewUrl(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    }, []);
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+        accept: {
+            'image/*': ['.png', '.jpg', '.jpeg', '.gif', '.webp']
+        },
+        maxFiles: 1
+    });
 
     const handleTagInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && tagInput.trim()) {
@@ -86,6 +110,15 @@ export default function EditBlogPost() {
                 description: seoDescription,
                 keywords: seoKeywords.split(',').map(k => k.trim())
             }));
+
+            // If there's a new image, append it and the old image URL
+            if (coverImage) {
+                formData.append('coverImage', coverImage);
+                // Only send old image URL if it's from ImageKit (contains the original blog's image)
+                if (blog?.coverImage && blog.coverImage.includes('imagekit')) {
+                    formData.append('oldImageUrl', blog.coverImage);
+                }
+            }
 
             const response = await fetch(`/api/blog/${params.slug}`, {
                 method: 'PUT',
@@ -165,6 +198,27 @@ export default function EditBlogPost() {
 
                             {/* Sidebar Column */}
                             <div className="w-80 space-y-6">
+                                {/* Cover Image Upload */}
+                                <div className="bg-[--second-bg-color] p-4 rounded-lg">
+                                    <h3 className="text-[16px] font-bold font-jetbrains mb-4">Cover Image</h3>
+                                    <div
+                                        {...getRootProps()}
+                                        className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer ${isDragActive ? 'border-[--main-color]' : 'border-gray-700'}`}
+                                    >
+                                        <input {...getInputProps()} />
+                                        {isDragActive ? (
+                                            <p>Drop the image here...</p>
+                                        ) : (
+                                            <p>Drag & drop an image here, or click to select one</p>
+                                        )}
+                                    </div>
+                                    {previewUrl && (
+                                        <div className="mt-4">
+                                            <img src={previewUrl} alt="Preview" className="w-full h-auto rounded-lg" />
+                                        </div>
+                                    )}
+                                </div>
+
                                 {/* Status Selector */}
                                 <div className="bg-[--second-bg-color] p-4 rounded-lg">
                                     <h3 className="text-[16px] font-bold font-jetbrains mb-4">Status</h3>
