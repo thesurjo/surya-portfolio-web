@@ -109,7 +109,7 @@ export default async function BlogDetail({ params }: BlogDetailProps) {
             );
         },
         p(props: ComponentProps) {
-            return <p className="text-[12px] md:text-[14px] leading-relaxed" {...props} />;
+            return <p className="text-[12px] md:text-[14px] leading-relaxed mb-0 mt-0" {...props} />;
         },
         h1(props: ComponentProps) {
             return <h1 className="mt-12 mb-2" {...props} />;
