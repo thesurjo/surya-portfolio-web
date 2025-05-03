@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Header, Footer } from '@/global/page';
 import { projects } from '@/data/project.data';
-import Image from 'next/image';
 import ClientGallery from './ClientGallery';
 import RelatedProjects from '@/components/projects/RelatedProjects';
 import { Metadata } from 'next';
@@ -75,11 +74,9 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
                         <div className="flex flex-col md:flex-row gap-5 md:gap-6 items-start">
                             {/* Project Logo/Icon */}
                             <div className="w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden flex-shrink-0 shadow-lg border border-gray-800/20">
-                                <Image 
+                                <img 
                                     src={project.logoUrl || project.gallery?.[0] || project.imageUrl}
                                     alt={`${project.title} logo`}
-                                    width={144}
-                                    height={144}
                                     className="w-full h-full object-cover"
                                 />
                             </div>
