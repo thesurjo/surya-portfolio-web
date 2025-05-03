@@ -192,6 +192,34 @@ export default function EditBlogPost() {
                                         onChange={value => setContent(value || '')}
                                         preview="edit"
                                         height={500}
+                                        hideToolbar={false}
+                                        enableScroll={true}
+                                        textareaProps={{
+                                            spellCheck: false,
+                                            style: { 
+                                                fontSize: '16px',
+                                                lineHeight: '1.5',
+                                                padding: '16px',
+                                                caretColor: 'var(--text-color)',
+                                                position: 'relative',
+                                                inset: '0',
+                                                display: 'block',
+                                                minHeight: '200px',
+                                                backgroundColor: 'var(--second-bg-color)',
+                                                color: 'var(--text-color)',
+                                                whiteSpace: 'pre-wrap',
+                                                overflowWrap: 'break-word'
+                                            }
+                                        }}
+                                        previewOptions={{
+                                            style: {
+                                                padding: '16px',
+                                                fontSize: '16px',
+                                                lineHeight: '1.5',
+                                                backgroundColor: 'var(--second-bg-color)',
+                                                color: 'var(--text-color)'
+                                            }
+                                        }}
                                     />
                                 </div>
                             </div>
