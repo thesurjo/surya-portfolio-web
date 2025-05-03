@@ -100,6 +100,12 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
     editor?.chain().focus().setTextAlign(align).run()
   }, [editor])
 
+  const handleButtonClick = useCallback((e: React.MouseEvent, callback: () => void) => {
+    e.preventDefault();
+    e.stopPropagation();
+    callback();
+  }, [])
+
   const setLink = useCallback(() => {
     const url = window.prompt('Enter URL')
     if (url) {
@@ -135,7 +141,10 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
         {/* Headings */}
         <div className="flex flex-wrap gap-2 mb-2 pb-2 border-b border-gray-700">
           <select
-            onChange={(e) => setHeading(parseInt(e.target.value))}
+            onChange={(e) => {
+              e.preventDefault();
+              setHeading(parseInt(e.target.value));
+            }}
             className="px-3 py-1.5 rounded bg-[--bg-color] text-[--text-color] border border-gray-700 focus:border-[--main-color] focus:outline-none text-sm"
             value={
               editor.isActive('heading', { level: 1 }) ? '1' :
@@ -158,37 +167,41 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
           {/* Text Alignment */}
           <div className="flex gap-1">
             <button
-              onClick={() => setTextAlign('left')}
+              onClick={(e) => handleButtonClick(e, () => setTextAlign('left'))}
               className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
                 editor.isActive({ textAlign: 'left' }) ? 'bg-[--bg-color]' : ''
               }`}
+              type="button"
               title="Align Left"
             >
               <i className='bx bx-align-left'></i>
             </button>
             <button
-              onClick={() => setTextAlign('center')}
+              onClick={(e) => handleButtonClick(e, () => setTextAlign('center'))}
               className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
                 editor.isActive({ textAlign: 'center' }) ? 'bg-[--bg-color]' : ''
               }`}
+              type="button"
               title="Align Center"
             >
               <i className='bx bx-align-middle'></i>
             </button>
             <button
-              onClick={() => setTextAlign('right')}
+              onClick={(e) => handleButtonClick(e, () => setTextAlign('right'))}
               className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
                 editor.isActive({ textAlign: 'right' }) ? 'bg-[--bg-color]' : ''
               }`}
+              type="button"
               title="Align Right"
             >
               <i className='bx bx-align-right'></i>
             </button>
             <button
-              onClick={() => setTextAlign('justify')}
+              onClick={(e) => handleButtonClick(e, () => setTextAlign('justify'))}
               className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
                 editor.isActive({ textAlign: 'justify' }) ? 'bg-[--bg-color]' : ''
               }`}
+              type="button"
               title="Justify"
             >
               <i className='bx bx-align-justify'></i>
@@ -199,7 +212,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
         {/* Text Formatting */}
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={toggleBold}
+            onClick={(e) => handleButtonClick(e, toggleBold)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('bold') ? 'bg-[--bg-color]' : ''
             }`}
@@ -208,7 +222,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-bold'></i>
           </button>
           <button
-            onClick={toggleItalic}
+            onClick={(e) => handleButtonClick(e, toggleItalic)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('italic') ? 'bg-[--bg-color]' : ''
             }`}
@@ -217,7 +232,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-italic'></i>
           </button>
           <button
-            onClick={toggleUnderline}
+            onClick={(e) => handleButtonClick(e, toggleUnderline)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('underline') ? 'bg-[--bg-color]' : ''
             }`}
@@ -226,7 +242,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-underline'></i>
           </button>
           <button
-            onClick={toggleStrike}
+            onClick={(e) => handleButtonClick(e, toggleStrike)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('strike') ? 'bg-[--bg-color]' : ''
             }`}
@@ -235,7 +252,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-strikethrough'></i>
           </button>
           <button
-            onClick={toggleSubscript}
+            onClick={(e) => handleButtonClick(e, toggleSubscript)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('subscript') ? 'bg-[--bg-color]' : ''
             }`}
@@ -244,7 +262,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-subdirectory-left'></i>
           </button>
           <button
-            onClick={toggleSuperscript}
+            onClick={(e) => handleButtonClick(e, toggleSuperscript)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('superscript') ? 'bg-[--bg-color]' : ''
             }`}
@@ -253,7 +272,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-subdirectory-right'></i>
           </button>
           <button
-            onClick={toggleCode}
+            onClick={(e) => handleButtonClick(e, toggleCode)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('code') ? 'bg-[--bg-color]' : ''
             }`}
@@ -262,7 +282,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-code'></i>
           </button>
           <button
-            onClick={toggleCodeBlock}
+            onClick={(e) => handleButtonClick(e, toggleCodeBlock)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('codeBlock') ? 'bg-[--bg-color]' : ''
             }`}
@@ -271,7 +292,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-code-block'></i>
           </button>
           <button
-            onClick={toggleBlockquote}
+            onClick={(e) => handleButtonClick(e, toggleBlockquote)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('blockquote') ? 'bg-[--bg-color]' : ''
             }`}
@@ -280,7 +302,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-quote-left'></i>
           </button>
           <button
-            onClick={toggleBulletList}
+            onClick={(e) => handleButtonClick(e, toggleBulletList)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('bulletList') ? 'bg-[--bg-color]' : ''
             }`}
@@ -289,7 +312,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-list-ul'></i>
           </button>
           <button
-            onClick={toggleOrderedList}
+            onClick={(e) => handleButtonClick(e, toggleOrderedList)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('orderedList') ? 'bg-[--bg-color]' : ''
             }`}
@@ -298,7 +322,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-list-ol'></i>
           </button>
           <button
-            onClick={setLink}
+            onClick={(e) => handleButtonClick(e, setLink)}
+            type="button"
             className={`p-2 rounded hover:bg-[--bg-color] transition-colors ${
               editor.isActive('link') ? 'bg-[--bg-color]' : ''
             }`}
@@ -307,7 +332,8 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
             <i className='bx bx-link'></i>
           </button>
           <button
-            onClick={addImage}
+            onClick={(e) => handleButtonClick(e, addImage)}
+            type="button"
             className="p-2 rounded hover:bg-[--bg-color] transition-colors"
             title="Add Image"
           >
@@ -317,7 +343,7 @@ const TipTapEditor = ({ content, onChange }: TipTapEditorProps) => {
       </div>
       <EditorContent 
         editor={editor} 
-        className="prose prose-invert max-w-none p-4 min-h-[500px] bg-[--bg-color]"
+        className="prose prose-invert max-w-none p-4 h-[600px] overflow-y-auto bg-[--bg-color]"
       />
     </div>
   )
