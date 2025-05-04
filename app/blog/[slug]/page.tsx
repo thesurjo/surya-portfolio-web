@@ -69,7 +69,12 @@ export async function generateMetadata({ params }: BlogDetailProps): Promise<Met
 
 export default async function BlogDetail({ params }: BlogDetailProps) {
     const { slug } = await params;
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/${slug}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog/${slug}`, {
+        cache: 'no-store', // Disable caching to always get fresh data
+        headers: {
+            'Cache-Control': 'no-cache'
+        }
+    });
 
     if (!response.ok) {
         notFound();
